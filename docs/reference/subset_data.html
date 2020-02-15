@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Truncate a data frame or `inspect()`` object to create a subset of the data — subset_data • respRsite</title>
+<title>Truncate a data frame or `inspect()`` object to create a subset of the data — subset_data • respR</title>
 
 
 <!-- jquery -->
@@ -74,8 +74,8 @@ by 'row'." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -95,7 +95,12 @@ by 'row'." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -110,16 +115,16 @@ by 'row'." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Truncate a data frame or `inspect()`` object to create a subset of the data</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/subset_data.R'><code>R/subset_data.R</code></a></small>
     <div class="hidden name"><code>subset_data.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function subsets a data frame or <code>inspect()</code> object based on a given set
+    <p>This function subsets a data frame or <code><a href='inspect.html'>inspect()</a></code> object based on a given set
 of rules. It can subset data based on ranges of: time, oxygen, row number, or
 proportion of total oxygen used. For data frames, to subset by 'time', 'o2',
 or 'proportion', the time data is assumed to be in the first column, and
-oxygen in the second column. For <code>inspect()</code> objects, the data will have been
+oxygen in the second column. For <code><a href='inspect.html'>inspect()</a></code> objects, the data will have been
 coerced to this structure already. The function can subset <strong>any</strong> data frame
 by 'row'.</p>
     </div>
@@ -169,22 +174,128 @@ examples and vignettes.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Subset by time:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"squid.rd"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>subset_data</span>(<span class='no'>squid.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>4000</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"time"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in data.table(x): could not find function "data.table"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='error'>Error in plot.window(...): need finite 'xlim' values</span></div><div class='img'><img src='subset_data-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>subset_data</span>(<span class='no'>squid.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>4000</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"time"</span>)</div><div class='output co'>#&gt; 
+#&gt; # subset_data # -------------------------
+#&gt; Original data:
+#&gt;         Time       o2
+#&gt;     1:     0 7.726446
+#&gt;     2:     1 7.726446
+#&gt;    ---               
+#&gt; 34119: 34118 1.231048
+#&gt; 34120: 34119 1.231048
+#&gt; 
+#&gt; New data:
+#&gt;       Time       o2
+#&gt;    1: 2000 7.102823
+#&gt;    2: 2001 7.102823
+#&gt;   ---              
+#&gt; 2000: 3999 6.479200
+#&gt; 2001: 4000 6.479200</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>)</div><div class='img'><img src='subset_data-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"flowthrough.rd"</span>)
-<span class='fu'>subset_data</span>(<span class='no'>flowthrough.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>600</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"time"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in data.table(x): could not find function "data.table"</span></div><div class='input'>
+<span class='fu'>subset_data</span>(<span class='no'>flowthrough.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>600</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"time"</span>)</div><div class='output co'>#&gt; 
+#&gt; # subset_data # -------------------------
+#&gt; Original data:
+#&gt;      time   o2.out    o2.in  o2.delta
+#&gt;   1:    0 8.169730 8.879693 0.7099636
+#&gt;   2:    1 8.170744 8.884703 0.7139588
+#&gt;  ---                                 
+#&gt; 934:  933 8.167505 8.887132 0.7196268
+#&gt; 935:  934 8.165069 8.864456 0.6993879
+#&gt; 
+#&gt; New data:
+#&gt;      time   o2.out    o2.in  o2.delta
+#&gt;   1:   50 8.175106 8.891686 0.7165791
+#&gt;   2:   51 8.185150 8.875577 0.6904272
+#&gt;  ---                                 
+#&gt; 550:  599 8.176023 8.875059 0.6990357
+#&gt; 551:  600 8.166706 8.874728 0.7080218</div><div class='input'>
 <span class='co'># Subset by O_2:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
-<span class='fu'>subset_data</span>(<span class='no'>sardine.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>94</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>91</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"o2"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in data.table(x): could not find function "data.table"</span></div><div class='input'>
+<span class='fu'>subset_data</span>(<span class='no'>sardine.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>94</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>91</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"o2"</span>)</div><div class='output co'>#&gt; 
+#&gt; # subset_data # -------------------------
+#&gt; Original data:
+#&gt;       Time Oxygen
+#&gt;    1:    0   95.6
+#&gt;    2:    1   95.6
+#&gt;   ---            
+#&gt; 7512: 7511   90.2
+#&gt; 7513: 7512   90.3
+#&gt; 
+#&gt; New data:
+#&gt;       Time Oxygen
+#&gt;    1: 1458   94.0
+#&gt;    2: 1459   94.2
+#&gt;   ---            
+#&gt; 4153: 5610   91.3
+#&gt; 4154: 5611   91.0</div><div class='input'>
 <span class='co'># Subset by proportion of total oxygen used:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
-<span class='fu'>subset_data</span>(<span class='no'>sardine.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"proportion"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in data.table(x): could not find function "data.table"</span></div><div class='input'>
+<span class='fu'>subset_data</span>(<span class='no'>sardine.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>0.4</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"proportion"</span>)</div><div class='output co'>#&gt; 
+#&gt; # subset_data # -------------------------
+#&gt; Original data:
+#&gt;       Time Oxygen
+#&gt;    1:    0   95.6
+#&gt;    2:    1   95.6
+#&gt;   ---            
+#&gt; 7512: 7511   90.2
+#&gt; 7513: 7512   90.3
+#&gt; 
+#&gt; New data:
+#&gt;       Time Oxygen
+#&gt;    1:  993   94.5
+#&gt;    2:  994   94.7
+#&gt;   ---            
+#&gt; 3072: 4064   92.2
+#&gt; 3073: 4065   92.1</div><div class='input'>
 <span class='co'># Subset by row:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"flowthrough.rd"</span>)
-<span class='fu'>subset_data</span>(<span class='no'>flowthrough.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>750</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"row"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in data.table(x): could not find function "data.table"</span></div><div class='input'>
+<span class='fu'>subset_data</span>(<span class='no'>flowthrough.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>750</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"row"</span>)</div><div class='output co'>#&gt; 
+#&gt; # subset_data # -------------------------
+#&gt; Original data:
+#&gt;      time   o2.out    o2.in  o2.delta
+#&gt;   1:    0 8.169730 8.879693 0.7099636
+#&gt;   2:    1 8.170744 8.884703 0.7139588
+#&gt;  ---                                 
+#&gt; 934:  933 8.167505 8.887132 0.7196268
+#&gt; 935:  934 8.165069 8.864456 0.6993879
+#&gt; 
+#&gt; New data:
+#&gt;      time   o2.out    o2.in  o2.delta
+#&gt;   1:    9 8.179554 8.876309 0.6967551
+#&gt;   2:   10 8.173299 8.890710 0.7174111
+#&gt;  ---                                 
+#&gt; 740:  748 8.180551 8.861813 0.6812617
+#&gt; 741:  749 8.195288 8.892014 0.6967263</div><div class='input'>
 <span class='co'># Pass (via piping) only part of a dataset to auto_rate</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
 <span class='fu'>subset_data</span>(<span class='no'>sardine.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>94</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>91</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"o2"</span>) <span class='kw'>%&gt;%</span>
-<span class='fu'>auto_rate</span>()</div><div class='output co'>#&gt; <span class='error'>Error in subset_data(sardine.rd, from = 94, to = 91, by = "o2") %&gt;% auto_rate(): could not find function "%&gt;%"</span></div></pre>
+<span class='fu'><a href='auto_rate.html'>auto_rate</a></span>()</div><div class='output co'>#&gt; 
+#&gt; # subset_data # -------------------------
+#&gt; Original data:
+#&gt;       Time Oxygen
+#&gt;    1:    0   95.6
+#&gt;    2:    1   95.6
+#&gt;   ---            
+#&gt; 7512: 7511   90.2
+#&gt; 7513: 7512   90.3
+#&gt; 
+#&gt; New data:
+#&gt;       Time Oxygen
+#&gt;    1: 1458   94.0
+#&gt;    2: 1459   94.2
+#&gt;   ---            
+#&gt; 4153: 5610   91.3
+#&gt; 4154: 5611   91.0</div><div class='img'><img src='subset_data-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; # auto_rate # ---------------------------
+#&gt; Data is subset by row using width of 830 
+#&gt; Rates were computed using 'linear' method
+#&gt; 14 linear regions detected in the kernel density estimate
+#&gt; 
+#&gt; Rank 1 of 14 :
+#&gt; Rate: -0.0006898349 
+#&gt; R.sq: 0.985 
+#&gt; Rows: 614 to 3835 
+#&gt; Time: 2071 to 5292 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -201,7 +312,7 @@ examples and vignettes.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">

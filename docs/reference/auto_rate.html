@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Automatically determine rate of change in oxygen concentration over time — auto_rate • respRsite</title>
+<title>Automatically determine rate of change in oxygen concentration over time — auto_rate • respR</title>
 
 
 <!-- jquery -->
@@ -73,8 +73,8 @@ argument, and the output is summarised." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -94,7 +94,12 @@ argument, and the output is summarised." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -109,7 +114,7 @@ argument, and the output is summarised." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Automatically determine rate of change in oxygen concentration over time</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/auto_rate.R'><code>R/auto_rate.R</code></a></small>
     <div class="hidden name"><code>auto_rate.Rd</code></div>
     </div>
 
@@ -168,8 +173,8 @@ be set to default.</p></td>
     <p><strong>Units</strong></p>
 <p>There are no units of measurement involved in <code>auto_rate()</code>. This is a
 deliberate decision. Units are called in a later function when absolute
-and/or mass-specific rates of oxygen use are computed in <code>convert_rate()</code> and
-<code>convert_DO()</code>.</p>
+and/or mass-specific rates of oxygen use are computed in <code><a href='convert_rate.html'>convert_rate()</a></code> and
+<code><a href='convert_DO.html'>convert_DO()</a></code>.</p>
 <p><em><strong>Ranking algorithms</strong></em></p>
 <p>At present, <code>auto_rate()</code> contains four ranking algorithms that can be called
 with the argument <code>method</code>:</p><ul>
@@ -187,7 +192,17 @@ regrssions. They are not ranked.</p></li>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># most linear section of the entire data</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"flowthrough.rd"</span>)
-<span class='fu'>auto_rate</span>(<span class='no'>flowthrough.rd</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Multi-column dataset detected. Selecting first two columns by default. If this is not your intended dataset, subset the data frame appropriately before running `auto_rate()`</span></div><div class='output co'>#&gt; <span class='error'>Error in data.table(df): could not find function "data.table"</span></div><div class='input'>
+<span class='fu'>auto_rate</span>(<span class='no'>flowthrough.rd</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Multi-column dataset detected. Selecting first two columns by default. If this is not your intended dataset, subset the data frame appropriately before running `auto_rate()`</span></div><div class='img'><img src='auto_rate-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; # auto_rate # ---------------------------
+#&gt; Data is subset by row using width of 187 
+#&gt; Rates were computed using 'linear' method
+#&gt; 8 linear regions detected in the kernel density estimate
+#&gt; 
+#&gt; Rank 1 of 8 :
+#&gt; Rate: -2.145979e-05 
+#&gt; R.sq: 0.348 
+#&gt; Rows: 34 to 614 
+#&gt; Time: 33 to 613 </div><div class='input'>
 <span class='co'># LONG EXAMPLES</span>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
@@ -212,7 +227,7 @@ regrssions. They are not ranked.</p></li>
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">

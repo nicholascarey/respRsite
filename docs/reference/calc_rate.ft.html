@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate rate of change in oxygen in flowthrough respirometry — calc_rate.ft • respRsite</title>
+<title>Calculate rate of change in oxygen in flowthrough respirometry — calc_rate.ft • respR</title>
 
 
 <!-- jquery -->
@@ -71,8 +71,8 @@ multiple and mean values based on continuous data." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -92,7 +92,12 @@ multiple and mean values based on continuous data." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -107,7 +112,7 @@ multiple and mean values based on continuous data." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Calculate rate of change in oxygen in flowthrough respirometry</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/calc_rate.ft.R'><code>R/calc_rate.ft.R</code></a></small>
     <div class="hidden name"><code>calc_rate.ft.Rd</code></div>
     </div>
 
@@ -172,7 +177,7 @@ elapsed column can be present, but is not required. In flowthrough data,
 uptake rate calculations use O2 delta and the flow rate.</p>
 <p>There are no units involved in <code>calc_rate.ft</code>. This is a deliberate decision.
 Units are called in a later function when absolute and/or mass-specific
-rates of oxygen use are computed in <code>convert_rate()</code> and <code>convert_DO()</code>.</p>
+rates of oxygen use are computed in <code><a href='convert_rate.html'>convert_rate()</a></code> and <code><a href='convert_DO.html'>convert_DO()</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Single numeric values</span>
@@ -218,7 +223,7 @@ rates of oxygen use are computed in <code>convert_rate()</code> and <code>conver
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">

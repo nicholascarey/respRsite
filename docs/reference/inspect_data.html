@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check for common errors in respirometry data — inspect_data • respRsite</title>
+<title>Check for common errors in respirometry data — inspect_data • respR</title>
 
 
 <!-- jquery -->
@@ -69,8 +69,8 @@ use of functions in respR." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -90,7 +90,12 @@ use of functions in respR." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -105,7 +110,7 @@ use of functions in respR." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Check for common errors in respirometry data</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/inspect_data.R'><code>R/inspect_data.R</code></a></small>
     <div class="hidden name"><code>inspect_data.Rd</code></div>
     </div>
 
@@ -176,14 +181,22 @@ evenly-spaced time data.</p></li>
 </ul>
 
 <p>Once data checks are complete, the function produces a list object which may
-be directly loaded into <code>calc_rate()</code>, <code>calc_rate.bg()</code>, <code>calc_rate.ft()</code>,
-and <code>auto_rate()</code> for further analyses.</p>
+be directly loaded into <code><a href='calc_rate.html'>calc_rate()</a></code>, <code><a href='calc_rate.bg.html'>calc_rate.bg()</a></code>, <code><a href='calc_rate.ft.html'>calc_rate.ft()</a></code>,
+and <code><a href='auto_rate.html'>auto_rate()</a></code> for further analyses.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
 <span class='fu'>inspect_data</span>(<span class='no'>sardine.rd</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: inspect_data has been deprecated. </span>
 #&gt; <span class='warning'>It will not be updated and will be removed in a future version of respR. </span>
-#&gt; <span class='warning'>Please use the `inspect` function instead.</span></div><div class='output co'>#&gt; <span class='error'>Error in `$&lt;-.data.frame`(x, name, value): replacement has 0 rows, data has 7513</span></div><div class='input'>
+#&gt; <span class='warning'>Please use the `inspect` function instead.</span></div><div class='output co'>#&gt; Oxygen :  num [1:7513] 95.6 95.6 95.6 95.6 95.6 95.6 95.6 95.5 95.5 95.5 ...
+#&gt; Time :  int [1:7513] 0 1 2 3 4 5 6 7 8 9 ...
+#&gt; ---
+#&gt;                     Score
+#&gt; No NA/NaN in time   PASS 
+#&gt; No NA/NaN in Oxygen PASS 
+#&gt; Sequential Time     PASS 
+#&gt; Non-duplicated Time PASS 
+#&gt; Evenly-spaced Time  PASS </div><div class='output co'>#&gt; <span class='message'>New dataframe generated.</span></div><div class='img'><img src='inspect_data-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"urchins.rd"</span>)
 <span class='fu'>inspect_data</span>(<span class='no'>urchins.rd</span>, <span class='fl'>1</span>, <span class='fl'>5</span>, <span class='kw'>highlight</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: inspect_data has been deprecated. </span>
 #&gt; <span class='warning'>It will not be updated and will be removed in a future version of respR. </span>
@@ -212,7 +225,7 @@ and <code>auto_rate()</code> for further analyses.</p>
 #&gt; No NA/NaN in Oxygen PASS   
 #&gt; Sequential Time     PASS   
 #&gt; Non-duplicated Time PASS   
-#&gt; Evenly-spaced Time  FAIL***</div><div class='output co'>#&gt; <span class='warning'>Warning: Time data is irregular. Subsetting by `row` may result in irregular durations.</span></div><div class='output co'>#&gt; <span class='message'>New dataframe generated.</span></div><div class='output co'>#&gt; <span class='error'>Error in roll_lm(matrix(df[[1]]), matrix(df[[2]]), win): could not find function "roll_lm"</span></div></pre>
+#&gt; Evenly-spaced Time  FAIL***</div><div class='output co'>#&gt; <span class='warning'>Warning: Time data is irregular. Subsetting by `row` may result in irregular durations.</span></div><div class='output co'>#&gt; <span class='message'>New dataframe generated.</span></div><div class='img'><img src='inspect_data-2.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -229,7 +242,7 @@ and <code>auto_rate()</code> for further analyses.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">

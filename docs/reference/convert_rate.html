@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert rate value to absolute and/or mass-specific — convert_rate • respRsite</title>
+<title>Convert rate value to absolute and/or mass-specific — convert_rate • respR</title>
 
 
 <!-- jquery -->
@@ -71,8 +71,8 @@ mass-specific (i.e. to the specimen mass), MO2 rate." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -92,7 +92,12 @@ mass-specific (i.e. to the specimen mass), MO2 rate." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -107,7 +112,7 @@ mass-specific (i.e. to the specimen mass), MO2 rate." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Convert rate value to absolute and/or mass-specific</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/convert_rate.R'><code>R/convert_rate.R</code></a></small>
     <div class="hidden name"><code>convert_rate.Rd</code></div>
     </div>
 
@@ -135,23 +140,23 @@ mass-specific (i.e. to the specimen mass), MO2 rate.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>numeric, or objects of class <code>calc_rate()</code>, <code>calc_rate.ft()</code>,
-<code>auto_rate()</code> or <code>adjust_rate()</code>.</p></td>
+      <td><p>numeric, or objects of class <code><a href='calc_rate.html'>calc_rate()</a></code>, <code><a href='calc_rate.ft.html'>calc_rate.ft()</a></code>,
+<code><a href='auto_rate.html'>auto_rate()</a></code> or <code><a href='adjust_rate.html'>adjust_rate()</a></code>.</p></td>
     </tr>
     <tr>
       <th>o2.unit</th>
       <td><p>string. The dissolved oxygen unit of the data used to
-determine rate. Check <code>unit_args()</code>.</p></td>
+determine rate. Check <code><a href='unit_args.html'>unit_args()</a></code>.</p></td>
     </tr>
     <tr>
       <th>time.unit</th>
       <td><p>string. The time unit of the data used to determine rate.
-Check <code>unit_args()</code>.</p></td>
+Check <code><a href='unit_args.html'>unit_args()</a></code>.</p></td>
     </tr>
     <tr>
       <th>output.unit</th>
       <td><p>string. The output unit to convert rate to. Check
-<code>unit_args()</code>.</p></td>
+<code><a href='unit_args.html'>unit_args()</a></code>.</p></td>
     </tr>
     <tr>
       <th>volume</th>
@@ -166,18 +171,18 @@ you wish to calculate mass-specific rates.</p></td>
     <tr>
       <th>S</th>
       <td><p>numeric. Salinity (ppt). Defaults to NULL. Used only in conversion
-of some units. See <code>unit_args()</code> for details.</p></td>
+of some units. See <code><a href='unit_args.html'>unit_args()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>t</th>
       <td><p>numeric. Temperature(°C). Defaults to NULL. Used only in conversion
-of some units. See <code>unit_args()</code> for details.</p></td>
+of some units. See <code><a href='unit_args.html'>unit_args()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>P</th>
       <td><p>numeric. Pressure (bar). Defaults to NULL. Used only in conversion
 of some units. If left NULL, default value of 1.013253 is applied in
-conversions. See <code>unit_args()</code> for details.</p></td>
+conversions. See <code><a href='unit_args.html'>unit_args()</a></code> for details.</p></td>
     </tr>
     </table>
 
@@ -199,12 +204,12 @@ represent the resolution of the original data."</p>
 <p>The function uses an internal database and a fuzzy string matching algorithm
 to accept various unit formatting styles.</p>
 <p>For example, <code>'mg/l', 'mg/L', 'mgL-1', 'mg l-1', 'mg.l-1'</code> are all the same.
-Use <code>unit_args()</code> to view a list of usable unit strings.</p>
+Use <code><a href='unit_args.html'>unit_args()</a></code> to view a list of usable unit strings.</p>
 <p>Output units (<code>output.unit</code>) must be in the sequence O2-Time (e.g. mg/h,
 mg-h) for absolute rates, and for mass-specific rates O2-Time-Mass (e.g.
 mg/h/kg).</p>
 <p>Some units also require temperature (<code>t</code>), salinity (<code>S</code>), and atmospheric
-pressure (<code>P</code>) to be specified. See <code>unit_args()</code> for details. For freshwater
+pressure (<code>P</code>) to be specified. See <code><a href='unit_args.html'>unit_args()</a></code> for details. For freshwater
 experiments, salinity should be set to zero (i.e. S = 0).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -221,9 +226,17 @@ experiments, salinity should be set to zero (i.e. S = 0).</p>
 #&gt; [1] "mg/min/kg"</div><div class='input'>
 <span class='co'># Use example data</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>calc_rate</span>(<span class='no'>sardine.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1800</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"time"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(x, i): undefined columns selected</span></div><div class='input'><span class='fu'>convert_rate</span>(<span class='no'>x</span>, <span class='kw'>o2.unit</span> <span class='kw'>=</span> <span class='st'>'%'</span>, <span class='kw'>time.unit</span> <span class='kw'>=</span> <span class='st'>'s'</span>,
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='calc_rate.html'>calc_rate</a></span>(<span class='no'>sardine.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1800</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"time"</span>)</div><div class='img'><img src='convert_rate-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>convert_rate</span>(<span class='no'>x</span>, <span class='kw'>o2.unit</span> <span class='kw'>=</span> <span class='st'>'%'</span>, <span class='kw'>time.unit</span> <span class='kw'>=</span> <span class='st'>'s'</span>,
   <span class='kw'>output.unit</span> <span class='kw'>=</span> <span class='st'>'mg/h/g'</span>, <span class='kw'>volume</span> <span class='kw'>=</span> <span class='fl'>12.3</span>, <span class='kw'>mass</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>S</span> <span class='kw'>=</span><span class='fl'>35</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>P</span> <span class='kw'>=</span> <span class='fl'>1.013</span>)</div><div class='output co'>#&gt; <span class='error'>Error in convert_rate(x, o2.unit = "%", time.unit = "s", output.unit = "mg/h/g",     volume = 12.3, mass = 0.05, S = 35, t = 15, P = 1.013): `x` input is not valid.</span></div></pre>
+  <span class='kw'>S</span> <span class='kw'>=</span><span class='fl'>35</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>P</span> <span class='kw'>=</span> <span class='fl'>1.013</span>)</div><div class='output co'>#&gt; 
+#&gt; # convert_rate # ------------------------
+#&gt; Rank/position 1 result shown. To see all results use summary().
+#&gt; Input:
+#&gt; [1] -0.0009793698
+#&gt; [1] "%"   "sec"
+#&gt; Converted:
+#&gt; [1] -0.07044579
+#&gt; [1] "mg/hour/g"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -240,7 +253,7 @@ experiments, salinity should be set to zero (i.e. S = 0).</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">

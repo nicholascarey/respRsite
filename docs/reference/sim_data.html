@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Randomly generate data for internal testing of <code>auto_rate()</code>'s linear method. — sim_data • respRsite</title>
+<title>Randomly generate data for internal testing of <code>auto_rate()</code>'s linear method. — sim_data • respR</title>
 
 
 <!-- jquery -->
@@ -75,8 +75,8 @@ to generate data that suit their own unique situations." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -96,7 +96,12 @@ to generate data that suit their own unique situations." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -111,7 +116,7 @@ to generate data that suit their own unique situations." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Randomly generate data for internal testing of <code>auto_rate()</code>'s linear method.</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/sim_data.R'><code>R/sim_data.R</code></a></small>
     <div class="hidden name"><code>sim_data.Rd</code></div>
     </div>
 
@@ -119,8 +124,8 @@ to generate data that suit their own unique situations." />
     <p>Generate data of size <code>len</code> that is coerced to mimic common respirometry
 data. This is an internal function not meant for public use. We will modify
 this function at any time, which may irreversibly change the outputs. Do NOT
-use this for work! This function was first created to test <code>auto_rate()</code>
-using the other internal function, <code>test_lin()</code>, but we decided to publish
+use this for work! This function was first created to test <code><a href='auto_rate.html'>auto_rate()</a></code>
+using the other internal function, <code><a href='test_lin.html'>test_lin()</a></code>, but we decided to publish
 the code as it is an effective (and visually-appealing) tool for teaching
 purposes. This function is by no means comprehensive and we encourage users
 to generate data that suit their own unique situations.</p>
@@ -156,7 +161,7 @@ data set.</p></td>
 
     <p>A list containing the dataframe, the slope and the length of the
 linear section of the data, to be used for analysis in the function
-<code>test_lin()</code>.</p>
+<code><a href='test_lin.html'>test_lin()</a></code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>sim_data()</code> creates 3 types of data that we think are common in respirometry
@@ -188,7 +193,7 @@ generated but always smaller than the first segment.</p></li>
 can be modified using the <code>"sd"</code> argument.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>test_lin()</code></p></div>
+    <div class='dont-index'><p><code><a href='test_lin.html'>test_lin()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Generate data of length 200</span>
@@ -216,7 +221,7 @@ can be modified using the <code>"sd"</code> argument.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">

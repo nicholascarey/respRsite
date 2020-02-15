@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert units of dissolved oxygen. — convert_DO • respRsite</title>
+<title>Convert units of dissolved oxygen. — convert_DO • respR</title>
 
 
 <!-- jquery -->
@@ -72,8 +72,8 @@ to zero (i.e. S = 0)." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -93,7 +93,12 @@ to zero (i.e. S = 0)." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -108,7 +113,7 @@ to zero (i.e. S = 0)." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Convert units of dissolved oxygen.</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/convert_DO.R'><code>R/convert_DO.R</code></a></small>
     <div class="hidden name"><code>convert_DO.Rd</code></div>
     </div>
 
@@ -116,7 +121,7 @@ to zero (i.e. S = 0)." />
     <p>This is a conversion function that performs basic conversions between units
 of dissolved oxygen in aquatic respirometry. Some units require temperature
 (<code>t</code>), salinity (<code>S</code>), and atmospheric pressure (<code>P</code>) to be specified. See
-<code>unit_args()</code> for details. For freshwater experiments, salinity should be set
+<code><a href='unit_args.html'>unit_args()</a></code> for details. For freshwater experiments, salinity should be set
 to zero (i.e. S = 0).</p>
     </div>
 
@@ -132,26 +137,26 @@ to zero (i.e. S = 0).</p>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>string. The unit to convert from. See <code>unit_args()</code> for details.</p></td>
+      <td><p>string. The unit to convert from. See <code><a href='unit_args.html'>unit_args()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>string. The unit to convert to. See <code>unit_args()</code> for details.</p></td>
+      <td><p>string. The unit to convert to. See <code><a href='unit_args.html'>unit_args()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>S</th>
       <td><p>numeric. Salinity (ppt). Defaults to NULL. Used only in conversion
-of some units. See <code>unit_args()</code> for details.</p></td>
+of some units. See <code><a href='unit_args.html'>unit_args()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>t</th>
       <td><p>numeric. Temperature(°C). Defaults to NULL. Used only in conversion
-of some units. See <code>unit_args()</code> for details.</p></td>
+of some units. See <code><a href='unit_args.html'>unit_args()</a></code> for details.</p></td>
     </tr>
     <tr>
       <th>P</th>
       <td><p>numeric. Pressure (bar). Defaults to 1.013253. Used only in
-conversion of some units. See <code>unit_args()</code> for details.</p></td>
+conversion of some units. See <code><a href='unit_args.html'>unit_args()</a></code> for details.</p></td>
     </tr>
     </table>
 
@@ -162,7 +167,10 @@ conversion of some units. See <code>unit_args()</code> for details.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Perform conversion on an object of class `calc_rate`:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>calc_rate</span>(<span class='no'>sardine.rd</span>)</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(x, i): undefined columns selected</span></div><div class='input'><span class='fu'>convert_DO</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"percent"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"mg L-1"</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='fl'>35</span>)</div><div class='output co'>#&gt; <span class='error'>Error in convert_DO(x, from = "percent", to = "mg L-1", t = 15, S = 35): object 'z' not found</span></div><div class='input'>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='calc_rate.html'>calc_rate</a></span>(<span class='no'>sardine.rd</span>)</div><div class='img'><img src='convert_DO-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>convert_DO</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"percent"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"mg L-1"</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='fl'>35</span>)</div><div class='output co'>#&gt; [1] -5.914509e-05
+#&gt; 
+#&gt;  Input unit: percent
+#&gt; Output unit: mg L-1</div><div class='input'>
 <span class='co'># Or, perform on a numeric</span>
 <span class='fu'>convert_DO</span>(<span class='fl'>100</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"percent"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"mg L-1"</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='fl'>33</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>18</span>)</div><div class='output co'>#&gt; [1] 7.752073
 #&gt; 
@@ -191,7 +199,7 @@ conversion of some units. See <code>unit_args()</code> for details.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">

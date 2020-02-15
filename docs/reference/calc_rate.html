@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate rate of change in oxygen over time — calc_rate • respRsite</title>
+<title>Calculate rate of change in oxygen over time — calc_rate • respR</title>
 
 
 <!-- jquery -->
@@ -70,8 +70,8 @@ the data frame by calling the from and to arguments." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -91,7 +91,12 @@ the data frame by calling the from and to arguments." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -106,7 +111,7 @@ the data frame by calling the from and to arguments." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Calculate rate of change in oxygen over time</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/calc_rate.R'><code>R/calc_rate.R</code></a></small>
     <div class="hidden name"><code>calc_rate.Rd</code></div>
     </div>
 
@@ -154,15 +159,35 @@ data frame to subset. Subsetting is based on the argument: <code>by</code>.</p><
 
     <p>There are no units involved in <code>calc_rate</code>. This is a deliberate decision.
 Units are called in a later function when absolute and/or mass-specific
-rates of oxygen use are computed in <code>convert_rate()</code> and <code>convert_DO()</code>.</p>
+rates of oxygen use are computed in <code><a href='convert_rate.html'>convert_rate()</a></code> and <code><a href='convert_DO.html'>convert_DO()</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
-<span class='fu'>calc_rate</span>(<span class='no'>sardine.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1800</span>)     <span class='co'># default subset by 'time'</span></div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(x, i): undefined columns selected</span></div><div class='input'><span class='fu'>calc_rate</span>(<span class='no'>sardine.rd</span>, <span class='fl'>93</span>, <span class='fl'>92</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>'o2'</span>)         <span class='co'># subset by O2</span></div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(x, i): undefined columns selected</span></div><div class='input'><span class='fu'>calc_rate</span>(<span class='no'>sardine.rd</span>, <span class='fl'>1</span>, <span class='fl'>1000</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>'row'</span>)     <span class='co'># subset by row</span></div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(x, i): undefined columns selected</span></div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>calc_rate</span>(<span class='no'>sardine.rd</span>, <span class='fl'>.8</span>, <span class='fl'>.2</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>'proportion'</span>) <span class='co'># subset by proportion</span></div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(x, i): undefined columns selected</span></div><div class='input'><span class='no'>x</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Length  Class   Mode 
-#&gt;      0   NULL   NULL </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to min; returning Inf</span></div><div class='output co'>#&gt; <span class='warning'>Warning: no non-missing arguments to max; returning -Inf</span></div><div class='output co'>#&gt; <span class='error'>Error in plot.window(...): need finite 'xlim' values</span></div><div class='img'><img src='calc_rate-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'>calc_rate</span>(<span class='no'>sardine.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1800</span>)     <span class='co'># default subset by 'time'</span></div><div class='img'><img src='calc_rate-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; # calc_rate # -------------------
+#&gt; Rate(s):
+#&gt; [1] -0.0009793698</div><div class='input'><span class='fu'>calc_rate</span>(<span class='no'>sardine.rd</span>, <span class='fl'>93</span>, <span class='fl'>92</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>'o2'</span>)         <span class='co'># subset by O2</span></div><div class='img'><img src='calc_rate-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; # calc_rate # -------------------
+#&gt; Rate(s):
+#&gt; [1] -0.0007229508</div><div class='input'><span class='fu'>calc_rate</span>(<span class='no'>sardine.rd</span>, <span class='fl'>1</span>, <span class='fl'>1000</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>'row'</span>)     <span class='co'># subset by row</span></div><div class='img'><img src='calc_rate-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; # calc_rate # -------------------
+#&gt; Rate(s):
+#&gt; [1] -0.0008184728</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>calc_rate</span>(<span class='no'>sardine.rd</span>, <span class='fl'>.8</span>, <span class='fl'>.2</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>'proportion'</span>) <span class='co'># subset by proportion</span></div><div class='input'><span class='no'>x</span></div><div class='output co'>#&gt; 
+#&gt; # calc_rate # -------------------
+#&gt; Rate(s):
+#&gt; [1] -0.0007168829</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; Summary:
+#&gt;    intercept_b0       rate_b1  rsq row endrow time endtime  oxy endoxy
+#&gt; 1:     95.19487 -0.0007168829 0.99 994   5726  993    5725 94.5   90.9
+#&gt;    rowlength timelength rate_twopoint
+#&gt; 1:      4732       4732 -0.0007607777</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; 
+#&gt; # plot # ------------------------
+#&gt; Plotting...this may take a while for large datasets.</div><div class='img'><img src='calc_rate-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Done.</div><div class='input'>
 <span class='co'># Using a vector in 'from' and 'to' perform multiple measurements:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"intermittent.rd"</span>)
-<span class='fu'>calc_rate</span>(<span class='no'>intermittent.rd</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>200</span>,<span class='fl'>2300</span>,<span class='fl'>4100</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1800</span>,<span class='fl'>3200</span>,<span class='fl'>4600</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>'time'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(x, i): undefined columns selected</span></div></pre>
+<span class='fu'>calc_rate</span>(<span class='no'>intermittent.rd</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>200</span>,<span class='fl'>2300</span>,<span class='fl'>4100</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1800</span>,<span class='fl'>3200</span>,<span class='fl'>4600</span>), <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>'time'</span>)</div><div class='img'><img src='calc_rate-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; # calc_rate # -------------------
+#&gt; Rate(s):
+#&gt; [1] -0.0005734109 -0.0006097325 -0.0006539752</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -179,7 +204,7 @@ rates of oxygen use are computed in <code>convert_rate()</code> and <code>conver
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">

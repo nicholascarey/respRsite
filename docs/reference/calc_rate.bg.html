@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate background respiration rates — calc_rate.bg • respRsite</title>
+<title>Calculate background respiration rates — calc_rate.bg • respR</title>
 
 
 <!-- jquery -->
@@ -73,8 +73,8 @@ all columns, and also calculates an average rate." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -94,7 +94,12 @@ all columns, and also calculates an average rate." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -109,7 +114,7 @@ all columns, and also calculates an average rate." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Calculate background respiration rates</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/calc_rate.bg.R'><code>R/calc_rate.bg.R</code></a></small>
     <div class="hidden name"><code>calc_rate.bg.Rd</code></div>
     </div>
 
@@ -157,15 +162,18 @@ inspection.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>If you need to subset the data to remove regions you don't want to use, see
-<code>subset_data</code>.</p>
+<code><a href='subset_data.html'>subset_data</a></code>.</p>
 <p>There are no units involved in <code>calc_rate.bg()</code>. This is a deliberate
 decision. Units are called in a later function when absolute and/or
-mass-specific rates of oxygen use are computed in <code>convert_rate()</code> and
-<code>convert_DO()</code>.</p>
+mass-specific rates of oxygen use are computed in <code><a href='convert_rate.html'>convert_rate()</a></code> and
+<code><a href='convert_DO.html'>convert_DO()</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"urchins.rd"</span>)
-<span class='fu'>calc_rate.bg</span>(<span class='no'>urchins.rd</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>oxygen</span> <span class='kw'>=</span> <span class='fl'>18</span>:<span class='fl'>19</span>)</div><div class='output co'>#&gt; <span class='message'>`data.frame` input detected</span></div><div class='output co'>#&gt; <span class='error'>Error in data.table(xval, yval): could not find function "data.table"</span></div></pre>
+<span class='fu'>calc_rate.bg</span>(<span class='no'>urchins.rd</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>oxygen</span> <span class='kw'>=</span> <span class='fl'>18</span>:<span class='fl'>19</span>)</div><div class='output co'>#&gt; <span class='message'>`data.frame` input detected</span></div><div class='img'><img src='calc_rate.bg-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Rate(s):
+#&gt; [1] -0.0007650013 -0.0009018607
+#&gt; Average bg rate:
+#&gt; [1] -0.000833431</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -182,7 +190,7 @@ mass-specific rates of oxygen use are computed in <code>convert_rate()</code> an
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">

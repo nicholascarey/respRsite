@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Perform <code>auto_rate()</code> iteratively and extract performance metrics — test_lin • respRsite</title>
+<title>Perform <code>auto_rate()</code> iteratively and extract performance metrics — test_lin • respR</title>
 
 
 <!-- jquery -->
@@ -72,8 +72,8 @@ predict true rate." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -93,7 +93,12 @@ predict true rate." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -108,12 +113,12 @@ predict true rate." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Perform <code>auto_rate()</code> iteratively and extract performance metrics</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/test_lin.R'><code>R/test_lin.R</code></a></small>
     <div class="hidden name"><code>test_lin.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Randomly generate a dataset and runs <code>auto_rate()</code> on the data to detect
+    <p>Randomly generate a dataset and runs <code><a href='auto_rate.html'>auto_rate()</a></code> on the data to detect
 linear regions (with <code>method = "linear"</code>). The function plots 4 exploratory
 graphs and outputs the results of a linear regression between detected rate
 and true (known) rate, which can demonstrate how much the function is able to
@@ -134,13 +139,13 @@ predict true rate.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>reps</th>
-      <td><p>numeric. Number of times to iterate <code>auto_rate()</code> on a randomly
+      <td><p>numeric. Number of times to iterate <code><a href='auto_rate.html'>auto_rate()</a></code> on a randomly
 generated dataset. Defaults to 1.</p></td>
     </tr>
     <tr>
       <th>len</th>
       <td><p>numeric. Length (number of observations) of the dataset to test
-<code>auto_rate()</code> on. Defaults to 300.</p></td>
+<code><a href='auto_rate.html'>auto_rate()</a></code> on. Defaults to 300.</p></td>
     </tr>
     <tr>
       <th>sd</th>
@@ -160,7 +165,7 @@ Useful to see the shape of the data. Defaults to FALSE.</p></td>
     </tr>
     <tr>
       <th>plot</th>
-      <td><p>logical. This will show the diagnostic plots of <code>auto_rate()</code> at
+      <td><p>logical. This will show the diagnostic plots of <code><a href='auto_rate.html'>auto_rate()</a></code> at
 every iteration. <strong>Note: will severely slow the function down.</strong> Useful to
 visualise what's being detected at every step. Defaults to FALSE.</p></td>
     </tr>
@@ -173,10 +178,10 @@ data required to plot diagnostics.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># run 3 iterations (please run at least 1000 times for more reliable visuals)</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>test_lin</span>(<span class='kw'>reps</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; <span class='error'>Error in data.table(df): could not find function "data.table"</span></div><div class='input'># plot(x)
-# plot(x, "a")  # view only plot "A"
-# plot(x, "d")  # view only plot "D". You know what to do (for other plots)..
-</div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>test_lin</span>(<span class='kw'>reps</span> <span class='kw'>=</span> <span class='fl'>3</span>)
+<span class='co'># plot(x)</span>
+<span class='co'># plot(x, "a")  # view only plot "A"</span>
+<span class='co'># plot(x, "d")  # view only plot "D". You know what to do (for other plots)..</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -192,7 +197,7 @@ data required to plot diagnostics.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check for common errors in respirometry data — inspect • respRsite</title>
+<title>Check for common errors in respirometry data — inspect • respR</title>
 
 
 <!-- jquery -->
@@ -75,8 +75,8 @@ higher oxygen uptake rates are higher on the rate plot (more negative)." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">respRsite</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <a class="navbar-link" href="../index.html">respR</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0.0</span>
       </span>
     </div>
 
@@ -96,7 +96,12 @@ higher oxygen uptake rates are higher on the rate plot (more negative)." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/januarharianto/respr">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -111,7 +116,7 @@ higher oxygen uptake rates are higher on the rate plot (more negative)." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Check for common errors in respirometry data</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/januarharianto/respr/blob/master/R/inspect.R'><code>R/inspect.R</code></a></small>
     <div class="hidden name"><code>inspect.Rd</code></div>
     </div>
 
@@ -160,8 +165,8 @@ diagnosis. Works only when the subset dataframe contains exactly 2 columns.</p><
     <p>Time columns are checked for NA/NaN values, sequential time, duplicate time
 and evenly-spaced time data. Oxygen columns are simply checked for NA/NaN
 data. Once data checks are complete, the function produces a list object
-which may be directly loaded into <code>calc_rate()</code>, <code>calc_rate.bg()</code>,
-<code>calc_rate.ft()</code>, and <code>auto_rate()</code> for further analyses.</p>
+which may be directly loaded into <code><a href='calc_rate.html'>calc_rate()</a></code>, <code><a href='calc_rate.bg.html'>calc_rate.bg()</a></code>,
+<code><a href='calc_rate.ft.html'>calc_rate.ft()</a></code>, and <code><a href='auto_rate.html'>auto_rate()</a></code> for further analyses.</p>
 <p>If you wish to scan more than two columns, you can do so by specifying the
 <code>time</code> and <code>oxygen</code> arguments to select specific columns of a large data
 frame. However, the function will not produce a plot. Thus, you may inspect
@@ -187,18 +192,75 @@ be returned.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># automatically inspect first 2 columns:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
-<span class='fu'>inspect</span>(<span class='no'>sardine.rd</span>)</div><div class='output co'>#&gt; <span class='message'>No issues detected while inspecting data frame.</span></div><div class='output co'>#&gt; <span class='error'>Error in data.table(cbind(df[time], df[oxygen])): could not find function "data.table"</span></div><div class='input'>
+<span class='fu'>inspect</span>(<span class='no'>sardine.rd</span>)</div><div class='output co'>#&gt; <span class='message'>No issues detected while inspecting data frame.</span></div><div class='img'><img src='inspect-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; # inspect # -----------------------------
+#&gt;               Time Oxygen
+#&gt; NA/NAN        pass   pass
+#&gt; sequential    pass      -
+#&gt; duplicated    pass      -
+#&gt; evenly-spaced pass      -</div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"urchins.rd"</span>)
-<span class='fu'>inspect</span>(<span class='no'>urchins.rd</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Time values are not evenly-spaced.</span></div><div class='output co'>#&gt; <span class='error'>Error in data.table(cbind(df[time], df[oxygen])): could not find function "data.table"</span></div><div class='input'>
+<span class='fu'>inspect</span>(<span class='no'>urchins.rd</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Time values are not evenly-spaced.</span></div><div class='output co'>#&gt; <span class='message'>inspect: Full plot is only avalilable for a 2-column dataframe output.</span></div><div class='img'><img src='inspect-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; # inspect # -----------------------------
+#&gt;               time.min    a    b    c    d    e    f    g    h    i    j    k
+#&gt; NA/NAN            pass pass pass pass pass pass pass pass pass pass pass pass
+#&gt; sequential        pass    -    -    -    -    -    -    -    -    -    -    -
+#&gt; duplicated        pass    -    -    -    -    -    -    -    -    -    -    -
+#&gt; evenly-spaced     WARN    -    -    -    -    -    -    -    -    -    -    -
+#&gt;                  l    m    n    o    p   b1   b2
+#&gt; NA/NAN        pass pass pass pass pass pass pass
+#&gt; sequential       -    -    -    -    -    -    -
+#&gt; duplicated       -    -    -    -    -    -    -
+#&gt; evenly-spaced    -    -    -    -    -    -    -</div><div class='input'>
 <span class='co'># inspect specific columns:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"urchins.rd"</span>)
-<span class='fu'>inspect</span>(<span class='no'>urchins.rd</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>oxygen</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Time values are not evenly-spaced.</span></div><div class='output co'>#&gt; <span class='error'>Error in data.table(cbind(df[time], df[oxygen])): could not find function "data.table"</span></div><div class='input'>
+<span class='fu'>inspect</span>(<span class='no'>urchins.rd</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>oxygen</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Time values are not evenly-spaced.</span></div><div class='img'><img src='inspect-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+#&gt; # inspect # -----------------------------
+#&gt;               time.min    c
+#&gt; NA/NAN            pass pass
+#&gt; sequential        pass    -
+#&gt; duplicated        pass    -
+#&gt; evenly-spaced     WARN    -
+#&gt; Uneven time data locations  (first 20 shown) in column: time.min c 
+#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</div><div class='input'>
 <span class='co'># inspect multiple columns</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"urchins.rd"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>inspect</span>(<span class='no'>urchins.rd</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>oxygen</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>:<span class='fl'>12</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Time values are not evenly-spaced.</span></div><div class='output co'>#&gt; <span class='error'>Error in data.table(cbind(df[time], df[oxygen])): could not find function "data.table"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; NULL</div><div class='input'><span class='no'>x</span>$<span class='no'>list</span>$<span class='no'>time.min</span>  <span class='co'># check position of errors in data frame</span></div><div class='output co'>#&gt; NULL</div><div class='input'>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>inspect</span>(<span class='no'>urchins.rd</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>oxygen</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>:<span class='fl'>12</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: Time values are not evenly-spaced.</span></div><div class='output co'>#&gt; <span class='message'>inspect: Full plot is only avalilable for a 2-column dataframe output.</span></div><div class='img'><img src='inspect-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; 
+#&gt; # inspect # -----------------------------
+#&gt;               time.min    a    b    c    d    e    f    g    h    i    j    k
+#&gt; NA/NAN            pass pass pass pass pass pass pass pass pass pass pass pass
+#&gt; sequential        pass    -    -    -    -    -    -    -    -    -    -    -
+#&gt; duplicated        pass    -    -    -    -    -    -    -    -    -    -    -
+#&gt; evenly-spaced     WARN    -    -    -    -    -    -    -    -    -    -    -</div><div class='input'><span class='no'>x</span>$<span class='no'>list</span>$<span class='no'>time.min</span>  <span class='co'># check position of errors in data frame</span></div><div class='output co'>#&gt; $`NA/NAN`
+#&gt; integer(0)
+#&gt; 
+#&gt; $sequential
+#&gt; integer(0)
+#&gt; 
+#&gt; $duplicated
+#&gt; integer(0)
+#&gt; 
+#&gt; $`evenly-spaced`
+#&gt;   [1]   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18
+#&gt;  [19]  19  20  21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36
+#&gt;  [37]  37  38  39  40  41  42  43  44  45  46  47  48  50  53  56  59  62  65
+#&gt;  [55]  68  71  74  77  80  83  86  89  92  95  98 101 104 107 110 113 116 119
+#&gt;  [73] 122 125 128 131 134 137 140 143 146 149 152 155 158 161 164 167 170 173
+#&gt;  [91] 176 179 182 185 188 191 193 194 195 196 197 198 199 200 201 202 203 204
+#&gt; [109] 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222
+#&gt; [127] 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240
+#&gt; [145] 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258
+#&gt; [163] 259 260 261 262 263 264 265 266 267 268 269 270
+#&gt; </div><div class='input'>
 <span class='co'># inspect flowthrough data</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"flowthrough.rd"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>inspect</span>(<span class='no'>flowthrough.rd</span>, <span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>3</span>))</div><div class='output co'>#&gt; <span class='message'>No issues detected while inspecting data frame.</span></div><div class='output co'>#&gt; <span class='error'>Error in data.table(cbind(df[time], df[oxygen])): could not find function "data.table"</span></div><div class='input'><span class='no'>x</span></div><div class='output co'>#&gt; NULL</div></pre>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>inspect</span>(<span class='no'>flowthrough.rd</span>, <span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>3</span>))</div><div class='output co'>#&gt; <span class='message'>No issues detected while inspecting data frame.</span></div><div class='output co'>#&gt; <span class='message'>inspect: Full plot is only avalilable for a 2-column dataframe output.</span></div><div class='img'><img src='inspect-5.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>x</span></div><div class='output co'>#&gt; 
+#&gt; # inspect # -----------------------------
+#&gt;               time o2.out o2.in
+#&gt; NA/NAN        pass   pass  pass
+#&gt; sequential    pass      -     -
+#&gt; duplicated    pass      -     -
+#&gt; evenly-spaced pass      -     -</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -216,7 +278,7 @@ be returned.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by The package maintainer.</p>
+  <p>Developed by Januar Harianto, Nicholas Carey.</p>
 </div>
 
 <div class="pkgdown">
