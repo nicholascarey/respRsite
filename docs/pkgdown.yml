@@ -1,7 +1,22 @@
 pandoc: 2.9.1.1
 pkgdown: 1.4.1
 pkgdown_sha: ~
-articles: {}
+articles:
+  auto_rate: auto_rate.html
+  auto_rate_comp: auto_rate_comp.html
+  closed: closed.html
+  flowthrough: flowthrough.html
+  importing: importing.html
+  intermittent: intermittent.html
+  intermittent2: intermittent2.html
+  packages_comp: packages_comp.html
+  pcrit: pcrit.html
+  performance: performance.html
+  reproducibility: reproducibility.html
+  respR: respR.html
+  tidyverse: tidyverse.html
+  twopoint: twopoint.html
+  usage: usage.html
 urls:
   reference: https://nicholascarey.github.io/respRsite//reference
   article: https://nicholascarey.github.io/respRsite//articles
