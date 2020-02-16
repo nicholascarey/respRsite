@@ -176,7 +176,9 @@
 <span id="cb1-2"><a href="#cb1-2"></a>sim1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sim_data.html">sim_data</a></span>(<span class="dv">150</span>)</span></code></pre></div>
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## respR:</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>rspr1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(sim1<span class="op">$</span>df)</span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a>rspr1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(sim1<span class="op">$</span>df)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">#&gt; </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt; 7 kernel density peaks detected and ranked.</span></span></code></pre></div>
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-3-2.png" width="700"></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">## LoLinR:</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>lir1 &lt;-<span class="st"> </span><span class="kw">rankLocReg</span>(<span class="dt">xall =</span> sim1<span class="op">$</span>df<span class="op">$</span>x, <span class="dt">yall =</span> sim1<span class="op">$</span>df<span class="op">$</span>y, <span class="fl">0.2</span>, <span class="dt">method =</span> <span class="st">'pc'</span>)</span>
@@ -186,8 +188,8 @@
 <pre><code>#&gt; Compare top ranked outputs</code></pre>
 <pre><code>#&gt; respR
 #&gt; Rate: -0.0162
-#&gt; Start Time: 36
-#&gt; End Time: 145</code></pre>
+#&gt; Start Time: 35
+#&gt; End Time: 146</code></pre>
 <pre><code>#&gt; LoLinR
 #&gt; Rate: -0.0164
 #&gt; Start Time: 32
@@ -200,7 +202,9 @@
 <span id="cb7-2"><a href="#cb7-2"></a>sim2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sim_data.html">sim_data</a></span>(<span class="dv">150</span>, <span class="dt">type =</span> <span class="st">"corrupted"</span>)</span></code></pre></div>
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## respR:</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>rspr2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(sim2<span class="op">$</span>df)</span></code></pre></div>
+<span id="cb8-2"><a href="#cb8-2"></a>rspr2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(sim2<span class="op">$</span>df)</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#&gt; </span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt; 29 kernel density peaks detected and ranked.</span></span></code></pre></div>
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-7-2.png" width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">## LoLinR:</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>lir2 &lt;-<span class="st"> </span><span class="kw">rankLocReg</span>(<span class="dt">xall =</span> sim2<span class="op">$</span>df<span class="op">$</span>x, <span class="dt">yall =</span> sim2<span class="op">$</span>df<span class="op">$</span>y, <span class="fl">0.2</span>, <span class="st">"pc"</span>)</span>
@@ -210,7 +214,7 @@
 <pre><code>#&gt; Compare top ranked outputs</code></pre>
 <pre><code>#&gt; respR
 #&gt; Rate: -0.0229
-#&gt; Start Time: 102
+#&gt; Start Time: 100
 #&gt; End Time: 149</code></pre>
 <pre><code>#&gt; LoLinR
 #&gt; Rate: -0.0223
@@ -224,7 +228,9 @@
 <span id="cb13-2"><a href="#cb13-2"></a>sim3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/sim_data.html">sim_data</a></span>(<span class="dv">150</span>, <span class="dt">type =</span> <span class="st">"segmented"</span>)</span></code></pre></div>
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">## respR:</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>rspr3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(sim3<span class="op">$</span>df)</span></code></pre></div>
+<span id="cb14-2"><a href="#cb14-2"></a>rspr3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(sim3<span class="op">$</span>df)</span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="co">#&gt; </span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="co">#&gt; 6 kernel density peaks detected and ranked.</span></span></code></pre></div>
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-11-2.png" width="700"></p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co">## LoLinR:</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>lir3 &lt;-<span class="st"> </span><span class="kw">rankLocReg</span>(<span class="dt">xall =</span> sim3<span class="op">$</span>df<span class="op">$</span>x, <span class="dt">yall =</span> sim3<span class="op">$</span>df<span class="op">$</span>y, <span class="fl">0.2</span>, <span class="st">"pc"</span>)</span>
@@ -233,9 +239,9 @@
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <pre><code>#&gt; Compare top ranked outputs</code></pre>
 <pre><code>#&gt; respR
-#&gt; Rate: -0.0403
-#&gt; Start Time: 17
-#&gt; End Time: 101</code></pre>
+#&gt; Rate: -0.0402
+#&gt; Start Time: 15
+#&gt; End Time: 106</code></pre>
 <pre><code>#&gt; LoLinR
 #&gt; Rate: -0.0398
 #&gt; Start Time: 40
@@ -247,7 +253,9 @@
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co">## respR:</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a>Urch1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/select.html">select</a></span>(UrchinData, <span class="dv">1</span>, <span class="dv">4</span>)</span>
 <span id="cb19-3"><a href="#cb19-3"></a></span>
-<span id="cb19-4"><a href="#cb19-4"></a>respr_urchindata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(Urch1)</span></code></pre></div>
+<span id="cb19-4"><a href="#cb19-4"></a>respr_urchindata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(Urch1)</span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="co">#&gt; </span></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="co">#&gt; 4 kernel density peaks detected and ranked.</span></span></code></pre></div>
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">## LoLinR:</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a>lolinr_urchindata  &lt;-<span class="st">  </span><span class="kw">rankLocReg</span>(<span class="dt">xall=</span>UrchinData<span class="op">$</span>time, <span class="dt">yall=</span>UrchinData<span class="op">$</span>C, <span class="dt">alpha=</span><span class="fl">0.2</span>, <span class="dt">method=</span><span class="st">"z"</span>)</span>
@@ -257,8 +265,8 @@
 <pre><code>#&gt; Compare top ranked outputs</code></pre>
 <pre><code>#&gt; respR
 #&gt; Rate: -0.1363
-#&gt; Start Time: 19
-#&gt; End Time: 69.5</code></pre>
+#&gt; Start Time: 18.5
+#&gt; End Time: 69</code></pre>
 <pre><code>#&gt; LoLinR
 #&gt; Rate: -0.1441
 #&gt; Start Time: 47
@@ -268,7 +276,9 @@
 <h3 class="hasAnchor">
 <a href="#experimental-data-cormorantdata-from-lolinr" class="anchor"></a>Experimental data: CormorantData from LoLinR</h3>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co">## respR:</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>rcor &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(CormorantData)</span></code></pre></div>
+<span id="cb24-2"><a href="#cb24-2"></a>rcor &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(CormorantData)</span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="co">#&gt; </span></span>
+<span id="cb24-4"><a href="#cb24-4"></a><span class="co">#&gt; 43 kernel density peaks detected and ranked.</span></span></code></pre></div>
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co">## LoLinR:</span></span>
 <span id="cb25-2"><a href="#cb25-2"></a>lcor  &lt;-<span class="st">  </span><span class="kw">thinData</span>(CormorantData, <span class="dt">by =</span> <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(CormorantData)<span class="op">/</span><span class="dv">150</span>)<span class="op">$</span>newData1 <span class="co"># thin data</span></span>
@@ -279,9 +289,9 @@
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
 <pre><code>#&gt; Compare top ranked outputs</code></pre>
 <pre><code>#&gt; respR
-#&gt; Rate: 1.21504
-#&gt; Start Time: 2.87
-#&gt; End Time: 5.34</code></pre>
+#&gt; Rate: 1.16313
+#&gt; Start Time: 2.83
+#&gt; End Time: 5.41</code></pre>
 <pre><code>#&gt; LoLinR
 #&gt; Rate: 0.47775
 #&gt; Start Time: 2.44
@@ -291,7 +301,9 @@
 <h3 class="hasAnchor">
 <a href="#experimental-data-squid-rd-from-respr" class="anchor"></a>Experimental data: squid.rd from respR</h3>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co">## respR:</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>rsquid &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(squid.rd)</span></code></pre></div>
+<span id="cb29-2"><a href="#cb29-2"></a>rsquid &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(squid.rd)</span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="co">#&gt; </span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="co">#&gt; 32 kernel density peaks detected and ranked.</span></span></code></pre></div>
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-23-1.png" width="700"></p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">## LoLinR:</span></span>
 <span id="cb30-2"><a href="#cb30-2"></a>lsquid &lt;-<span class="st"> </span><span class="kw">thinData</span>(squid.rd, <span class="dt">by =</span> <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(squid.rd)<span class="op">/</span><span class="dv">150</span>)<span class="op">$</span>newData1</span>
@@ -303,9 +315,9 @@
 <p><img src="auto_rate_comp_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
 <pre><code>#&gt; Compare top ranked outputs</code></pre>
 <pre><code>#&gt; respR
-#&gt; Rate: -0.00030672
-#&gt; Start Time: 7586
-#&gt; End Time: 13848</code></pre>
+#&gt; Rate: -0.00030151
+#&gt; Start Time: 3589
+#&gt; End Time: 15219</code></pre>
 <pre><code>#&gt; LoLinR
 #&gt; Rate: -0.00030188
 #&gt; Start Time: 4321

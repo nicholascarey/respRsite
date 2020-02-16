@@ -290,35 +290,35 @@ should reflect the same order.</p>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"09-02-03 01:11:11"</span>, <span class='st'>"09-02-03 02:11:11"</span>,<span class='st'>"09-02-03 02:25:11"</span>),
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>23</span>, <span class='fl'>34</span>, <span class='fl'>45</span>))
-<span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt;                   x  y time_num
-#&gt; 1 09-02-03 01:11:11 23        1
-#&gt; 2 09-02-03 02:11:11 34     3601
-#&gt; 3 09-02-03 02:25:11 45     4441</div><div class='input'>
+<span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt;                   x  y elapsed
+#&gt; 1 09-02-03 01:11:11 23       1
+#&gt; 2 09-02-03 02:11:11 34    3601
+#&gt; 3 09-02-03 02:25:11 45    4441</div><div class='input'>
 <span class='co'># convert dataframe with time in different column and non-default format</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>23</span>, <span class='fl'>34</span>, <span class='fl'>45</span>),
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"09-02-2018 11:11:11 AM"</span>, <span class='st'>"09-02-2018 12:11:11 PM"</span>,<span class='st'>"09-02-2018 01:25:11 PM"</span>),
   <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>56</span>, <span class='fl'>67</span>, <span class='fl'>78</span>))
-<span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dmyHMSp"</span>)</div><div class='output co'>#&gt;    x                      y  z time_num
-#&gt; 1 23 09-02-2018 11:11:11 AM 56        1
-#&gt; 2 34 09-02-2018 12:11:11 PM 67     3601
-#&gt; 3 45 09-02-2018 01:25:11 PM 78     8041</div><div class='input'>
+<span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dmyHMSp"</span>)</div><div class='output co'>#&gt;    x                      y  z elapsed
+#&gt; 1 23 09-02-2018 11:11:11 AM 56       1
+#&gt; 2 34 09-02-2018 12:11:11 PM 67    3601
+#&gt; 3 45 09-02-2018 01:25:11 PM 78    8041</div><div class='input'>
 <span class='co'># convert dataframe with separate date and time columns crossing midnight</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
   <span class='kw'>w</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"09-02-18"</span>, <span class='st'>"09-02-18"</span>,<span class='st'>"10-02-18"</span>),
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"22:11:11"</span>, <span class='st'>"23:11:11"</span>,<span class='st'>"00:25:11"</span>),
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>23</span>, <span class='fl'>34</span>, <span class='fl'>45</span>),
   <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>56</span>, <span class='fl'>67</span>, <span class='fl'>78</span>))
-<span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"HMS"</span>) <span class='co'># WRONG! Crosses midnight</span></div><div class='output co'>#&gt; <span class='message'>Time(s) cross midnight, attempting to parse correctly... </span></div><div class='output co'>#&gt;          w        x  y  z time_num
-#&gt; 1 09-02-18 22:11:11 23 56        1
-#&gt; 2 09-02-18 23:11:11 34 67     3601
-#&gt; 3 10-02-18 00:25:11 45 78     8041</div><div class='input'><span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dmyHMS"</span>) <span class='co'># Correct</span></div><div class='output co'>#&gt;          w        x  y  z time_num
-#&gt; 1 09-02-18 22:11:11 23 56        1
-#&gt; 2 09-02-18 23:11:11 34 67     3601
-#&gt; 3 10-02-18 00:25:11 45 78     8041</div><div class='input'><span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>1</span>), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"HMSdmy"</span>) <span class='co'># Different column order &amp; format</span></div><div class='output co'>#&gt;          w        x  y  z time_num
-#&gt; 1 09-02-18 22:11:11 23 56        1
-#&gt; 2 09-02-18 23:11:11 34 67     3601
-#&gt; 3 10-02-18 00:25:11 45 78     8041</div><div class='input'>
+<span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"HMS"</span>) <span class='co'># WRONG! Crosses midnight</span></div><div class='output co'>#&gt; <span class='message'>Time(s) cross midnight, attempting to parse correctly... </span></div><div class='output co'>#&gt;          w        x  y  z elapsed
+#&gt; 1 09-02-18 22:11:11 23 56       1
+#&gt; 2 09-02-18 23:11:11 34 67    3601
+#&gt; 3 10-02-18 00:25:11 45 78    8041</div><div class='input'><span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dmyHMS"</span>) <span class='co'># Correct</span></div><div class='output co'>#&gt;          w        x  y  z elapsed
+#&gt; 1 09-02-18 22:11:11 23 56       1
+#&gt; 2 09-02-18 23:11:11 34 67    3601
+#&gt; 3 10-02-18 00:25:11 45 78    8041</div><div class='input'><span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>1</span>), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"HMSdmy"</span>) <span class='co'># Different column order &amp; format</span></div><div class='output co'>#&gt;          w        x  y  z elapsed
+#&gt; 1 09-02-18 22:11:11 23 56       1
+#&gt; 2 09-02-18 23:11:11 34 67    3601
+#&gt; 3 10-02-18 00:25:11 45 78    8041</div><div class='input'>
 <span class='co'># convert dataframe with multiple date and time columns</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
   <span class='kw'>v</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"09-02"</span>, <span class='st'>"09-02"</span>,<span class='st'>"10-02"</span>),
@@ -326,10 +326,10 @@ should reflect the same order.</p>
   <span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"22:11:11"</span>, <span class='st'>"23:11:11"</span>,<span class='st'>"00:25:11"</span>),
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>23</span>, <span class='fl'>34</span>, <span class='fl'>45</span>),
   <span class='kw'>z</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>56</span>, <span class='fl'>67</span>, <span class='fl'>78</span>))
-<span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dmyHMS"</span>)</div><div class='output co'>#&gt;       v    w        x  y  z time_num
-#&gt; 1 09-02 2018 22:11:11 23 56        1
-#&gt; 2 09-02 2018 23:11:11 34 67     3601
-#&gt; 3 10-02 2018 00:25:11 45 78     8041</div></pre>
+<span class='fu'>format_time</span>(<span class='no'>x</span>, <span class='kw'>time</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>), <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"dmyHMS"</span>)</div><div class='output co'>#&gt;       v    w        x  y  z elapsed
+#&gt; 1 09-02 2018 22:11:11 23 56       1
+#&gt; 2 09-02 2018 23:11:11 34 67    3601
+#&gt; 3 10-02 2018 00:25:11 45 78    8041</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

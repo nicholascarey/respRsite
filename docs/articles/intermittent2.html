@@ -198,7 +198,9 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">## subset rep 1</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>zeb_rep_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/subset_data.html">subset_data</a></span>(zeb, <span class="dt">from =</span> <span class="dv">5000</span> <span class="op">+</span><span class="st"> </span><span class="dv">180</span>, <span class="dt">to =</span> <span class="dv">5000</span> <span class="op">+</span><span class="st"> </span><span class="dv">180</span> <span class="op">+</span><span class="st"> </span><span class="dv">420</span>, <span class="dt">by =</span> <span class="st">"time"</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## Find most linear section</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>zeb_mmr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(zeb_rep_<span class="dv">1</span>)</span></code></pre></div>
+<span id="cb6-2"><a href="#cb6-2"></a>zeb_mmr &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(zeb_rep_<span class="dv">1</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">#&gt; </span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">#&gt; 3 kernel density peaks detected and ranked.</span></span></code></pre></div>
 <p><img src="intermittent2_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <p>We also need to adjust the rate for background. We will use the background linear model coefficients from above, with the start time of this replicate to calculate the appropriate background rate to apply (because this is the first replicate we could also just use the background rate we calculated from the initial background recording, i.e. <code>bg_start</code>).</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">## adjust for background</span></span>
@@ -211,9 +213,9 @@
 <span id="cb7-8"><a href="#cb7-8"></a><span class="co">#&gt; Note: please consider the sign of the value while correcting the rate.</span></span>
 <span id="cb7-9"><a href="#cb7-9"></a><span class="co">#&gt; </span></span>
 <span id="cb7-10"><a href="#cb7-10"></a><span class="co">#&gt; Rank/position 1 result shown. To see all results use summary().</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; Input rate: -0.005867415</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="co">#&gt; Input rate: -0.00586741</span></span>
 <span id="cb7-12"><a href="#cb7-12"></a><span class="co">#&gt; Adjustment: -7.586837e-05</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; Adj. rate: -0.005791547</span></span></code></pre></div>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co">#&gt; Adj. rate: -0.005791542</span></span></code></pre></div>
 <p>That’s it: the MMR has been calculated, adjusted and saved, and we can see from the output plots everything looks good. We will convert it to units at the end of the vignette.</p>
 </div>
 <div id="calculating-rmr" class="section level2">
@@ -251,12 +253,12 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co">## examine</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(rmr_rates)</span>
 <span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt;   time          rmr</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt; 1 6020 -0.008398873</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt; 1 6020 -0.008414331</span></span>
 <span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt; 2 6680 -0.003999710</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt; 3 7340 -0.006171874</span></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt; 4 8000 -0.003920648</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; 5 8660 -0.003765559</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; 6 9320 -0.002394223</span></span></code></pre></div>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt; 3 7340 -0.006187949</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt; 4 8000 -0.004246525</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="co">#&gt; 5 8660 -0.003727447</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="co">#&gt; 6 9320 -0.002378394</span></span></code></pre></div>
 <p>This <code>rmr_rates</code> dataframe contains the start times and most linear rate found in each rep.</p>
 </div>
 <div id="correcting-for-background" class="section level2">
@@ -268,31 +270,31 @@
 <span id="cb10-2"><a href="#cb10-2"></a>rmr_rates<span class="op">$</span>adj &lt;-<span class="st"> </span>rmr_rates<span class="op">$</span>time <span class="op">*</span><span class="st"> </span>bg_lm_slp <span class="op">+</span><span class="st"> </span>bg_lm_int</span>
 <span id="cb10-3"><a href="#cb10-3"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(rmr_rates)</span>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="co">#&gt;   time          rmr           adj</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="co">#&gt; 1 6020 -0.008398873 -7.640036e-05</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co">#&gt; 1 6020 -0.008414331 -7.640036e-05</span></span>
 <span id="cb10-6"><a href="#cb10-6"></a><span class="co">#&gt; 2 6680 -0.003999710 -7.681835e-05</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="co">#&gt; 3 7340 -0.006171874 -7.723634e-05</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="co">#&gt; 4 8000 -0.003920648 -7.765433e-05</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="co">#&gt; 5 8660 -0.003765559 -7.807232e-05</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="co">#&gt; 6 9320 -0.002394223 -7.849031e-05</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co">#&gt; 3 7340 -0.006187949 -7.723634e-05</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co">#&gt; 4 8000 -0.004246525 -7.765433e-05</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="co">#&gt; 5 8660 -0.003727447 -7.807232e-05</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="co">#&gt; 6 9320 -0.002378394 -7.849031e-05</span></span>
 <span id="cb10-11"><a href="#cb10-11"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(rmr_rates)</span>
 <span id="cb10-12"><a href="#cb10-12"></a><span class="co">#&gt;      time          rmr           adj</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a><span class="co">#&gt; 100 71360 -0.002304820 -0.0001177814</span></span>
-<span id="cb10-14"><a href="#cb10-14"></a><span class="co">#&gt; 101 72020 -0.002245397 -0.0001181994</span></span>
-<span id="cb10-15"><a href="#cb10-15"></a><span class="co">#&gt; 102 72680 -0.002391663 -0.0001186174</span></span>
-<span id="cb10-16"><a href="#cb10-16"></a><span class="co">#&gt; 103 73340 -0.002191128 -0.0001190354</span></span>
-<span id="cb10-17"><a href="#cb10-17"></a><span class="co">#&gt; 104 74000 -0.002324731 -0.0001194534</span></span>
-<span id="cb10-18"><a href="#cb10-18"></a><span class="co">#&gt; 105 74660 -0.002204034 -0.0001198713</span></span></code></pre></div>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="co">#&gt; 100 71360 -0.002309671 -0.0001177814</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="co">#&gt; 101 72020 -0.002204660 -0.0001181994</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="co">#&gt; 102 72680 -0.002400156 -0.0001186174</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a><span class="co">#&gt; 103 73340 -0.002189404 -0.0001190354</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="co">#&gt; 104 74000 -0.002263608 -0.0001194534</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="co">#&gt; 105 74660 -0.002188329 -0.0001198713</span></span></code></pre></div>
 <p>We can see the ultimate correction value is extremely small in comparison to the rate of the specimen, as it should be. We also see it increasing in value in later reps, as it should.</p>
 <p>Note, that in <code>respR</code> we have kept rate values as negatives because mathematically they represent depletion of oxygen (although when you come to report these you should change these to positives). So care must be taken when manually using these values to understand the sign and what is being done. Here, to get a final, adjusted RMR rate we <em>subtract</em> the <code>adj</code> value from the RMR rate we calculated.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>rmr_rates<span class="op">$</span>rmr_adj &lt;-<span class="st"> </span>rmr_rates<span class="op">$</span>rmr <span class="op">-</span><span class="st"> </span>rmr_rates<span class="op">$</span>adj</span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(rmr_rates)</span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="co">#&gt;   time          rmr           adj      rmr_adj</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="co">#&gt; 1 6020 -0.008398873 -7.640036e-05 -0.008322472</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co">#&gt; 1 6020 -0.008414331 -7.640036e-05 -0.008337931</span></span>
 <span id="cb11-5"><a href="#cb11-5"></a><span class="co">#&gt; 2 6680 -0.003999710 -7.681835e-05 -0.003922892</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="co">#&gt; 3 7340 -0.006171874 -7.723634e-05 -0.006094638</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="co">#&gt; 4 8000 -0.003920648 -7.765433e-05 -0.003842993</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt; 5 8660 -0.003765559 -7.807232e-05 -0.003687487</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="co">#&gt; 6 9320 -0.002394223 -7.849031e-05 -0.002315733</span></span></code></pre></div>
+<span id="cb11-6"><a href="#cb11-6"></a><span class="co">#&gt; 3 7340 -0.006187949 -7.723634e-05 -0.006110713</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="co">#&gt; 4 8000 -0.004246525 -7.765433e-05 -0.004168870</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="co">#&gt; 5 8660 -0.003727447 -7.807232e-05 -0.003649375</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="co">#&gt; 6 9320 -0.002378394 -7.849031e-05 -0.002299904</span></span></code></pre></div>
 <p>If we plot these values (we add the <code>* -1</code> to convert to the usual positive values rates are reported as), we can see after the initial period where the fish was recovering from excercise, the rates stablise. Depending on your experiment, you may choose to average a selection of these to define RMR.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>((rmr_rates<span class="op">$</span>rmr_adj <span class="op">*</span><span class="st"> </span><span class="dv">-1</span>) <span class="op">~</span><span class="st"> </span>rmr_rates<span class="op">$</span>time)</span></code></pre></div>
 <p><img src="intermittent2_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
@@ -307,8 +309,8 @@
 <span id="cb13-4"><a href="#cb13-4"></a><span class="co">## all rates above cutoff value</span></span>
 <span id="cb13-5"><a href="#cb13-5"></a>rt &lt;-<span class="st"> </span>rmr_rates<span class="op">$</span>rmr_adj[rmr_rates<span class="op">$</span>rmr_adj <span class="op">&gt;</span><span class="st"> </span>co]</span>
 <span id="cb13-6"><a href="#cb13-6"></a>rt</span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="co">#&gt;  [1] -0.001573835 -0.001745242 -0.001731169 -0.001597592 -0.001595901</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a><span class="co">#&gt;  [6] -0.001730505 -0.001752621 -0.001767819 -0.001693113 -0.001766150</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="co">#&gt;  [1] -0.001774937 -0.001598904 -0.001761167 -0.001591412 -0.001593165</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="co">#&gt;  [6] -0.001735911 -0.001775362 -0.001771523 -0.001768999 -0.001767541</span></span>
 <span id="cb13-9"><a href="#cb13-9"></a><span class="co">#&gt; [11] -0.001762338</span></span>
 <span id="cb13-10"><a href="#cb13-10"></a></span>
 <span id="cb13-11"><a href="#cb13-11"></a><span class="co">## Calculate RMR</span></span>
@@ -321,10 +323,10 @@
 <span id="cb13-18"><a href="#cb13-18"></a><span class="co">#&gt; # convert_rate # ------------------------</span></span>
 <span id="cb13-19"><a href="#cb13-19"></a><span class="co">#&gt; Rank/position 1 result shown. To see all results use summary().</span></span>
 <span id="cb13-20"><a href="#cb13-20"></a><span class="co">#&gt; Input:</span></span>
-<span id="cb13-21"><a href="#cb13-21"></a><span class="co">#&gt; [1] -0.00170148</span></span>
+<span id="cb13-21"><a href="#cb13-21"></a><span class="co">#&gt; [1] -0.001718296</span></span>
 <span id="cb13-22"><a href="#cb13-22"></a><span class="co">#&gt; [1] "mg/L" "sec" </span></span>
 <span id="cb13-23"><a href="#cb13-23"></a><span class="co">#&gt; Converted:</span></span>
-<span id="cb13-24"><a href="#cb13-24"></a><span class="co">#&gt; [1] -0.6125329</span></span>
+<span id="cb13-24"><a href="#cb13-24"></a><span class="co">#&gt; [1] -0.6185866</span></span>
 <span id="cb13-25"><a href="#cb13-25"></a><span class="co">#&gt; [1] "mg/hour/g"</span></span></code></pre></div>
 <p>The MMR value we calculated earlier can also be passed to <code>convert_rate</code> to get the final mass-specific value for this specimen by entering the correct mass (of the fish, in kg) and volume (in L).</p>
 <p><strong>Note: the <code>volume</code> is volume of water in the respirometer, not the volume of the respirometer</strong>. That is, it represents the <em>effective volume</em>. A specimen might displace a significant proportion of the water, depending on its size. Therefore the volume of water entered here should equal the volume of the respirometer <strong>minus the volume of the specimen</strong>. It depends on your experiment how you determine water volume. There are several approaches to calculate the volume of a specimen; geometrically, through displacement in a separate vessel, or calculated from the mass and density (e.g. for fish it is often assumed they have an equal density as water, that is ~1000 kg/m^3). Volume could also be determined directly by pouring out the water at the end of the experiment, or by weighing the respirometer. See the <a href="https://github.com/nicholascarey/respfun"><code>respfun</code></a> utilities package for functions to calculate the effective volume and convert water mass to volume.</p>
@@ -335,10 +337,10 @@
 <span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&gt; # convert_rate # ------------------------</span></span>
 <span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&gt; Rank/position 1 result shown. To see all results use summary().</span></span>
 <span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt; Input:</span></span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt; [1] -0.005791547</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt; [1] -0.005791542</span></span>
 <span id="cb14-9"><a href="#cb14-9"></a><span class="co">#&gt; [1] "mg/L" "sec" </span></span>
 <span id="cb14-10"><a href="#cb14-10"></a><span class="co">#&gt; Converted:</span></span>
-<span id="cb14-11"><a href="#cb14-11"></a><span class="co">#&gt; [1] -2.084957</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="co">#&gt; [1] -2.084955</span></span>
 <span id="cb14-12"><a href="#cb14-12"></a><span class="co">#&gt; [1] "mg/hour/g"</span></span></code></pre></div>
 <p>This final value (typically as a positive) is what we report, or use in further analyses.</p>
 </div>
@@ -396,9 +398,9 @@
 <span id="cb15-48"><a href="#cb15-48"></a>z_rmr &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(z_all_rates[z_all_rates <span class="op">&gt;</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/quantile.html">quantile</a></span>(z_all_rates, <span class="fl">0.9</span>)])</span></code></pre></div>
 <p>We can see we get same values we calculated above.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>z_rmr</span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="co">#&gt; [1] -0.6125329</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="co">#&gt; [1] -0.6185866</span></span>
 <span id="cb16-3"><a href="#cb16-3"></a>z_mmr</span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="co">#&gt; [1] -2.084957</span></span></code></pre></div>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="co">#&gt; [1] -2.084955</span></span></code></pre></div>
 </div>
   </div>
 

@@ -210,35 +210,35 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">## as vector</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>data_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/format_time.html">format_time</a></span>(data[, <span class="dv">1</span>], <span class="dt">format =</span> <span class="st">"dmyHMS"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_<span class="dv">2</span>)</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt;    Date_Time_DDMMYYYY_HHMMSS time_num</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; 1:      5/11/2017 9:24:04 AM        1</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; 2:      5/11/2017 9:24:05 AM        2</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; 3:      5/11/2017 9:24:06 AM        3</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 4:      5/11/2017 9:24:07 AM        4</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 5:      5/11/2017 9:24:08 AM        5</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; 6:      5/11/2017 9:24:09 AM        6</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt;    Date_Time_DDMMYYYY_HHMMSS elapsed</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt; 1:      5/11/2017 9:24:04 AM       1</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; 2:      5/11/2017 9:24:05 AM       2</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt; 3:      5/11/2017 9:24:06 AM       3</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt; 4:      5/11/2017 9:24:07 AM       4</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; 5:      5/11/2017 9:24:08 AM       5</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt; 6:      5/11/2017 9:24:09 AM       6</span></span>
 <span id="cb3-11"><a href="#cb3-11"></a></span>
 <span id="cb3-12"><a href="#cb3-12"></a><span class="co">## as data frame</span></span>
 <span id="cb3-13"><a href="#cb3-13"></a>data_<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/format_time.html">format_time</a></span>(data, <span class="dt">format =</span> <span class="st">"dmyHMS"</span>)</span>
 <span id="cb3-14"><a href="#cb3-14"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_<span class="dv">3</span>)</span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt;    Date_Time_DDMMYYYY_HHMMSS SDWA0003000060_CH_1_O2_mg/L time_num</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 1:      5/11/2017 9:24:04 AM                      10.056        1</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; 2:      5/11/2017 9:24:05 AM                      10.015        2</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; 3:      5/11/2017 9:24:06 AM                      10.012        3</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; 4:      5/11/2017 9:24:07 AM                      10.027        4</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; 5:      5/11/2017 9:24:08 AM                      10.032        5</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; 6:      5/11/2017 9:24:09 AM                      10.073        6</span></span></code></pre></div>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt;    Date_Time_DDMMYYYY_HHMMSS SDWA0003000060_CH_1_O2_mg/L elapsed</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; 1:      5/11/2017 9:24:04 AM                      10.056       1</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; 2:      5/11/2017 9:24:05 AM                      10.015       2</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; 3:      5/11/2017 9:24:06 AM                      10.012       3</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; 4:      5/11/2017 9:24:07 AM                      10.027       4</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; 5:      5/11/2017 9:24:08 AM                      10.032       5</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; 6:      5/11/2017 9:24:09 AM                      10.073       6</span></span></code></pre></div>
 <p>By default, the new time-elapsed data will start at zero, but we can override this. This could be useful if data are split into separate files, and you want to append the start of one onto the end of another, or you simply want to link a specific time elapsed value to the start of the experiment.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## as data frame</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>data_<span class="dv">4</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/format_time.html">format_time</a></span>(data[, <span class="dv">1</span>], <span class="dt">format =</span> <span class="st">"dmyHMS"</span>, <span class="dt">start =</span> <span class="dv">1000</span>)</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data_<span class="dv">4</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt;    Date_Time_DDMMYYYY_HHMMSS time_num</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; 1:      5/11/2017 9:24:04 AM     1000</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; 2:      5/11/2017 9:24:05 AM     1001</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt; 3:      5/11/2017 9:24:06 AM     1002</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; 4:      5/11/2017 9:24:07 AM     1003</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; 5:      5/11/2017 9:24:08 AM     1004</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; 6:      5/11/2017 9:24:09 AM     1005</span></span></code></pre></div>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt;    Date_Time_DDMMYYYY_HHMMSS elapsed</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">#&gt; 1:      5/11/2017 9:24:04 AM    1000</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; 2:      5/11/2017 9:24:05 AM    1001</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">#&gt; 3:      5/11/2017 9:24:06 AM    1002</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">#&gt; 4:      5/11/2017 9:24:07 AM    1003</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; 5:      5/11/2017 9:24:08 AM    1004</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#&gt; 6:      5/11/2017 9:24:09 AM    1005</span></span></code></pre></div>
 <p>Note, elapsed time data will always output in <em>seconds</em> regardless of the input format.</p>
 </div>
 <div id="dealing-with-timed-events-or-notes" class="section level2">
@@ -256,13 +256,13 @@
 <span id="cb5-8"><a href="#cb5-8"></a><span class="co">#&gt; 6 8/17/2016 14:31:22 Swim speed set to 20 cm/s</span></span>
 <span id="cb5-9"><a href="#cb5-9"></a></span>
 <span id="cb5-10"><a href="#cb5-10"></a><span class="kw"><a href="../reference/format_time.html">format_time</a></span>(exp_notes, <span class="dt">format =</span> <span class="st">"mdyHMS"</span>)</span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt;                times                    events time_num</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; 1  8/17/2016 9:42:02          Experiment start        1</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; 2  8/17/2016 9:52:02        Flush period start      601</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 3  8/17/2016 9:54:34          Flush period end      753</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 4 8/17/2016 10:19:02  Specimen acting normally     2221</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 5 8/17/2016 12:04:54             Went to lunch     8573</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; 6 8/17/2016 14:31:22 Swim speed set to 20 cm/s    17361</span></span></code></pre></div>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">#&gt;                times                    events elapsed</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">#&gt; 1  8/17/2016 9:42:02          Experiment start       1</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">#&gt; 2  8/17/2016 9:52:02        Flush period start     601</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="co">#&gt; 3  8/17/2016 9:54:34          Flush period end     753</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="co">#&gt; 4 8/17/2016 10:19:02  Specimen acting normally    2221</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">#&gt; 5 8/17/2016 12:04:54             Went to lunch    8573</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="co">#&gt; 6 8/17/2016 14:31:22 Swim speed set to 20 cm/s   17361</span></span></code></pre></div>
 <p>Such notes do not even have to be in the same date-time format, or even at the same precision, depending on how accurately you need to know when events occurred. The important factors are associating at least one event with the <em>same start time</em> used to format the experimental time data, and using the correct <code>format</code> setting.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>exp_notes</span>
 <span id="cb6-2"><a href="#cb6-2"></a><span class="co">#&gt;   times                    events</span></span>
@@ -274,13 +274,13 @@
 <span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; 6 14:31 Swim speed set to 20 cm/s</span></span>
 <span id="cb6-9"><a href="#cb6-9"></a></span>
 <span id="cb6-10"><a href="#cb6-10"></a><span class="kw"><a href="../reference/format_time.html">format_time</a></span>(exp_notes, <span class="dt">format =</span> <span class="st">"HM"</span>)</span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;   times                    events time_num</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; 1  9:42          Experiment start        1</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; 2  9:52        Flush period start      601</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; 3  9:54          Flush period end      721</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; 4 10:19  Specimen acting normally     2221</span></span>
-<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; 5 12:04             Went to lunch     8521</span></span>
-<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; 6 14:31 Swim speed set to 20 cm/s    17341</span></span></code></pre></div>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt;   times                    events elapsed</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; 1  9:42          Experiment start       1</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; 2  9:52        Flush period start     601</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; 3  9:54          Flush period end     721</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; 4 10:19  Specimen acting normally    2221</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; 5 12:04             Went to lunch    8521</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; 6 14:31 Swim speed set to 20 cm/s   17341</span></span></code></pre></div>
 </div>
 <div id="next-steps" class="section level2">
 <h2 class="hasAnchor">

@@ -187,7 +187,7 @@ Particular ranked results can be examined or extracted via the `plot` and `summa
 
 ```{r}
 ## Second most minimum rate detected
-plot(x, pos = 2)
+respR:::plot.auto_rate(x, pos = 2)
 summary(x, pos = 2)
 ```
 

@@ -158,8 +158,8 @@
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
 <p>This illustrates the main processes involved in <code><a href="../reference/auto_rate.html">auto_rate()</a></code>:</p>
-<div id="htmlwidget-a7d992b944439efda3db" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a7d992b944439efda3db">{"x":{"diagram":"\ndigraph a_nice_graph {\n\n# node definitions with substituted label text\n\nnode [fontname = Helvetica, shape = circle]\nrd [label = \"Raw Data\"]\n\nnode [fontname = Helvetica, shape = rectangle]\nrr [label = \"1. Rolling linear regression\"]\nkd [label = \"2. Kernel density\nestimates\"]\nre [label = \"3. Bandwidth resampling\"]\nlr [label = \"4. Linear regression\"]\nar [label = \"5. Rank\"]\nfi [label = \"6. Filter\"]\n\nnode [fontname = Menlo, shape = none]\nau [label = \"auto_rate()\"]\nli [label = \"linear,\"]\nmm [label = \"max, min\"]\nin [label = \"interval\"]\n\n# edge definitions with the node IDs\n\nrd -> au -> rr -> ar -> mm\nrr -> kd -> re -> lr -> ar -> li\nrr -> fi -> in\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p><code><a href="../reference/auto_rate.html">auto_rate()</a></code> works by performing an optimised rolling regression on the dataset. A kernel density estimate is performed on the rolling regression output and the kernel bandwidth used to re-sample linear regions of the data for re-analysis.</p>
+<div id="htmlwidget-a8b7a3d9d7033a207aca" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a8b7a3d9d7033a207aca">{"x":{"diagram":"\ndigraph a_nice_graph {\n\n# node definitions with substituted label text\n\nnode [fontname = Helvetica, shape = circle]\nrd [label = \"Raw Data\"]\n\nnode [fontname = Helvetica, shape = rectangle]\nrr [label = \"1. Rolling linear regression\"]\nkd [label = \"2. Kernel density\nestimates\"]\nre [label = \"3. Bandwidth resampling\"]\nlr [label = \"4. Linear regression\"]\nar [label = \"5. Rank\"]\nfi [label = \"6. Filter\"]\n\nnode [fontname = Menlo, shape = none]\nau [label = \"auto_rate()\"]\nli [label = \"linear,\"]\nmm [label = \"max, min\"]\nin [label = \"interval\"]\n\n# edge definitions with the node IDs\n\nrd -> au -> rr -> ar -> mm\nrr -> kd -> re -> lr -> ar -> li\nrr -> fi -> in\n\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p><code><a href="../reference/auto_rate.html">auto_rate()</a></code> works by performing an optimised rolling regression on the dataset. A kernel density estimate is performed on the rolling regression output and the kernel bandwidth used to re-sample linear regions of the data for re-analysis.</p>
 </div>
 <div id="rolling-linear-regression" class="section level2">
 <h2 class="hasAnchor">
@@ -187,20 +187,24 @@
 <p>Below, we show the differences in the shape of the rolling regressions when using the default <code>width = 0.2</code> versus a value of <code>0.6</code> with the dataset <code>sardine.rd</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Perform linear detection; default width (when not specified) is 0.2:</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>normx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(sardine.rd, <span class="dt">plot =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co"># Perform linear detection using manual width of 0.6:</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>overx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(sardine.rd, <span class="dt">plot =</span> <span class="ot">FALSE</span>, <span class="dt">width =</span> <span class="fl">.6</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># Plot ONLY the rolling regression plots for comparison:</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mai =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.4</span>, <span class="fl">0.4</span>, <span class="fl">0.3</span>, <span class="fl">0.3</span>), <span class="dt">ps =</span> <span class="dv">10</span>,</span>
-<span id="cb1-9"><a href="#cb1-9"></a>    <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">cex.main =</span> <span class="dv">1</span>)</span>
-<span id="cb1-10"><a href="#cb1-10"></a>respR<span class="op">:::</span><span class="kw">plot.auto_rate</span>(normx, <span class="dt">choose =</span> <span class="dv">3</span>)</span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; </span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt; # plot.auto_rate # ----------------------</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co">#&gt; Done.</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>respR<span class="op">:::</span><span class="kw">plot.auto_rate</span>(overx, <span class="dt">choose =</span> <span class="dv">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; </span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt; 46 kernel density peaks detected and ranked.</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co"># Perform linear detection using manual width of 0.6:</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>overx &lt;-<span class="st"> </span><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(sardine.rd, <span class="dt">plot =</span> <span class="ot">FALSE</span>, <span class="dt">width =</span> <span class="fl">.6</span>)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; </span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; 19 kernel density peaks detected and ranked.</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># Plot ONLY the rolling regression plots for comparison:</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>), <span class="dt">mai =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.4</span>, <span class="fl">0.4</span>, <span class="fl">0.3</span>, <span class="fl">0.3</span>), <span class="dt">ps =</span> <span class="dv">10</span>,</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    <span class="dt">cex =</span> <span class="dv">1</span>, <span class="dt">cex.main =</span> <span class="dv">1</span>)</span>
+<span id="cb1-14"><a href="#cb1-14"></a>respR<span class="op">:::</span><span class="kw">plot.auto_rate</span>(normx, <span class="dt">choose =</span> <span class="dv">3</span>)</span>
 <span id="cb1-15"><a href="#cb1-15"></a><span class="co">#&gt; </span></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co">#&gt; # plot.auto_rate # ----------------------</span></span></code></pre></div>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co">#&gt; # plot.auto_rate # ----------------------</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a><span class="co">#&gt; Done.</span></span>
+<span id="cb1-18"><a href="#cb1-18"></a>respR<span class="op">:::</span><span class="kw">plot.auto_rate</span>(overx, <span class="dt">choose =</span> <span class="dv">3</span>)</span>
+<span id="cb1-19"><a href="#cb1-19"></a><span class="co">#&gt; </span></span>
+<span id="cb1-20"><a href="#cb1-20"></a><span class="co">#&gt; # plot.auto_rate # ----------------------</span></span></code></pre></div>
 <p><img src="auto_rate_files/figure-html/rollreg_demo-1.png" width="700"></p>
 <pre><code>#&gt; Done.</code></pre>
 <p>Under perfectly linear conditions, we would expect the rolling regression output to produce a straight, horizontal line with a slope of 0, i.e. a very stable plot. Since KDE automatically aggregates stable values, a poor selection of the <code>width</code> value may result in a badly-characterised rolling estimate output. In the example presented above, while the default width showed a pattern of relative stability in rate after 3,000 seconds, that information was lost when a <code>width</code> of <code>0.6</code> was used. Thus, the KDE technique would not have had the appropriate information necessary to correctly detect any linear patterns in the same data.</p>
@@ -210,19 +214,21 @@
 <a href="#most-linear-rates" class="anchor"></a>Most linear rates</h2>
 <p>By default, <code><a href="../reference/auto_rate.html">auto_rate()</a></code> identifies the <em>most linear</em> region of the data (i.e. <code>method = "linear"</code>):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>x &lt;-<span class="st"> </span>urchins.rd[,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>,<span class="dv">15</span>)]</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(x)</span></code></pre></div>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="../reference/auto_rate.html">auto_rate</a></span>(x)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; 10 kernel density peaks detected and ranked.</span></span></code></pre></div>
 <p><img src="auto_rate_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <pre><code>#&gt; 
 #&gt; # auto_rate # ---------------------------
-#&gt; Data is subset by row using width of 54 
+#&gt; Data is subset by row using width of 48 
 #&gt; Rates were computed using 'linear' method
 #&gt; 10 linear regions detected in the kernel density estimate
 #&gt; 
 #&gt; Rank 1 of 10 :
-#&gt; Rate: -0.02196994 
+#&gt; Rate: -0.02200647 
 #&gt; R.sq: 0.99 
-#&gt; Rows: 10 to 180 
-#&gt; Time: 1.5 to 29.8</code></pre>
+#&gt; Rows: 5 to 178 
+#&gt; Time: 0.7 to 29.5</code></pre>
 <p>This represents the most consistently linear region, that is most consistent rate observed during the experiment. It does this in a statistically rigorous manner, which removes observer subjectivity from choosing which rate is most appropriate to report in their results. It calculates these <em>most linear</em> rates across all possible data window widths, so this also removes the need to the user to specify this. It is a statistically robust way of indentifying and reporting consistent rates in respirometry data.</p>
 </div>
 <div id="minimum-and-maximum-rates" class="section level2">
@@ -282,21 +288,33 @@
 <span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt; </span></span>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="co">#&gt; === Summary of Results ===</span></span>
 <span id="cb10-5"><a href="#cb10-5"></a><span class="co">#&gt; </span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="co">#&gt;        row endrow time endtime intercept_b0       rate_b1       rsq</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="co">#&gt;    1: 2260   2859 2259    2858     94.69693 -0.0005399376 0.5852845</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="co">#&gt;    2: 2259   2858 2258    2857     94.69981 -0.0005410793 0.5864181</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="co">#&gt;    3: 2258   2857 2257    2856     94.70265 -0.0005422043 0.5875352</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="co">#&gt;    4: 5844   6443 5843    6442     94.23211 -0.0005430376 0.6155883</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="co">#&gt;    5: 2261   2860 2260    2859     94.70663 -0.0005437765 0.5875985</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="co">#&gt;   ---                                                              </span></span>
-<span id="cb10-13"><a href="#cb10-13"></a><span class="co">#&gt; 6910:  801   1400  800    1399     95.90508 -0.0011928894 0.8588085</span></span>
-<span id="cb10-14"><a href="#cb10-14"></a><span class="co">#&gt; 6911:  791   1390  790    1389     95.90536 -0.0011930839 0.8588811</span></span>
-<span id="cb10-15"><a href="#cb10-15"></a><span class="co">#&gt; 6912:  792   1391  791    1390     95.90540 -0.0011932450 0.8588905</span></span>
-<span id="cb10-16"><a href="#cb10-16"></a><span class="co">#&gt; 6913:  795   1394  794    1393     95.90557 -0.0011934783 0.8589309</span></span>
-<span id="cb10-17"><a href="#cb10-17"></a><span class="co">#&gt; 6914:  796   1395  795    1394     95.90576 -0.0011934783 0.8589309</span></span></code></pre></div>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">#&gt;       intercept_b0       rate_b1       rsq  row endrow time endtime rowlength</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co">#&gt;    1:     94.69693 -0.0005399376 0.5852845 2260   2859 2259    2858       600</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co">#&gt;    2:     94.69981 -0.0005410793 0.5864181 2259   2858 2258    2857       600</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="co">#&gt;    3:     94.70265 -0.0005422043 0.5875352 2258   2857 2257    2856       600</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="co">#&gt;    4:     94.23211 -0.0005430376 0.6155883 5844   6443 5843    6442       600</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="co">#&gt;    5:     94.70663 -0.0005437765 0.5875985 2261   2860 2260    2859       600</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="co">#&gt;   ---                                                                        </span></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="co">#&gt; 6910:     95.90508 -0.0011928894 0.8588085  801   1400  800    1399       600</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="co">#&gt; 6911:     95.90536 -0.0011930839 0.8588811  791   1390  790    1389       600</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="co">#&gt; 6912:     95.90540 -0.0011932450 0.8588905  792   1391  791    1390       600</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a><span class="co">#&gt; 6913:     95.90557 -0.0011934783 0.8589309  795   1394  794    1393       600</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="co">#&gt; 6914:     95.90576 -0.0011934783 0.8589309  796   1395  795    1394       600</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="co">#&gt;       timelength</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a><span class="co">#&gt;    1:        599</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="co">#&gt;    2:        599</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="co">#&gt;    3:        599</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a><span class="co">#&gt;    4:        599</span></span>
+<span id="cb10-23"><a href="#cb10-23"></a><span class="co">#&gt;    5:        599</span></span>
+<span id="cb10-24"><a href="#cb10-24"></a><span class="co">#&gt;   ---           </span></span>
+<span id="cb10-25"><a href="#cb10-25"></a><span class="co">#&gt; 6910:        599</span></span>
+<span id="cb10-26"><a href="#cb10-26"></a><span class="co">#&gt; 6911:        599</span></span>
+<span id="cb10-27"><a href="#cb10-27"></a><span class="co">#&gt; 6912:        599</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a><span class="co">#&gt; 6913:        599</span></span>
+<span id="cb10-29"><a href="#cb10-29"></a><span class="co">#&gt; 6914:        599</span></span></code></pre></div>
 <p>Particular ranked results can be examined or extracted via the <code>plot</code> and <code>summary</code> commands, using the <code>pos</code> (for position) operator:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co">## Second most minimum rate detected</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(x, <span class="dt">pos =</span> <span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>respR<span class="op">:::</span><span class="kw">plot.auto_rate</span>(x, <span class="dt">pos =</span> <span class="dv">2</span>)</span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="co">#&gt; </span></span>
 <span id="cb11-4"><a href="#cb11-4"></a><span class="co">#&gt; # plot.auto_rate # ----------------------</span></span></code></pre></div>
 <p><img src="auto_rate_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
@@ -306,8 +324,10 @@ summary(x, pos = 2)
 #&gt; 
 #&gt; === Summary of Ranked  2 Result ===
 #&gt; 
-#&gt;     row endrow time endtime intercept_b0       rate_b1       rsq
-#&gt; 1: 2259   2858 2258    2857     94.69981 -0.0005410793 0.5864181</a></code></pre>
+#&gt;    intercept_b0       rate_b1       rsq  row endrow time endtime rowlength
+#&gt; 1:     94.69981 -0.0005410793 0.5864181 2259   2858 2258    2857       600
+#&gt;    timelength
+#&gt; 1:        599</a></code></pre>
 <p>Note, the output objects of the <code>max</code> and <code>min</code> are essentially identical, the only difference being the results are ordered descending or ascending by rate, respectively. Therefore in this example, the <em>maximum</em> rate (i.e. <em>least</em> minimum) can be found by extracting the <em>last</em> result.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(x, <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(x<span class="op">$</span>summary))</span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="co">#&gt; </span></span>
