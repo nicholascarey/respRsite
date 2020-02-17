@@ -16,27 +16,26 @@ library(respR) # load respR
 library(DiagrammeR) # flowcharts... and more
 
 opts_chunk$set(collapse = TRUE, comment = "#>", cache = FALSE,
-  highlight = TRUE)
+  highlight = TRUE, fig.width = 6, fig.height = 6)
 ```
 
 ## Introduction
 
 In respirometry, we often want to report oxygen uptake rates that represent experimentally important stages or physiological states. These include:
 
-- the most consistent (i.e. most linear) rates observed, often most representative of *routine* metabolic rates. 
-- minimum rates observed, often most representative of *standard*, *resting* or *maintenance* metabolic rates.
-- maximum rates observed, representative of *active* or *maximal* metabolic rates.
+- the most consistent (i.e. most linear) rates observed, often most representative of *routine* metabolism
+- minimum rates observed, often most representative of *standard*, *resting*, *basal* or *maintenance* metabolism
+- maximum rates observed, representative of *active* or *maximum* metabolic rates
 
 The problem is that for large datasets, identifying these regions is difficult, and if selected visually, are subject to bias and lack of observer objectivity. 
-Other methods, such as fitting multiple, fixed-width linear regressions over the entire dataset to identify regions of minimum or maximum slopes is computationally intensive, and slopes found via this method highly sensitive to the width chosen, especially if the specimen's metabolic rate may change rapidly. 
+Other methods, such as fitting multiple, fixed-width linear regressions over the entire dataset to identify regions of minimum or maximum slopes is computationally intensive, and slopes found via this method highly sensitive to the width chosen, especially if the specimen's metabolic rate changes rapidly. 
 
-Here we present `auto_rate()`, a function in the `respR` package that uses rolling regression techniques to automatically detect **most linear**, **maximum** and **minimum** rates within a dataset. 
-This function can be used to select most linear, maximum and minimum rates in a statistically robust, objective way. 
+Here we present `auto_rate()`, a function in the `respR` package that uses rolling regression techniques to automatically detect **most linear**, **maximum** and **minimum** rates within a dataset in a statistically robust, objective manner. 
 
 In this vignette we detail how `auto_rate()` works, and how it can be used to extract rates from respirometry data. 
 In additional vignettes we show how we have [tested this method against simulated data](https://januarharianto.github.io/respR/articles/performance.html), and also [compare its performance against another linear detection method](https://januarharianto.github.io/respR/articles/auto_rate_comp.html). 
 We show it performs extremely well on large datasets in determining linear rates. 
-Importantly, `auto_rate()` has been optimised to be *extremely fast*. Other methods on large datasets can take minutes or hours to run.
+Importantly, `auto_rate()` has been optimised to be *extremely fast*. Other methods on large datasets can take minutes, hours or even *days* to run.
 We show how `auto_rate()` can reduce this wait by orders of magnitude, literally fitting tens of thousands of regressions and detecting linear regions in seconds. 
 
 ## Overview
@@ -82,7 +81,7 @@ rr -> fi -> in
 ## Rolling linear regression
 
 The function `auto_rate()` uses a novel method of combining rolling regression and kernel density estimate algorithms to detect patterns in time series data.
-The rolling regression runs all possible ordinary least-squares (OLS) linear regressions $(y = \beta_0 + \beta_1 X + \epsilon)$ of a fixed sample width across the dataset, and is expressed as: $$y_t(n) = X_t(n) \beta (n) + \epsilon_t(n), \ t = n,\ ...,\ T$$ where $T$ is the total length of the dataset, $n$ is the window of width $n < T$, $y_t(n)$ is the vector of observations (e.g. oxygen concentration), $X_t(n)$ is the matrix of explanatory variables, $\beta (n)$ is a vector of regression parameters and $\epsilon_t(n)$ is a vector of error terms.
+The rolling regression runs all possible ordinary least-squares (OLS) linear regressions $(y = \beta_0 + \beta_1 X + \epsilon)$ of a fixed sample width across the dataset, and is expressed as: $$y_t(n) = X_t(n) \beta (n) + \epsilon_t(n), \ t = n,\ ...,\ T$$ where $T$ is the total length of the dataset, $n$ is the window of width $n < T$,  $y_t(n)$ is the vector of observations (e.g. oxygen concentration), $X_t(n)$ is the matrix of explanatory variables, $\beta (n)$ is a vector of regression parameters and $\epsilon_t(n)$ is a vector of error terms.
 Thus, a total of $(T - n) + 1$ number of overlapping regressions are fit. These are then ranked to obtain maximum and minimum values.
 An interval-based rolling regression can be selected (`method = "interval"`), and it automatically selects non-overlapping sections of the data for regressions, but all other methods fit overlapping regressions. 
 
@@ -93,7 +92,7 @@ An interval-based rolling regression can be selected (`method = "interval"`), an
 <!-- This assumption is used often in financial statistics to evaluate stability and make predictions on time-series data. -->
 <!-- Here, KDE automatically aggregates stable (i.e. linear) sections as they naturally form one or more local maximums ("modes") in the probability density estimate, and if the distribution is multimodal, the modes are ranked by size. -->
 
-Additional analytical techniques are automatically applied when we use `auto_rate()` to detect linear sections of the data. 
+Additional analytical techniques are automatically applied when we use `auto_rate()` to detect linear sections of the data (the default of `method = 'linear'`). 
 First, we take advantage of the key assumption that linear sections of a data series are reflected by stable parameters across the rolling estimates, a property that is often applied in financial statistics to evaluate model stability and make forward predictions on time-series data (see Zivot and Wang 2006).
 We use kernel density estimation (KDE) techniques, often applied in various inference procedures such as machine learning, pattern recognition and computer vision, to automatically aggregate stable (i.e. linear) segments as they naturally form one or more local maximums ("modes") in the probability density estimate.
 
@@ -109,8 +108,8 @@ The rolling estimates are then discarded while the detected data segments are an
 
 ## Adjusting the width of rolling regressions
 
-By default, `auto_rate()`'s rolling regression uses a rolling window value in rows of `0.2` multiplied by the total length of the number of samples. 
-This can be changed using the `width` argument, to a proportion relative to the total size of the data (`width = 0.1, by = "row"`) or a fixed value in the time metric (`width = 3000, by = "time"`). 
+By default, `auto_rate` rolling regression uses a window value in rows of `0.2` multiplied by the total length of the number of samples, that is across a rolling window of 20% of the data. 
+This can be changed using the `width` argument to a different proportion relative to the total size of the data (e.g. `width = 0.1`). If not a value between 0 and 1, the `width` by default equates to a fixed value in rows (e.g. `width = 2000, by = "row"`), or can be set as a fixed value in the time metric (`width = 3000, by = "time"`). 
 
 It is important to note that the `width` determines the exact width of the data segments produced for `max`, `min` and `interval` rates. This allows the user to consistently report results across experiments, such as reporting the maximum or minimum rates sustained over a specific time period. 
 
@@ -129,11 +128,11 @@ overx <- auto_rate(sardine.rd, plot = FALSE, width = .6)
 # Plot ONLY the rolling regression plots for comparison:
 par(mfrow = c(1, 2), mai = c(0.4, 0.4, 0.3, 0.3), ps = 10,
     cex = 1, cex.main = 1)
-respR:::plot.auto_rate(normx, choose = 3)
+respR:::plot.auto_rate(normx, choose = 3) ## CHANGE WHEN IN MASTER BACK TO REGULAR PLOT
 respR:::plot.auto_rate(overx, choose = 3)
 ```
 
-Under perfectly linear conditions, we would expect the rolling regression output to produce a straight, horizontal line with a slope of 0, i.e. a very stable plot.
+Under perfectly linear conditions, we would expect a rolling regression output plot such as this to consist of a straight, horizontal line. 
 Since KDE automatically aggregates stable values, a poor selection of the `width` value may result in a badly-characterised rolling estimate output.
 In the example presented above, while the default width showed a pattern of relative stability in rate after 3,000 seconds, that information was lost when a `width` of `0.6` was used.
 Thus, the KDE technique would not have had the appropriate information necessary to correctly detect any linear patterns in the same data.
@@ -142,59 +141,96 @@ Thus, the KDE technique would not have had the appropriate information necessary
 By default, `auto_rate()` identifies the *most linear* region of the data (i.e. `method = "linear"`):
 
 ```{r}
-x <- urchins.rd[,c(1,15)]
-auto_rate(x)
+x <- auto_rate(sardine.rd)
 ```
 
 This represents the most consistently linear region, that is most consistent rate observed during the experiment. It does this in a statistically rigorous manner, which removes observer subjectivity from choosing which rate is most appropriate to report in their results. 
 It calculates these *most linear* rates across all possible data window widths, so this also removes the need to the user to specify this. 
 It is a statistically robust way of indentifying and reporting consistent rates in respirometry data. 
 
+### Exploring the results
+
+Generally, `auto_rate` identifies multiple linear regions and ranks them, and by default the highest ranked one is returned. 
+However, as a fully automated, unsupervised method of identifying linear data it is fallible, and the results should always be inspected and explored. 
+In this case the function has identified a total of 46 linear regions:
+
+```{r}
+print(x)
+```
+
+The first rate result looks good: it has a high `rsq`, is sustained over a duration of 50 minutes, and the rate value of -0.00066 is consistent with the other results. 
+However in some cases, other ranked results may better answer the question being asked of the data, in this case be more representative of the metabolic rate metric being investigated. 
+
+All ranked results can be inspected in the `$summary` data frame:
+```{r}
+head(x$summary, n = 10)
+```
+
+Here, the 7th ranked result, while being a highly linear region, is conspicuously higher in rate value and occurs close to the start of the experiment. If we were examining standard or basal metabolic rates, we would probably want to exclude this one, as it suggests the specimen has not acclimated to the chamber. 
+So an investigator may choose to use a result from the top ranked one, or select several and take a mean of the resulting rates. For example, they may exclude all below a certain `rsq`, or only the top nth percentile of results, or exclude those from the early stages of the experiment. 
+A function to do this is in preparation, but for now the results can be explored using the `$summary` data frame, and additional results can be printed and plotted using `pos`:
+
+```{r}
+print(x, pos = 5)
+
+plot(x, pos = 5)
+```
+
+Any rate value determined after this can be saved as a variable, or entered manually as a value in the `adjust_rate` and `convert_rate` steps. 
+
 ## Minimum and maximum rates
 
-`auto_rate()` can also be used to detect the maximum and minimum rates over a fixed sample width, either as proportion of the dataset (e.g. the default `width = 0.2, by = "row"`), or a fixed period of time (e.g. `width = 600, by = "time"`). This allows for consistent reporting of respirometry results, such as the maximum or minimum rates sustained over a specified time period. Note, that while still fast in comparison to some other methods, this second method of specifying a `time` window can be considerably slower. This is because it is telling `auto_rate()` that the time data may have gaps or not be evenly spaced, and so the function calculates each (in this example) 600 point width using the raw time *values*, rather than assuming a specific row width represents the same time window. If your data is without gaps and evenly spaced with regards to time, this option is not really necessary, and `by = row` and the correct proportional `width` for the time you want should be used, as it is much faster. 
+`auto_rate()` can also be used to detect the *maximum* and *minimum* rates over a fixed sample width. This can be a proportion of the dataset (e.g. the default `width = 0.2, by = "row"`, or 20% of the data), or if not between 0 and 1 represents a fixed row width (e.g. `width = 400, by = "row"`) or fixed period of time (e.g. `width = 600, by = "time"`). This allows for consistent reporting of respirometry results, such as the maximum or minimum rates sustained over a specified time period. 
+
+Note that `"by = row"` is considerably faster. Specifying a `time` window is telling `auto_rate()` that the time data may have gaps or not be evenly spaced, and so the function calculates each (in this example) 600 second width using the raw time *values*, rather than assuming a specific row width represents the same time window, a less computationally intensive process. If your data is without gaps and evenly spaced with regards to time, `by = row` and the correct row `width` to represent the time window you want will be much faster. 
 
 ### Maximum rates
 
-Here we want to know the maximum rates sustained over 10 minutes, or 600s, in the `sardine.rd` data. Since in these data, O2 data is recorded every second  and `inspect()` tells us the time data is gapless and evenly spaced, we can simply specify width in the correct number of rows:
+Here we want to know the maximum rates sustained over 10 minutes, or 600s, in the `sardine.rd` data. Since in these data, O2 data is recorded every second  and `inspect()` tells us the time data is gapless and evenly spaced, we can simply specify width in the same number of rows:
 
 ```{r fig.keep='none'}
-inspect(sardine.rd)
+x <- inspect(sardine.rd)
 ```
 
 ```{r}
-auto_rate(sardine.rd, width = 600, method = "max")
+results <- auto_rate(x, width = 600, by = "row", method = "max")
 ```
+
+```{r}
+head(results$summary, n = 10)
+```
+
+Note, how the returned rates are ordered. The top result is the highest *absolute* rate, but because it is negative is *numerically* the lowest. Therefore, care should be taken if using this function to examine oxygen *production* such as in studies of plant photosynthesis, as maximum and minimum rates may be ordered differently. 
 
 ### Minimum rates
 
-We can similarly find the minimum rate over 10 minutes, and here we will save the output to object `x`:
+We can similarly find the minimum rate over 10 minutes, and here we will save the output:
 
 ```{r}
-x <- auto_rate(sardine.rd, width = 600, method = "min")
-print(x)
+min_rate <- auto_rate(sardine.rd, width = 600, method = "min")
+print(min_rate)
 ```
 
 ### Additional ranked results
 
-`auto_rate()` objects contain all the results for the specified width. By default, the first ranked (i.e. most maximum or minimum) result is returned, but others and their locations can be examined using the `summary` command: 
+Note that `auto_rate` objects contain the results of ***all*** regressions for the specified `width`. By default, the first ranked (i.e. most maximum or minimum) result is returned, but others and their locations can be examined using the `summary` command: 
 
 ```{r}
-summary(x)
+summary(min_rate)
 ```
 
 Particular ranked results can be examined or extracted via the `plot` and `summary` commands, using the `pos` (for position) operator:
 
 ```{r}
 ## Second most minimum rate detected
-respR:::plot.auto_rate(x, pos = 2)
-summary(x, pos = 2)
+respR:::plot.auto_rate(min_rate, pos = 2)
+summary(min_rate, pos = 2)
 ```
 
 Note, the output objects of the `max` and `min` are essentially identical, the only difference being the results are ordered descending or ascending by rate, respectively. Therefore in this example, the *maximum* rate (i.e. *least* minimum) can be found by extracting the *last* result. 
 
 ```{r}
-print(x, nrow(x$summary))
+print(min_rate, nrow(min_rate$summary))
 ```
 
 <!-- ### Interval rate -->
@@ -218,10 +254,10 @@ print(x, nrow(x$summary))
 In 'steady state' experiments. That is, when you are looking for the most *consistent* or *representative rates* for what the specimen is experiencing. This could represent routine metabolic rate, or in the case of an animal under constant excercise a consistent active metabolic rate. The default `width = 0.2` is used and in testing gives good results; users should be careful about changing this value to avoid overfitting (see section above). 
 
 ### `method = "max"`  
-When your specimen is active at some point during the experiment, or has been exercised and placed in a respirometer, and you want to know its *maximum* rate over a specific time period or row width. The default is `width = 0.2, by = "row"` (0.2 of total row number) or it can be specified in the time unit, e.g. `width = 600, by = "time"`). This should be carefully selected, and consistent if you are comparing specimens. 
+When your specimen is active at some point during the experiment, or has been exercised and placed in a respirometer, and you want to know its *maximum* rate over a specific time period or row width. The default is `width = 0.2, by = "row"` (0.2 of total row number) or it can be specified in actual row or time width, e.g. `width = 300, by = "row"`, `width = 600, by = "time"`). This should be carefully chosen, and consistent if you are comparing specimens. 
 
 ### `method = "min"`  
-Similarly, when your specimen is inactive, quiescent, dormant, etc., and you want to know the lowest rates over a specified time period. This is often representative of resting, basal or standard metabolic rates. Again, this necessarily requires a time window (`width`) to be specified, which should be carefully selected, and consistent if you are comparing specimens. 
+Similarly, when your specimen is inactive, quiescent, dormant, etc., and you want to know the lowest rates over a specified time period. This is often representative of resting, basal or standard metabolic rates. Again, this necessarily requires a row or time window (`width`) to be specified, which should be carefully chosen, and consistent if you are comparing specimens. 
 
 ### `method = "interval"`
 This is chiefly for comparison with historical data, or if you have a specific reason to specify non-overlapping regressions. 
@@ -233,7 +269,7 @@ For example, in P~crit~ measurements, it is common for users to generate rate\~O
 - **Flowthrough respirometry data**  
 See `calc_rate.ft()`. This respirometry method is currently unsupported in `auto_rate`, but it is in our plans to add this. 
 - **Intermittent flow respirometry, without some subsetting or specification of measurement periods**  
-While we have had generally good results using `auto_rate()` on intermittent-flow data, there is a strong possibility flush periods could confuse the algorithms on occasion. See [Intermittent-flow respirometry: Complex example](https://januarharianto.github.io/respR/articles/intermittent2.html) for how to use `auto_rate` with these data. And as always, inspect output plots to ensure data locations are relevant. 
+While we have had generally good results using `auto_rate()` on intermittent-flow data, there is a strong possibility flush periods will confuse the algorithms. The `subset_data` fuction is ideal for specifying the data regions of interest, or see [Intermittent-flow respirometry: Complex example](https://januarharianto.github.io/respR/articles/intermittent2.html) for how to use `auto_rate` with these data. And as always, inspect output plots to ensure data locations are relevant. 
 
 ## Further processing
 Saved `auto_rate()` objects can be passed to subsequent `respR` functions for further processing, such as `adjust_rate()` to correct for background respiration, or `convert_rate()` to convert to final O~2~ uptake rates. 

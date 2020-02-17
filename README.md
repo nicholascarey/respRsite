@@ -7,12 +7,24 @@
 
 # Welcome
 
-`respR` is an R package that provides a structural, reproducible workflow for the processing and analysis of respirometry data. 
-While the focus of our package is on aquatic respirometry, `respR` is largely unitless and so can process linear relationships in any time-series data, such as oxygen flux or photosynthesis.
+`respR` is a package for `R` that provides a structural, reproducible workflow for the processing and analysis of respirometry data. 
+While the focus of the package is on aquatic respirometry, `respR` is largely unitless and so can process, explore, and determine linear relationships in any time-series data.
 
-[**This site**](https://januarharianto.github.io/respR/articles/respR.html) can show you how to get started, and has a range of vignettes covering the fuctionality of the package and example analyses for different respirometry experiment types. 
+Use `respR` to:
 
-The package has also been [**peer reviewed and published**](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13162) in *Methods in Ecology and Evolution*. Please cite this publication if you use `respR` in your published work. If you don't have the space, or feel you haven't used it enough to justify citing it, not a problem at all, but please do [**let us know**](mailto:nicholascarey@gmail.com) anyway. We would like to keep track of studies which have found it useful, and we will help publicise your research. 
+- automatically **import** raw data from various oxygen sensing equipment
+- rapidly **test** data for issues before analysis
+- **explore** and **visualise** timeseries data
+- perform **regression** statistics on linear segments of data manually or automatically
+- **correct** for background oxygen respiration
+- **convert** to units of oxygen consumption
+- **export** results quickly for reporting
+
+[**This site**](https://nicholascarey.github.io/respRsite/articles/respR.html) can show you how to get started. It has a range of guides and vignettes covering the fuctionality of the package, example analyses for different respirometry experiment types, and details of how the package functions work. 
+
+The package has also been [**peer reviewed and published**](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13162) in *Methods in Ecology and Evolution*. Please cite this publication if you use `respR` in your published work. If you don't have the space, or feel you haven't used it enough to justify a citation, not a problem, but please do [**let us know**](mailto:nicholascarey@gmail.com) anyway. We would like to keep track of studies which have found `respR` useful, and we can help publicise your research. 
+
+We also have a [**Twitter account**](https://twitter.com/respR_pkg). Please follow for latest news and regular updates from the world of respirometry!
 
 ## Installation
 `respR` will be submitted soon to CRAN. For now, use the `devtools` package to install the latest stable version:
@@ -55,11 +67,10 @@ urchins.rd %>%        # using the urchins dataset,
 
 Please also feel free to [**email**](mailto:nicholascarey@gmail.com) with any feedback or problems you may encounter.
 
-## Collaborators
+## Developers
 
-- **Januar Harianto**, University of Sydney
-- **Nicholas Carey**, Scottish Association of Marine Science
-- **Maria Byrne**, University of Sydney
+- [**Januar Harianto**](https://github.com/januarharianto), University of Sydney
+- [**Nicholas Carey**](https://github.com/nicholascarey), Scottish Association of Marine Science
 
 
 ## Acknowledgements
