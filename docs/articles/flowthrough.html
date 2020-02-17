@@ -240,7 +240,7 @@
 <p>We will calculate rates from the entire dataset using the object we saved earlier from <code><a href="../reference/inspect_data.html">inspect_data()</a></code>:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>chiton.ft.rate &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_rate.ft.html">calc_rate.ft</a></span>(chiton.ft, <span class="dt">flowrate =</span> <span class="fl">0.00234</span>)</span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="co">#&gt; </span><span class="al">NOTE</span><span class="co">: `inspect_data` has been deprecated. Please use `inspect` instead.</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt; object of class `inspect_data` detected. </span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt; object of class `inspect_data` detected.</span></span>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="co">#&gt;             Any `inflow.o2` or `outflow.o2` inputs entered here ignored.</span></span></code></pre></div>
 <p><img src="flowthrough_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(chiton.ft.rate)</span>
@@ -259,7 +259,7 @@
 <p>The <code><a href="../reference/calc_rate.ft.html">calc_rate.ft()</a></code> function currently does not support subsetting. The dedicated <code><a href="../reference/subset_data.html">subset_data()</a></code> function can be used to prepare data or we can use straightforward R subsetting syntax as follows. We saw earlier how rates between rows 200 and 300 appeared to be most consistent, so we will calculate rates from this data region using the dataframe within the object we saved earlier.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>chiton.ft.rate.sub &lt;-<span class="st"> </span><span class="kw"><a href="../reference/calc_rate.ft.html">calc_rate.ft</a></span>(chiton.ft<span class="op">$</span>df[<span class="dv">200</span><span class="op">:</span><span class="dv">300</span>, ], <span class="dt">outflow.o2 =</span> <span class="dv">3</span>, <span class="dt">inflow.o2 =</span> <span class="dv">2</span>, </span>
 <span id="cb12-2"><a href="#cb12-2"></a>    <span class="dt">flowrate =</span> <span class="fl">0.00234</span>)</span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; 'data.frame' object detected. Values in 'inflow.o2' and 'outflow.o2' are used as column </span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">#&gt; 'data.frame' object detected. Values in 'inflow.o2' and 'outflow.o2' are used as column</span></span>
 <span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt;             indices to to extract data from the data frame.</span></span></code></pre></div>
 <p><img src="flowthrough_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(chiton.ft.rate.sub)</span>
