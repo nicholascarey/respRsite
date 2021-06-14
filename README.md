@@ -37,7 +37,7 @@ devtools::install_github("januarharianto/respR")
 
 ## Getting started
 
-See [here](vignette("respR.Rmd")) to get started.
+See `vignette("respR")` to get started.
 
 ## Usage
 
