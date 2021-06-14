@@ -8,7 +8,7 @@
 [![Twitter](https://img.shields.io/twitter/follow/respR_pkg.svg?label=Follow&style=social)](https://twitter.com/respR_pkg?ref_src=twsrc%5Etfw)
 
 
-## <font style="font-family:'Courier New'"> respR : A package for processing and analysing respirometry data </font> 
+## <font style="font-family:'Courier New'">respR : A package for processing and analysing respirometry data</font> 
 
 `respR` is a package for `R` that provides a structural, reproducible workflow for the processing and analysis of respirometry data. 
 While the focus of the package is on aquatic respirometry, `respR` is largely unitless and so can process, explore, and determine rates from any respirometry data, and indeed linear relationships in any time-series data.
@@ -34,6 +34,10 @@ We also have a [**Twitter account**](https://twitter.com/respR_pkg). Please foll
 install.packages("devtools")
 devtools::install_github("januarharianto/respR")
 ```
+
+## Getting started
+
+See [here](vignette("respR")) to get started.
 
 ## Usage
 
