@@ -159,9 +159,9 @@
 <a href="#case-1" class="anchor"></a>Case 1</h2>
 <p><em>“We only have an outflow oxygen recording, but we know the concentration of the inflowing water does not vary much, because it was from a well aerated, constant temperature and salinity header tank that we tested to be 100% air saturated frequently. We also know from pilot trials background is negligible, so we don’t need to perform an adjustment.”</em></p>
 <p>Here, we will inspect the data, calculate a rate from a stable, consistent region, and convert it to units</p>
-<div id="data" class="section level4">
-<h4 class="hasAnchor">
-<a href="#data" class="anchor"></a>Data</h4>
+<div id="data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#data" class="anchor"></a>Data</h3>
 <p>The example data, <code>flowthrough.rd</code>, contains measurements of oxygen consumption in a species of chiton, (<em>Mopalia lignosa</em>). Detailed information about the data, can be obtained with the command <code><a href="../reference/flowthrough.rd.html">?flowthrough.rd</a></code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">flowthrough.rd</span>, n <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
@@ -172,9 +172,9 @@
 <span class="co">#&gt; 4:    3 8.170722 8.880303 -0.7095818</span></code></pre></div>
 <p>We can see this dataset contains time values (<code>secs</code>), both outflow and inflow oxygen concentrations (<code>mg/L</code>), and an oxygen delta, which is simply the difference between outflow and inflow. We will ignore these last two columns here.</p>
 </div>
-<div id="inflow-oxygen" class="section level4">
-<h4 class="hasAnchor">
-<a href="#inflow-oxygen" class="anchor"></a>Inflow oxygen</h4>
+<div id="inflow-oxygen" class="section level3">
+<h3 class="hasAnchor">
+<a href="#inflow-oxygen" class="anchor"></a>Inflow oxygen</h3>
 <p>Knowing the temperature and salinity of the header tank allows us to calculate the saturated concentration (strictly speaking atmospheric pressure is also required, but we will let the default value be applied). Obviously, it should be the same oxygen units as the outflow recording.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/convert_DO.html">convert_DO</a></span><span class="op">(</span><span class="fl">100</span>, from <span class="op">=</span> <span class="st">"%Air"</span>, to <span class="op">=</span> <span class="st">"mg/L"</span>, t <span class="op">=</span> <span class="fl">12</span>, S <span class="op">=</span> <span class="fl">30</span><span class="op">)</span>
@@ -190,9 +190,9 @@
 <span class="co">#&gt; Output unit: mg/L</span>
 <span class="co">#&gt; -----------------------------------------</span></code></pre></div>
 </div>
-<div id="inspect-the-data" class="section level4">
-<h4 class="hasAnchor">
-<a href="#inspect-the-data" class="anchor"></a>Inspect the data</h4>
+<div id="inspect-the-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#inspect-the-data" class="anchor"></a>Inspect the data</h3>
 <p>Now we know the concentration of the header tank we can enter this as a <code>in.o2.value</code> in <code>inspect.ft</code>, which will allow it to calculate an oxygen delta.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># inspect</span>
@@ -210,9 +210,9 @@
 #&gt; -----------------------------------------</code></pre>
 <p>The data checks show us there are no structural issues with the data, such as missing values or gaps. The top plot shows outflow and (constant) inflow oxygen against both time (bottom axis) and row index (top axis). The bottom plot shows the calculated delta oxygen values, which is essentially the rate. In these plots, consistent oxygen uptake or production rates will be represented by level regions. Here there is some fluctuation towards the end of the data, but the first 400 or so rows look to have stable rates.</p>
 </div>
-<div id="calculate-a-rate" class="section level4">
-<h4 class="hasAnchor">
-<a href="#calculate-a-rate" class="anchor"></a>Calculate a rate</h4>
+<div id="calculate-a-rate" class="section level3">
+<h3 class="hasAnchor">
+<a href="#calculate-a-rate" class="anchor"></a>Calculate a rate</h3>
 <p>Calculating a rate requires the <code>flowrate</code> of the water through the respirometer, in volume (ul, ml, L) per unit time (s,m,h,d). Only the value is required, the units will be entered later. For this dataset the values are in <code><a href="../reference/flowthrough.rd.html">?flowthrough.rd</a></code></p>
 <pre><code>#&gt; calc_rate.ft: calculating rate from 'inspect.ft' object.
 #&gt; 

@@ -45,7 +45,7 @@ The inflow concentration can be a simultaneous recording, but is often a known, 
 
 Here, we will inspect the data, calculate a rate from a stable, consistent region, and convert it to units
 
-#### Data
+### Data
 The example data, `flowthrough.rd`, contains measurements of oxygen consumption in a species of chiton, (*Mopalia lignosa*).  Detailed information about the data, can be obtained with the command `?flowthrough.rd`. 
 
 ```{r}
@@ -54,7 +54,7 @@ head(flowthrough.rd, n = 4)
 
 We can see this dataset contains time values (`secs`), both outflow and inflow oxygen concentrations (`mg/L`), and an oxygen delta, which is simply the difference between outflow and inflow. We will ignore these last two columns here.
 
-#### Inflow oxygen 
+### Inflow oxygen 
 Knowing the temperature and salinity of the header tank allows us to calculate the saturated concentration (strictly speaking atmospheric pressure is also required, but we will let the default value be applied). Obviously, it should be the same oxygen units as the outflow recording.
 
 ```{r}
@@ -62,7 +62,7 @@ convert_DO(100, from = "%Air", to = "mg/L",
            t = 12, S = 30)
 ```
 
-#### Inspect the data
+### Inspect the data
 Now we know the concentration of the header tank we can enter this as a `in.o2.value` in `inspect.ft`, which will allow it to calculate an oxygen delta.
 
 ```{r}
@@ -72,7 +72,7 @@ data1 <- inspect.ft(flowthrough.rd, time = 1, out.o2 = 2, in.o2.value = 8.91891)
 
 The data checks show us there are no structural issues with the data, such as missing values or gaps. The top plot shows outflow and (constant) inflow oxygen against both time (bottom axis) and row index (top axis). The bottom plot shows the calculated delta oxygen values, which is essentially the rate. In these plots, consistent oxygen uptake or production rates will be represented by level regions. Here there is some fluctuation towards the end of the data, but the first 400 or so rows look to have stable rates. 
 
-#### Calculate a rate
+### Calculate a rate
 Calculating a rate requires the `flowrate` of the water through the respirometer, in volume (ul, ml, L) per unit time (s,m,h,d). Only the value is required, the units will be entered later. For this dataset the values are in `?flowthrough.rd`
 ```{r echo = FALSE}
 # calculate rate
