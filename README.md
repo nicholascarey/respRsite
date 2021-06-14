@@ -1,10 +1,14 @@
 
+[![GitHub R package version](https://img.shields.io/github/r-package/v/januarharianto/respR)](https://github.com/januarharianto/respR)
+[![Travis (.com)](https://img.shields.io/travis/com/januarharianto/respR?label=Travis-CI)](https://travis-ci.org/github/januarharianto/respR)
+[![Codecov](https://codecov.io/gh/januarharianto/respR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/januarharianto/respR)
+[![License](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![Github Star](https://img.shields.io/github/stars/januarharianto/respR?style=social)](https://GitHub.com/januarharianto/respR/stargazers/)
+[![Github watchers](https://img.shields.io/github/watchers/januarharianto/respR?label=Watch&style=social)](https://img.shields.io/github/watchers/januarharianto/respR?style=social)
+[![Twitter](https://img.shields.io/twitter/follow/respR_pkg.svg?label=Follow&style=social)](https://twitter.com/respR_pkg?ref_src=twsrc%5Etfw)
 
-[![DOI](https://zenodo.org/badge/66126363.svg)](https://zenodo.org/badge/latestdoi/66126363)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/respR)](https://cran.r-project.org/package=respR) [![Travis-CI Build Status](https://travis-ci.org/januarharianto/respR.svg?branch=master)](https://travis-ci.org/januarharianto/respR) [![codecov](https://codecov.io/gh/januarharianto/respR/branch/master/graph/badge.svg)](https://codecov.io/gh/januarharianto/respR)
 
-
-# Welcome
+## <font style="font-family:'Courier New'"> respR : A package for processing and analysing respirometry data </font> 
 
 `respR` is a package for `R` that provides a structural, reproducible workflow for the processing and analysis of respirometry data. 
 While the focus of the package is on aquatic respirometry, `respR` is largely unitless and so can process, explore, and determine rates from any respirometry data, and indeed linear relationships in any time-series data.
@@ -36,26 +40,28 @@ devtools::install_github("januarharianto/respR")
 For a quick evaluation of the package, try out the following code:
 
 ```r
-library(respR) # load the library
-
-# As lazy loading is in place, we do not need to call example data explicitly.
-# This example will use the `urchins.rd` example data.
+library(respR) # load the package
 
 # 1. check data for errors, select cols 1 and 15:
-urch <- inspect(urchins.rd, 1, 15) 
+urch <- inspect(urchins.rd, time = 1, oxygen = 15) 
 # 2. automatically determine linear segment:
 rate <- auto_rate(urch)
 # 3. convert units
-out <- convert_rate(rate, "mg/l", "s", "mg/h/kg", 0.6, 0.4)
+out <- convert_rate(rate, 
+                    o2.unit = "mg/L", 
+                    time.unit = "min", 
+                    output.unit = "mg/h/kg", 
+                    volume = 0.6, 
+                    mass = 0.4)
+print(out)
 
-## Alternatively, use dplyr pipes:
+## Alternatively, use pipes:
 urchins.rd %>%        # using the urchins dataset,
   select(1, 15) %>%   # select columns 1 and 15
   inspect()     %>%   # inspect the data, then
   auto_rate()   %>%   # automatically determine most linear segment
-  print()       %>%   # just a quick preview
-  convert_rate("mg/l", "s", "mg/h/kg", 0.6, 0.4) # convert units
-  
+  print()       %>%   # a quick preview
+  convert_rate("mg/L", "min", "mg/h/kg", 0.6, 0.4) # convert to units
 ```
 
 ## Feedback and contributions
@@ -70,16 +76,15 @@ Please also feel free to [**email**](mailto:nicholascarey@gmail.com) with any fe
 - [**Nicholas Carey**](https://github.com/nicholascarey), Scottish Association of Marine Science
 
 
-## Acknowledgements
+## See also
 
-The design of this package would not have been possible without inspiration from the following authors and their packages:
+These packages may also help you analyses your respirometry data:
 
 - [respirometry](https://cran.r-project.org/package=respirometry) - Matthew A. Birk
 - [rMR](https://cran.r-project.org/package=rMR) - Tyler L. Moulton
 - [FishResp](https://fishresp.org) - Sergey Morozov
 - [LoLinR](https://github.com/colin-olito/LoLinR) - Colin Olito and Diego Barneche
 - [segmented](https://cran.r-project.org/package=segmented) - Vito M. R. Muggeo
-
 
 
 ## References
