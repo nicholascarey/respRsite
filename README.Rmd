@@ -1,30 +1,35 @@
+---
+title: "README.Rmd"
+author: "Nicholas Carey"
+date: "14/06/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 
 [![DOI](https://zenodo.org/badge/66126363.svg)](https://zenodo.org/badge/latestdoi/66126363)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/respR)](https://cran.r-project.org/package=respR) [![Travis-CI Build Status](https://travis-ci.org/januarharianto/respR.svg?branch=master)](https://travis-ci.org/januarharianto/respR) [![codecov](https://codecov.io/gh/januarharianto/respR/branch/master/graph/badge.svg)](https://codecov.io/gh/januarharianto/respR)
-[![HitCount](http://hits.dwyl.io/januarharianto/respR.svg)](http://hits.dwyl.io/januarharianto/respR)
 
 
 # Welcome
 
-Does this work?
-
 `respR` is a package for `R` that provides a structural, reproducible workflow for the processing and analysis of respirometry data. 
-While the focus of the package is on aquatic respirometry, `respR` is largely unitless and so can process, explore, and determine linear relationships in any time-series data.
+While the focus of the package is on aquatic respirometry, `respR` is largely unitless and so can process, explore, and determine rates from any respirometry data, and indeed linear relationships in any time-series data.
 
 Use `respR` to:
 
-- automatically **import** raw data from various oxygen sensing equipment
-- rapidly **test** data for issues before analysis
-- **explore** and **visualise** timeseries data
-- perform **regression** statistics on linear segments of data manually or automatically
-- **correct** for background oxygen respiration
-- **convert** to units of oxygen consumption
-- **export** results quickly for reporting
+- Automatically **import** raw data from various oxygen sensing equipment
+- Rapidly **inspect** data for common issues before analysis
+- **Explore** and **visualise** timeseries data
+- Perform **multiple regression analysis** on linear segments of data manually or automatically to calculate rates
+- **Adjust** rates for background oxygen consumption or production
+- **Convert** rates to any common unit of oxygen consumption or production
+- **Export** results quickly for reporting
 
-[**This site**](https://nicholascarey.github.io/respRsite/articles/respR.html) can show you how to get started. It has a range of guides and vignettes covering the fuctionality of the package, example analyses for different respirometry experiment types, and details of how the package functions work. 
-
-The package has also been [**peer reviewed and published**](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13162) in *Methods in Ecology and Evolution*. Please cite this publication if you use `respR` in your published work. If you don't have the space, or feel you haven't used it enough to justify a citation, not a problem, but please do [**let us know**](mailto:nicholascarey@gmail.com) anyway. We would like to keep track of studies which have found `respR` useful, and we can help publicise your research. 
+The package has also been [**peer reviewed and published**](https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13162) in *Methods in Ecology and Evolution*. Please cite this publication if you use `respR` in your published work. If you don't have the space, or feel you haven't used it enough to justify a citation, not a problem, but please do [**let us know**](mailto:nicholascarey@gmail.com) anyway. We would like to keep track of studies which have found `respR` useful, and we can help publicise your research, and add to the list [here]() of papers which have used it. 
 
 We also have a [**Twitter account**](https://twitter.com/respR_pkg). Please follow for latest news and regular updates from the world of respirometry!
 
