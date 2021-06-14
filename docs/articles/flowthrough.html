@@ -214,10 +214,13 @@
 <h3 class="hasAnchor">
 <a href="#calculate-a-rate" class="anchor"></a>Calculate a rate</h3>
 <p>Calculating a rate requires the <code>flowrate</code> of the water through the respirometer, in volume (ul, ml, L) per unit time (s,m,h,d). Only the value is required, the units will be entered later. For this dataset the values are in <code><a href="../reference/flowthrough.rd.html">?flowthrough.rd</a></code></p>
-<pre><code>#&gt; calc_rate.ft: calculating rate from 'inspect.ft' object.
-#&gt; 
-#&gt; # plot.calc_rate.ft # -------------------
-#&gt; calc_rate.ft: Plotting rate from position 1 of 1 ...</code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># calculate rate</span>
+<span class="va">rate1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calc_rate.ft.html">calc_rate.ft</a></span><span class="op">(</span><span class="va">data1</span>, from <span class="op">=</span> <span class="fl">1</span>, to <span class="op">=</span> <span class="fl">400</span>, by <span class="op">=</span> <span class="st">"row"</span>, flowrate <span class="op">=</span> <span class="fl">0.00234</span><span class="op">)</span>
+<span class="co">#&gt; calc_rate.ft: calculating rate from 'inspect.ft' object.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; # plot.calc_rate.ft # -------------------</span>
+<span class="co">#&gt; calc_rate.ft: Plotting rate from position 1 of 1 ...</span></code></pre></div>
 <p><img src="flowthrough_files/figure-html/unnamed-chunk-5-1.png" width="384" style="display: block; margin: auto;"></p>
 <pre><code>#&gt; -----------------------------------------</code></pre>
 </div>

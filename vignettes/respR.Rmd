@@ -1,8 +1,10 @@
 ---
 title: "Getting Started"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
-  %\VignetteIndexEntry{Getting Started}
+  %\VignetteIndexEntry{Flowthrough respirometry}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -74,7 +74,7 @@ The data checks show us there are no structural issues with the data, such as mi
 
 ### Calculate a rate
 Calculating a rate requires the `flowrate` of the water through the respirometer, in volume (ul, ml, L) per unit time (s,m,h,d). Only the value is required, the units will be entered later. For this dataset the values are in `?flowthrough.rd`
-```{r echo = FALSE}
+```{r}
 # calculate rate
 rate1 <- calc_rate.ft(data1, from = 1, to = 400, by = "row", flowrate = 0.00234)
 ```
