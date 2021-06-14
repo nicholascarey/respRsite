@@ -2,7 +2,7 @@ url: https://nicholascarey.github.io/respRsite/
 
 template:
   params:
-  bootswatch: cosmo
+    bootswatch: cosmo
 
 reference:
   - title: "Pre-processing"
