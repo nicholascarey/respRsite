@@ -131,115 +131,9 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
-
-<div id="welcome" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#welcome" class="anchor"></a>Welcome</h1></div>
-<p>Does this work?</p>
-<p><code>respR</code> is a package for <code>R</code> that provides a structural, reproducible workflow for the processing and analysis of respirometry data. While the focus of the package is on aquatic respirometry, <code>respR</code> is largely unitless and so can process, explore, and determine linear relationships in any time-series data.</p>
-<p>Use <code>respR</code> to:</p>
-<ul>
-<li>automatically <strong>import</strong> raw data from various oxygen sensing equipment</li>
-<li>rapidly <strong>test</strong> data for issues before analysis</li>
-<li>
-<strong>explore</strong> and <strong>visualise</strong> timeseries data</li>
-<li>perform <strong>regression</strong> statistics on linear segments of data manually or automatically</li>
-<li>
-<strong>correct</strong> for background oxygen respiration</li>
-<li>
-<strong>convert</strong> to units of oxygen consumption</li>
-<li>
-<strong>export</strong> results quickly for reporting</li>
-</ul>
-<p><a href="https://nicholascarey.github.io/respRsite/articles/respR.html"><strong>This site</strong></a> can show you how to get started. It has a range of guides and vignettes covering the fuctionality of the package, example analyses for different respirometry experiment types, and details of how the package functions work.</p>
-<p>The package has also been <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.13162"><strong>peer reviewed and published</strong></a> in <em>Methods in Ecology and Evolution</em>. Please cite this publication if you use <code>respR</code> in your published work. If you don’t have the space, or feel you haven’t used it enough to justify a citation, not a problem, but please do <a href="mailto:nicholascarey@gmail.com"><strong>let us know</strong></a> anyway. We would like to keep track of studies which have found <code>respR</code> useful, and we can help publicise your research.</p>
-<p>We also have a <a href="https://twitter.com/respR_pkg"><strong>Twitter account</strong></a>. Please follow for latest news and regular updates from the world of respirometry!</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p><code>respR</code> will be submitted soon to CRAN. For now, use the <code>devtools</code> package to install the latest stable version:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"januarharianto/respR"</span><span class="op">)</span></code></pre></div>
-</div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
-<p>For a quick evaluation of the package, try out the following code:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/januarharianto/respr">respR</a></span><span class="op">)</span> <span class="co"># load the library</span>
-
-<span class="co"># As lazy loading is in place, we do not need to call example data explicitly.</span>
-<span class="co"># This example will use the `urchins.rd` example data.</span>
-
-<span class="co"># 1. check data for errors, select cols 1 and 15:</span>
-<span class="va">urch</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/inspect.html">inspect</a></span><span class="op">(</span><span class="va">urchins.rd</span>, <span class="fl">1</span>, <span class="fl">15</span><span class="op">)</span> 
-<span class="co"># 2. automatically determine linear segment:</span>
-<span class="va">rate</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/auto_rate.html">auto_rate</a></span><span class="op">(</span><span class="va">urch</span><span class="op">)</span>
-<span class="co"># 3. convert units</span>
-<span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/convert_rate.html">convert_rate</a></span><span class="op">(</span><span class="va">rate</span>, <span class="st">"mg/l"</span>, <span class="st">"s"</span>, <span class="st">"mg/h/kg"</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span><span class="op">)</span>
-
-<span class="co">## Alternatively, use dplyr pipes:</span>
-<span class="va">urchins.rd</span> <span class="op">%&gt;%</span>        <span class="co"># using the urchins dataset,</span>
-  <span class="fu"><a href="reference/select.html">select</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span><span class="op">)</span> <span class="op">%&gt;%</span>   <span class="co"># select columns 1 and 15</span>
-  <span class="fu"><a href="reference/inspect.html">inspect</a></span><span class="op">(</span><span class="op">)</span>     <span class="op">%&gt;%</span>   <span class="co"># inspect the data, then</span>
-  <span class="fu"><a href="reference/auto_rate.html">auto_rate</a></span><span class="op">(</span><span class="op">)</span>   <span class="op">%&gt;%</span>   <span class="co"># automatically determine most linear segment</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="op">)</span>       <span class="op">%&gt;%</span>   <span class="co"># just a quick preview</span>
-  <span class="fu"><a href="reference/convert_rate.html">convert_rate</a></span><span class="op">(</span><span class="st">"mg/l"</span>, <span class="st">"s"</span>, <span class="st">"mg/h/kg"</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span><span class="op">)</span> <span class="co"># convert units</span>
-  </code></pre></div>
-</div>
-<div id="feedback-and-contributions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#feedback-and-contributions" class="anchor"></a>Feedback and contributions</h2>
-<p><code>respR</code> is under continuous development. If you have any bugs or feedback, you can contact us easily by <a href="https://github.com/januarharianto/respr/issues">opening an issue</a>. Alternatively, you can fork this project and create a pull request.</p>
-<p>Please also feel free to <a href="mailto:nicholascarey@gmail.com"><strong>email</strong></a> with any feedback or problems you may encounter.</p>
-</div>
-<div id="developers" class="section level2">
-<h2 class="hasAnchor">
-<a href="#developers" class="anchor"></a>Developers</h2>
-<ul>
-<li>
-<a href="https://github.com/januarharianto"><strong>Januar Harianto</strong></a>, University of Sydney</li>
-<li>
-<a href="https://github.com/nicholascarey"><strong>Nicholas Carey</strong></a>, Scottish Association of Marine Science</li>
-</ul>
-</div>
-<div id="acknowledgements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
-<p>The design of this package would not have been possible without inspiration from the following authors and their packages:</p>
-<ul>
-<li>
-<a href="https://cran.r-project.org/package=respirometry">respirometry</a> - Matthew A. Birk</li>
-<li>
-<a href="https://cran.r-project.org/package=rMR">rMR</a> - Tyler L. Moulton</li>
-<li>
-<a href="https://fishresp.org">FishResp</a> - Sergey Morozov</li>
-<li>
-<a href="https://github.com/colin-olito/LoLinR">LoLinR</a> - Colin Olito and Diego Barneche</li>
-<li>
-<a href="https://cran.r-project.org/package=segmented">segmented</a> - Vito M. R. Muggeo</li>
-</ul>
-</div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
-<p>Clark, T. D., Sandblom, E., &amp; Jutfelt, F. (2013). Aerobic scope measurements of fishes in an era of climate change: respirometry, relevance and recommendations. Journal of Experimental Biology, 216(15), 2771–2782. <a href="https://doi.org/10.1242/Jeb.084251">doi: 10.1242/Jeb.084251</a></p>
-<p>Gamble, S., Carton, A. G., &amp; Pirozzi, I. (2014). Open-top static respirometry is a reliable method to determine the routine metabolic rate of barramundi, Lates calcarifer. Marine and Freshwater Behaviour and Physiology, 47(1), 19–28. <a href="https://doi.org/10.1080/10236244.2013.874119">doi: 10.1080/10236244.2013.874119</a></p>
-<p>Leclercq, N., Gattuso, J.-P. &amp; Jaubert, J. (1999). Measurement of oxygen metabolism in open-top aquatic mesocosms: Application to a coral reef community. Marine Ecology Progress Series, 177, 299–304. <a href="https://doi.org/10.3354/meps177299">doi: 10.3354/meps177299</a></p>
-<p>Lighton, J.R.B. (2008). Measuring Metabolic Rates: A Manual for Scientists. Oxford University Press, USA.</p>
-<p>Morozov S., McCairns R.J.S., Merilä J. (2019) FishResp: R package and GUI application for analysis of aquatic respirometry data. Conservation Physiology 7(1). <a href="https://doi.org/10.1093/conphys/coz003">doi:10.1093/conphys/coz003</a></p>
-<p>Muggeo, V.M.R. (2003). Estimating regression models with unknown break-points. Statistics in Medicine, 22, 3055–3071. <a href="https://doi.org/10.1002/sim.1545">doi: 10.1002/sim.1545</a></p>
-<p>Muggeo, V. (2008). Segmented: An R package to fit regression models with broken-line relationships. R News, 8, 20–25.</p>
-<p>Silverman, B.W. (1986). Density Estimation for Statistics and Data Analysis. Chapman; Hall/CRC Press.</p>
-<p>Steffensen, J. F. (1989). Some errors in respirometry of aquatic breathers: How to avoid and correct for them. Fish Physiology and Biochemistry, 6(1), 49–59. <a href="https://doi.org/10.1007/BF02995809">doi: 10.1007/BF02995809</a></p>
-<p>Svendsen, M.B.S., Bushnell, P.G. &amp; Steffensen, J.F. (2016). Design and setup of intermittent-flow respirometry system for aquatic organisms. Journal of Fish Biology, 88, 26–50. <a href="https://doi.org/10.1111/jfb.12797">doi: 10.1111/jfb.12797</a></p>
-<p>White, C.R. &amp; Kearney, M.R. (2013). Determinants of inter-specific variation in basal metabolic rate. Journal of Comparative Physiology B: Biochemical, Systemic, and Environmental Physiology, 183, 1–26. <a href="https://doi.org/10.1007/s00360-012-0676-5">doi: 10.1007/s00360-012-0676-5</a></p>
-<p>Yeager, D.P. &amp; Ultsch, G.R. (1989). Physiological regulation and conformation: A BASIC program for the determination of critical points. Physiological Zoology, 62, 888–907. <a href="https://doi.org/10.1086/physzool.62.4.30157935">doi: 10.1086/physzool.62.4.30157935</a></p>
-</div>
-</div>
-
+A collection of functions that, when used together, provide a 
+    complete and structured workflow for the analysis of respirometry-related
+    data. See the respR GitHub webpage for documentation and examples.
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -264,17 +158,7 @@
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://zenodo.org/badge/latestdoi/66126363"><img src="https://zenodo.org/badge/66126363.svg" alt="DOI"></a></li>
-<li><a href="https://cran.r-project.org/package=respR"><img src="http://www.r-pkg.org/badges/version/respR" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://travis-ci.org/januarharianto/respR"><img src="https://travis-ci.org/januarharianto/respR.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://codecov.io/gh/januarharianto/respR"><img src="https://codecov.io/gh/januarharianto/respR/branch/master/graph/badge.svg" alt="codecov"></a></li>
-<li><a href="http://hits.dwyl.io/januarharianto/respR"><img src="http://hits.dwyl.io/januarharianto/respR.svg" alt="HitCount"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 

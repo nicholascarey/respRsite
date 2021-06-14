@@ -1,9 +1,8 @@
 ---
-title: "README.Rmd"
-author: "Nicholas Carey"
-date: "14/06/2021"
-output: html_document
+output: github_document
 ---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
