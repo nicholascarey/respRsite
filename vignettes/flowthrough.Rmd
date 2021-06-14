@@ -13,37 +13,80 @@ vignette: >
 library(knitr) # load knitr to enable options
 library(respR) # load respR
 
-opts_chunk$set(collapse = TRUE, comment = "#>", cache = FALSE, tidy = TRUE, 
-  highlight = TRUE)
+opts_chunk$set(collapse = TRUE, 
+               comment = "#>", 
+               cache = FALSE, 
+               tidy = TRUE, 
+               highlight = TRUE, 
+               fig.width = 4, 
+               fig.height = 4,
+               fig.align = "center")
 ```
 
-Flowthrough respirometry differs from other methods in that oxygen depletion is measured from a known continuous flow of water through a respirometer, rather than a known volume, typically after the system has achieved equilibrium. 
-In this method, two oxygen concentrations are needed; 'upstream' and 'downstream' of the experimental chamber, or inflow and outflow concentrations. 
-The inflow concentration is typically a known fixed value and often not continuously monitored, such as fully air-saturated water, or water from a header tank of controlled oxygen concentration.
-The difference between inflow and outflow concentrations, the O~2~ delta, and the flow rate allow calculation of the uptake by the specimen.
+Flowthrough respirometry differs from other methods in that change in oxygen is measured from a controlled continuous flow of water through a respirometer, rather than a known volume, typically after the system has achieved equilibrium. 
+In this method, two oxygen concentrations are needed; 'downstream' and 'upstream' of the experimental chamber, or the outflow and inflow concentrations. 
+These are used to calculate an oxygen delta (outflow minus inflow values), and this is used with the flowrate to calculate oxygen consumption or production rates.
+
+The inflow concentration can be a simultaneous recording, but is often a known, generally unvarying value such as fully air-saturated water, or water from a header tank of controlled oxygen concentration, and so not continuously monitored. `respR` will accept any combination of available data to allow rates to be calculated.
+
+`respR` v2.0 contains an all new workflow to process flowthrough respirometry data, comprising four functions: 
+
+- `inspect.ft`            - check and visualise the data and calculate the oxygen delta (if you haven't already)
+- `calc_rate.ft`         - calculate a rate from a region (or more than one) of the data 
+- `adjust_rate.ft`     - adjust the rate for background activity (optional)
+- `convert_rate.ft`   - convert the rate to specific units, including mass- or area-specific
 
 ### Example data
+`respR` contains several sample flowthrough datasets which we will use here to examine various use cases:
+`flowthrough.rd`, `flowthrough_mult.rd`, `flowthrough_nlbg.rd`
 
-The example data, `flowthrough.rd`, contains measurements of oxygen consumption in a species of chiton, (*Mopalia lignosa*, Carey, *unpublished*).  Detailed information about the data, including its source and methods, can be obtained with the command `?flowthrough.rd`. 
+
+## CASE 1
+*"We only have an outflow oxygen recording, but we know the concentration of the inflowing water does not vary much, because it was from a well aerated, constant temperature and salinity header tank that we tested to be 100% air saturated frequently. We also know from pilot trials background is negligible, so we don't need to perform an adjustment."*
+
+Here, we will inspect the data, calculate a rate from a stable, consistent region, and convert it to units
+
+The example data, `flowthrough.rd`, contains measurements of oxygen consumption in a species of chiton, (*Mopalia lignosa*).  Detailed information about the data, can be obtained with the command `?flowthrough.rd`. 
 
 ```{r}
-library(respR)
-data("flowthrough.rd")
-head(flowthrough.rd)
+head(flowthrough.rd, n = 4)
 ```
 
-We can see this dataset contains time values, both outflow and inflow O~2~ concentrations, and an O~2~ delta, which is simply the difference between inflow and outflow. 
-The O~2~ delta column is not required; we include it here to show an exploratory step in the next section. While any flowthrough data can be analysed in the `calc_rate.ft` function, exploring flowthrough data in `inspect.ft()` requires a 3 column data frame of time, outflow O~2~, and inflow O~2~.
-Therefore the user should include all three, even if inflow O~2~ is a column of a single fixed value. In this example it varies, but not significantly from a mean value of 8.88. 
+We can see this dataset contains time values (`secs`), both outflow and inflow oxygen concentrations (`mg/L`), and an oxygen delta, which is simply the difference between outflow and inflow. We will ignore these last two columns here.
 
-## Inspecting data
-Continuous flowthrough data can be inspected for common errors using the `inspect.ft()` function. Note, a newer version of this function is available (`inspect()`), but at present does not accept flowthrough data. For now, use `inspect.ft()` and we will update this vignette when this update is pushed out. 
+Knowing the temperature and salinity of the header tank allows us to calculate the saturated concentration (strictly speaking atmospheric pressure is also required, but we will let the default value be applied). Obviously, it should be the same oxygen units as the outflow recording.
 
-Because flowthrough data will be slightly different we need to use different input operators in `inspect.ft()`. By default, `inspect.ft()` assumes Time data in column 1 and O~2~ data in column 2. For flowthrough data we typically want to look at the outflow O₂ data, which is in column 2 here, so we do not have to change these defaults:
-
-```{r eval=FALSE}
-inspect.ft(flowthrough.rd)
+```{r}
+convert_DO(100, from = "%Air", to = "mg/L",
+           t = 12, S = 30)
 ```
+
+Now we know the concentration of the header tank we can enter this as a `in.o2.value` in `inspect.ft`, which will allow it to calculate an oxygen delta.
+
+```{r}
+# inspect
+data1 <- inspect.ft(flowthrough.rd, time = 1, out.o2 = 2, in.o2.value = 8.91891)
+```
+
+
+
+## CASE 2
+*"We have both outflow and inflow oxygen recordings. We have previously quantified background oxygen uptake at these same conditions, and have a background adjustment value we want to apply."*
+
+Here, we will inspect the data, calculate a rate from a stable region, and convert it to units
+
+
+
+Case 3: We have already calculated an oxygen delta between outflow and inflow
+
+Case 4: We have multiple chambers with separate outflow recordings, but they are all supplied from the same header tank with its own recording.
+
+Case 5: We want to correct for both background activity and any possible fluctuation in inflow oxygen concentrations using a concurrent empty control or "blank" chamber.
+
+
+## 
+
+
 
 Unlike in  closed respirometry, in a flowthrough experiment oxygen should generally not decline over time, as long as equilibrium has been achieved, and so regions where rates are consistent are more easily identified. 
 Here, using the top plot, we can see the outflow O~2~ concentration is most consistent in the early stages of the experiment. 
