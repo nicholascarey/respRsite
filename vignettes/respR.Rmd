@@ -13,8 +13,13 @@ vignette: >
 library(knitr) # load knitr to enable options
 library(respR) # load respR
 
-opts_chunk$set(collapse = TRUE, comment = "#>", cache = FALSE, tidy = TRUE, 
-  highlight = TRUE, fig.width = 6, fig.height = 6)
+opts_chunk$set(collapse = TRUE, 
+               comment = "#>", 
+               cache = FALSE, 
+               tidy = TRUE, 
+               highlight = TRUE, 
+               fig.width = 6, 
+               fig.height = 6)
 ```
 
 ## Respirometry

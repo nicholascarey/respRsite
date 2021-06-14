@@ -279,28 +279,14 @@ experiments, salinity should be set to zero (i.e. S = 0).</p>
     <pre class="examples"><div class='input'><span class='co'># Manually enter values</span>
 <span class='fu'>convert_rate</span><span class='op'>(</span><span class='fl'>7.5</span>, o2.unit <span class='op'>=</span> <span class='st'>'mg/l'</span>, time.unit <span class='op'>=</span> <span class='st'>'s'</span>,
   output.unit <span class='op'>=</span> <span class='st'>'mg/min/kg'</span>, volume <span class='op'>=</span> <span class='fl'>1.2</span>, mass <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; # print.convert_rate # ------------------
-#&gt; Rank 1 of 1 rates:
-#&gt; 
-#&gt; Input:
-#&gt; [1] 7.5
-#&gt; [1] "mg/L" "sec" 
-#&gt; Converted:
-#&gt; [1] 1080
-#&gt; [1] "mgO2/min/kg"
-#&gt; 
-#&gt; To see full results use summary().
-#&gt; -----------------------------------------</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in convert_rate(7.5, o2.unit = "mg/l", time.unit = "s", output.unit = "mg/min/kg",     volume = 1.2, mass = 0.5): could not find function "convert_rate"</span></div><div class='input'>
 <span class='co'># Use example data</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"sardine.rd"</span><span class='op'>)</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='calc_rate.html'>calc_rate</a></span><span class='op'>(</span><span class='va'>sardine.rd</span>, from <span class='op'>=</span> <span class='fl'>200</span>, to <span class='op'>=</span> <span class='fl'>1800</span>, by <span class='op'>=</span> <span class='st'>"time"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; # plot.calc_rate # ----------------------
-#&gt; calc_rate: Plotting rate from position 1 of 1 ...</div><div class='img'><img src='convert_rate-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; -----------------------------------------</div><div class='input'><span class='fu'>convert_rate</span><span class='op'>(</span><span class='va'>x</span>, o2.unit <span class='op'>=</span> <span class='st'>'%'</span>, time.unit <span class='op'>=</span> <span class='st'>'s'</span>,
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘sardine.rd’ not found</span></div><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='calc_rate.html'>calc_rate</a></span><span class='op'>(</span><span class='va'>sardine.rd</span>, from <span class='op'>=</span> <span class='fl'>200</span>, to <span class='op'>=</span> <span class='fl'>1800</span>, by <span class='op'>=</span> <span class='st'>"time"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in calc_rate(sardine.rd, from = 200, to = 1800, by = "time"): could not find function "calc_rate"</span></div><div class='input'><span class='fu'>convert_rate</span><span class='op'>(</span><span class='va'>x</span>, o2.unit <span class='op'>=</span> <span class='st'>'%'</span>, time.unit <span class='op'>=</span> <span class='st'>'s'</span>,
   output.unit <span class='op'>=</span> <span class='st'>'mg/h/g'</span>, volume <span class='op'>=</span> <span class='fl'>12.3</span>, mass <span class='op'>=</span> <span class='fl'>0.05</span>,
   S <span class='op'>=</span><span class='fl'>35</span>, t <span class='op'>=</span> <span class='fl'>15</span>, P <span class='op'>=</span> <span class='fl'>1.013</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>convert_rate: object of class `calc_rate` detected. Converting all rates in '$rate'.</span></div><div class='output co'>#&gt; <span class='error'>Error in verify_units(o2.unit, "o2"): verify_units: unit "%" has been deprecated. Please use "%Air" or "%O2" instead. See unit_args().</span></div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in convert_rate(x, o2.unit = "%", time.unit = "s", output.unit = "mg/h/g",     volume = 12.3, mass = 0.05, S = 35, t = 15, P = 1.013): could not find function "convert_rate"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

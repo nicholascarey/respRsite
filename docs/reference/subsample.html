@@ -213,12 +213,12 @@ row of the data.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Subsample every 10 rows:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"squid.rd"</span><span class='op'>)</span>
-<span class='fu'>subsample</span><span class='op'>(</span><span class='va'>squid.rd</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
-</div><div class='img'><img src='subsample-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘squid.rd’ not found</span></div><div class='input'><span class='fu'>subsample</span><span class='op'>(</span><span class='va'>squid.rd</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in subsample(squid.rd, n = 10): could not find function "subsample"</span></div><div class='input'>
 <span class='co'># Subsample with random first value:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"sardine.rd"</span><span class='op'>)</span>
-<span class='fu'>subsample</span><span class='op'>(</span><span class='va'>sardine.rd</span>, <span class='fl'>3</span>, <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in subsample(sardine.rd, 3, TRUE): Only one of 'n' or 'length.out' should be entered.</span></div></pre>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘sardine.rd’ not found</span></div><div class='input'><span class='fu'>subsample</span><span class='op'>(</span><span class='va'>sardine.rd</span>, <span class='fl'>3</span>, <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in subsample(sardine.rd, 3, TRUE): could not find function "subsample"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

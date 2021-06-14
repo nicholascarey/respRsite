@@ -237,147 +237,29 @@ examples and vignettes.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Subset by time:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"squid.rd"</span><span class='op'>)</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>squid.rd</span>, from <span class='op'>=</span> <span class='fl'>2000</span>, to <span class='op'>=</span> <span class='fl'>4000</span>, by <span class='op'>=</span> <span class='st'>"time"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; # subset_data # -------------------------
-#&gt; Original data:
-#&gt;         Time       o2
-#&gt;     1:     0 7.726446
-#&gt;     2:     1 7.726446
-#&gt;    ---               
-#&gt; 34119: 34118 1.231048
-#&gt; 34120: 34119 1.231048
-#&gt; 
-#&gt; Subset data:
-#&gt;       Time       o2
-#&gt;    1: 2000 7.102823
-#&gt;    2: 2001 7.102823
-#&gt;   ---              
-#&gt; 2000: 3999 6.479200
-#&gt; 2001: 4000 6.479200
-#&gt; -----------------------------------------</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-</div><div class='img'><img src='subset_data-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘squid.rd’ not found</span></div><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>squid.rd</span>, from <span class='op'>=</span> <span class='fl'>2000</span>, to <span class='op'>=</span> <span class='fl'>4000</span>, by <span class='op'>=</span> <span class='st'>"time"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in subset_data(squid.rd, from = 2000, to = 4000, by = "time"): could not find function "subset_data"</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in plot(x): object 'x' not found</span></div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"flowthrough.rd"</span><span class='op'>)</span>
-<span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>flowthrough.rd</span>, from <span class='op'>=</span> <span class='fl'>50</span>, to <span class='op'>=</span> <span class='fl'>600</span>, by <span class='op'>=</span> <span class='st'>"time"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; # subset_data # -------------------------
-#&gt; Original data:
-#&gt;      time   o2.out    o2.in   o2.delta
-#&gt;   1:    0 8.169730 8.879693 -0.7099636
-#&gt;   2:    1 8.170744 8.884703 -0.7139588
-#&gt;  ---                                  
-#&gt; 934:  933 8.167505 8.887132 -0.7196268
-#&gt; 935:  934 8.165069 8.864456 -0.6993879
-#&gt; 
-#&gt; Subset data:
-#&gt;      time   o2.out    o2.in   o2.delta
-#&gt;   1:   50 8.175106 8.891686 -0.7165791
-#&gt;   2:   51 8.185150 8.875577 -0.6904272
-#&gt;  ---                                  
-#&gt; 550:  599 8.176023 8.875059 -0.6990357
-#&gt; 551:  600 8.166706 8.874728 -0.7080218
-#&gt; -----------------------------------------</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘flowthrough.rd’ not found</span></div><div class='input'><span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>flowthrough.rd</span>, from <span class='op'>=</span> <span class='fl'>50</span>, to <span class='op'>=</span> <span class='fl'>600</span>, by <span class='op'>=</span> <span class='st'>"time"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in subset_data(flowthrough.rd, from = 50, to = 600, by = "time"): could not find function "subset_data"</span></div><div class='input'>
 <span class='co'># Subset by O_2:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"sardine.rd"</span><span class='op'>)</span>
-<span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>sardine.rd</span>, from <span class='op'>=</span> <span class='fl'>94</span>, to <span class='op'>=</span> <span class='fl'>91</span>, by <span class='op'>=</span> <span class='st'>"o2"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; # subset_data # -------------------------
-#&gt; Original data:
-#&gt;       Time Oxygen
-#&gt;    1:    0   95.6
-#&gt;    2:    1   95.6
-#&gt;   ---            
-#&gt; 7512: 7511   90.2
-#&gt; 7513: 7512   90.3
-#&gt; 
-#&gt; Subset data:
-#&gt;       Time Oxygen
-#&gt;    1: 1458   94.0
-#&gt;    2: 1459   94.2
-#&gt;   ---            
-#&gt; 4768: 6225   90.9
-#&gt; 4769: 6226   91.0
-#&gt; -----------------------------------------</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘sardine.rd’ not found</span></div><div class='input'><span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>sardine.rd</span>, from <span class='op'>=</span> <span class='fl'>94</span>, to <span class='op'>=</span> <span class='fl'>91</span>, by <span class='op'>=</span> <span class='st'>"o2"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in subset_data(sardine.rd, from = 94, to = 91, by = "o2"): could not find function "subset_data"</span></div><div class='input'>
 <span class='co'># Subset by proportion of total oxygen used:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"sardine.rd"</span><span class='op'>)</span>
-<span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>sardine.rd</span>, from <span class='op'>=</span> <span class='fl'>0.8</span>, to <span class='op'>=</span> <span class='fl'>0.4</span>, by <span class='op'>=</span> <span class='st'>"proportion"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; # subset_data # -------------------------
-#&gt; Original data:
-#&gt;       Time Oxygen
-#&gt;    1:    0   95.6
-#&gt;    2:    1   95.6
-#&gt;   ---            
-#&gt; 7512: 7511   90.2
-#&gt; 7513: 7512   90.3
-#&gt; 
-#&gt; Subset data:
-#&gt;       Time Oxygen
-#&gt;    1:  993   94.5
-#&gt;    2:  994   94.7
-#&gt;   ---            
-#&gt; 3477: 4469   92.0
-#&gt; 3478: 4470   92.2
-#&gt; -----------------------------------------</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘sardine.rd’ not found</span></div><div class='input'><span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>sardine.rd</span>, from <span class='op'>=</span> <span class='fl'>0.8</span>, to <span class='op'>=</span> <span class='fl'>0.4</span>, by <span class='op'>=</span> <span class='st'>"proportion"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in subset_data(sardine.rd, from = 0.8, to = 0.4, by = "proportion"): could not find function "subset_data"</span></div><div class='input'>
 <span class='co'># Subset by row:</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"flowthrough.rd"</span><span class='op'>)</span>
-<span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>flowthrough.rd</span>, from <span class='op'>=</span> <span class='fl'>10</span>, to <span class='op'>=</span> <span class='fl'>750</span>, by <span class='op'>=</span> <span class='st'>"row"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; # subset_data # -------------------------
-#&gt; Original data:
-#&gt;      time   o2.out    o2.in   o2.delta
-#&gt;   1:    0 8.169730 8.879693 -0.7099636
-#&gt;   2:    1 8.170744 8.884703 -0.7139588
-#&gt;  ---                                  
-#&gt; 934:  933 8.167505 8.887132 -0.7196268
-#&gt; 935:  934 8.165069 8.864456 -0.6993879
-#&gt; 
-#&gt; Subset data:
-#&gt;      time   o2.out    o2.in   o2.delta
-#&gt;   1:    9 8.179554 8.876309 -0.6967551
-#&gt;   2:   10 8.173299 8.890710 -0.7174111
-#&gt;  ---                                  
-#&gt; 740:  748 8.180551 8.861813 -0.6812617
-#&gt; 741:  749 8.195288 8.892014 -0.6967263
-#&gt; -----------------------------------------</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘flowthrough.rd’ not found</span></div><div class='input'><span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>flowthrough.rd</span>, from <span class='op'>=</span> <span class='fl'>10</span>, to <span class='op'>=</span> <span class='fl'>750</span>, by <span class='op'>=</span> <span class='st'>"row"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in subset_data(flowthrough.rd, from = 10, to = 750, by = "row"): could not find function "subset_data"</span></div><div class='input'>
 <span class='co'># Pass (via piping) only part of a dataset to auto_rate</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"sardine.rd"</span><span class='op'>)</span>
-<span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>sardine.rd</span>, from <span class='op'>=</span> <span class='fl'>94</span>, to <span class='op'>=</span> <span class='fl'>91</span>, by <span class='op'>=</span> <span class='st'>"o2"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: data set ‘sardine.rd’ not found</span></div><div class='input'><span class='fu'>subset_data</span><span class='op'>(</span><span class='va'>sardine.rd</span>, from <span class='op'>=</span> <span class='fl'>94</span>, to <span class='op'>=</span> <span class='fl'>91</span>, by <span class='op'>=</span> <span class='st'>"o2"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
 <span class='fu'><a href='auto_rate.html'>auto_rate</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; # subset_data # -------------------------
-#&gt; Original data:
-#&gt;       Time Oxygen
-#&gt;    1:    0   95.6
-#&gt;    2:    1   95.6
-#&gt;   ---            
-#&gt; 7512: 7511   90.2
-#&gt; 7513: 7512   90.3
-#&gt; 
-#&gt; Subset data:
-#&gt;       Time Oxygen
-#&gt;    1: 1458   94.0
-#&gt;    2: 1459   94.2
-#&gt;   ---            
-#&gt; 4768: 6225   90.9
-#&gt; 4769: 6226   91.0
-#&gt; -----------------------------------------
-#&gt; 
-#&gt; # plot.auto_rate # ----------------------
-#&gt; auto_rate: Plotting rate from position 1 of 14 ... 
-#&gt; To plot others use 'pos'</div><div class='img'><img src='subset_data-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; -----------------------------------------</div><div class='output co'>#&gt; 
-#&gt; # print.auto_rate # ---------------------
-#&gt; Data is subset by 'row' using 'width' of 953.
-#&gt; Rates were computed using 'linear' method.
-#&gt; 14 linear regions detected in the kernel density estimate.
-#&gt; To see all results use summary().
-#&gt; 
-#&gt; Rank 1 of 14 :
-#&gt; Rate: -0.0006911336 
-#&gt; R.sq: 0.986 
-#&gt; Rows: 554 to 3935 
-#&gt; Time: 2011 to 5392 
-#&gt; -----------------------------------------</div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in subset_data(sardine.rd, from = 94, to = 91, by = "o2") %&gt;% auto_rate(): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

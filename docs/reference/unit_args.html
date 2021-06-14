@@ -219,50 +219,7 @@ pressure (<code>P</code>) to be specified.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>unit_args</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Note: A string-matching algorithm is used to identify units. 
-#&gt; Example 1: These are recognised as the same: 'mg/L', 'mg/l', 'mg L-1', 'mg per litre', 'mg.L-1'
-#&gt; Example 2: These are recognised as the same: 'hour', 'hr', 'h'
-#&gt; 
-#&gt; # Input Units # --------------------------------------
-#&gt; Oxygen concentration units should use SI units (`L` or `kg`) for the denominator.
-#&gt; 
-#&gt; Oxygen Concentration or Pressure Units - Do not require t, S and P
-#&gt; [1] "mg/L"   "ug/L"   "mmol/L" "umol/L"
-#&gt; Oxygen Concentration or Pressure Units - Require t, S and P
-#&gt;  [1] "mL/L"    "mg/kg"   "ug/kg"   "mmol/kg" "umol/kg" "mL/kg"   "%Air"   
-#&gt;  [8] "%O2"     "Torr"    "hPa"     "kPa"     "mmHg"    "inHg"   
-#&gt; 
-#&gt; Volume units for use in flow rates in calc_rate.ft and convert_rate.ft
-#&gt; (e.g. as in 'ml/min', 'L/s', etc.)
-#&gt; [1] "uL" "mL" "L" 
-#&gt; 
-#&gt; Time units (for 'time.unit' or as part of 'flowrate.unit')
-#&gt; [1] "sec"  "min"  "hour" "day" 
-#&gt; 
-#&gt; Mass units
-#&gt; [1] "ug" "mg" "g"  "kg"
-#&gt; 
-#&gt; Area units
-#&gt; [1] "mm2" "cm2" "m2"  "km2"
-#&gt; 
-#&gt; # Output Units in 'convert_rate' &amp; 'convert_rate.ft' #
-#&gt; Must be in correct order, with no special characters other than the separator:
-#&gt; 
-#&gt; Absolute rates:        O2/Time       e.g. 'mg/sec',     'umol/min',     'mL/h'
-#&gt; Mass-specific rates:   O2/Time/Mass  e.g. 'mg/sec/ug',  'umol/min/g',   'mL/h/kg'
-#&gt; Area-specific rates:   O2/Time/Area  e.g. 'mg/sec/mm2', 'umol/min/cm2', 'mL/h/m2'
-#&gt; 
-#&gt; Output Oxygen amount units
-#&gt; [1] "ug"   "mg"   "umol" "mmol" "mol"  "mL"  
-#&gt; 
-#&gt; Output Time units
-#&gt; [1] "sec"  "min"  "hour" "day" 
-#&gt; 
-#&gt; Output Mass units for mass-specific rates
-#&gt; [1] "ug" "mg" "g"  "kg"
-#&gt; 
-#&gt; Output Area units for surface area-specific rates
-#&gt; [1] "mm2" "cm2" "m2"  "km2"</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in unit_args(): could not find function "unit_args"</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
