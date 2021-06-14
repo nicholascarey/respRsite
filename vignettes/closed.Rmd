@@ -80,7 +80,7 @@ calc_rate(urchin) # same as: calc_rate(urchin$df)
 
 Note how the function recognises the `inspect()` object, with no other inputs necessary. Alternatively, you can specify a `data.frame` object containing raw data, in which case the function will automatically consider the first column as time data, and the second column as oxygen data (if not in the first two columns, they should be processed via `inspect()` or otherwise put into this structure).
 
-In many cases, there is a need to truncate or subset the data before rate is determined. For example, we may want to exclude initial stages of instability, determine rate over an exact period of time, or within a threshold of O~2~ concentrations. Equipment interference or other factors may cause irregularities in the data. We can work around such errors by specifying the data regions we are interested in determining the rate over.
+In many cases, there is a need to truncate or subset the data before rate is determined. For example, we may want to exclude initial stages of instability, determine rate over an exact period of time, or within a threshold of O~2~ concentrations. Equipment interference or other factors may cause irregularities in the data. We can work around such errors by specifying the data regions over which we are interested in determining the rate.
 
 Based on the `from` and `to` arguments, a user may use `calc_rate()` to specify data ranges in one of four ways:
 

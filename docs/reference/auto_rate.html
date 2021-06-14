@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -42,7 +46,6 @@ in oxygen concentration over time. First, a rolling regression of specified
 width is performed on the entire dataset to obtain all possible values. The
 computations are then ranked (or, arranged), based on the &quot;method&quot;
 argument, and the output is summarised." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -60,7 +63,7 @@ argument, and the output is summarised." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -82,7 +85,7 @@ argument, and the output is summarised." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
@@ -133,7 +136,7 @@ argument, and the output is summarised." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/performance.html">auto_rate: Performance in detecting linear regions</a>
+      <a href="../articles/auto_rate_performance.html">auto_rate: Performance in detecting linear regions</a>
     </li>
     <li>
       <a href="../articles/auto_rate_comp.html">auto_rate: Comparisons with LoLinR</a>
@@ -155,8 +158,8 @@ argument, and the output is summarised." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/januarharianto/respr">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/januarharianto/respr/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -187,7 +190,7 @@ computations are then ranked (or, arranged), based on the "<code>method</code>"
 argument, and the output is summarised.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>auto_rate</span>(<span class='no'>df</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"row"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"linear"</span>, <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>auto_rate</span><span class='op'>(</span><span class='va'>df</span>, width <span class='op'>=</span> <span class='cn'>NULL</span>, by <span class='op'>=</span> <span class='st'>"row"</span>, method <span class='op'>=</span> <span class='st'>"linear"</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -251,36 +254,39 @@ regrssions. They are not ranked.</p></li>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># most linear section of the entire data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"flowthrough.rd"</span>)
-<span class='fu'>auto_rate</span>(<span class='no'>flowthrough.rd</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Multi-column dataset detected. Selecting first two columns by default. If this is not your intended dataset, subset the data frame appropriately before running `auto_rate()`</span></div><div class='img'><img src='auto_rate-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt; # auto_rate # ---------------------------
-#&gt; Data is subset by row using width of 187 
-#&gt; Rates were computed using 'linear' method
-#&gt; 8 linear regions detected in the kernel density estimate
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"flowthrough.rd"</span><span class='op'>)</span>
+<span class='fu'>auto_rate</span><span class='op'>(</span><span class='va'>flowthrough.rd</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: auto_rate: Multi-column dataset detected in input. Selecting first two columns by default.</span>
+#&gt; <span class='warning'>  If these are not the intended data, inspect() or subset the data frame columns appropriately before running auto_rate()</span></div><div class='output co'>#&gt; 
+#&gt; # plot.auto_rate # ----------------------
+#&gt; auto_rate: Plotting rate from position 1 of 8 ... 
+#&gt; To plot others use 'pos'</div><div class='img'><img src='auto_rate-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; -----------------------------------------</div><div class='output co'>#&gt; 
+#&gt; # print.auto_rate # ---------------------
+#&gt; Data is subset by 'row' using 'width' of 187.
+#&gt; Rates were computed using 'linear' method.
+#&gt; 8 linear regions detected in the kernel density estimate.
+#&gt; To see all results use summary().
 #&gt; 
 #&gt; Rank 1 of 8 :
 #&gt; Rate: -2.145979e-05 
 #&gt; R.sq: 0.348 
 #&gt; Rows: 34 to 614 
-#&gt; Time: 33 to 613 </div><div class='input'>
+#&gt; Time: 33 to 613 
+#&gt; -----------------------------------------</div><div class='input'>
 <span class='co'># LONG EXAMPLES</span>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"sardine.rd"</span><span class='op'>)</span>
 <span class='co'># what is the lowest rate over a 10 minute (600s) period?</span>
-<span class='fu'>auto_rate</span>(<span class='no'>sardine.rd</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"min"</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>600</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"time"</span>)
+<span class='fu'>auto_rate</span><span class='op'>(</span><span class='va'>sardine.rd</span>, method <span class='op'>=</span> <span class='st'>"min"</span>, width <span class='op'>=</span> <span class='fl'>600</span>, by <span class='op'>=</span> <span class='st'>"time"</span><span class='op'>)</span>
 <span class='co'># what is the highest rate over a 10 minute (600s) period?</span>
-<span class='fu'>auto_rate</span>(<span class='no'>sardine.rd</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"max"</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>600</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"time"</span>)
-}</div></pre>
+<span class='fu'>auto_rate</span><span class='op'>(</span><span class='va'>sardine.rd</span>, method <span class='op'>=</span> <span class='st'>"max"</span>, width <span class='op'>=</span> <span class='fl'>600</span>, by <span class='op'>=</span> <span class='st'>"time"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -291,7 +297,7 @@ regrssions. They are not ranked.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

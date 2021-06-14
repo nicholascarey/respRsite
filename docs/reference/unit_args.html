@@ -6,28 +6,32 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print examples of unit arguments for use in <code><a href='convert_DO.html'>convert_DO()</a></code> and
-<code><a href='convert_rate.html'>convert_rate()</a></code> — unit_args • respR</title>
+<title>Print examples of unit arguments for use in convert_DO() and
+convert_rate() — unit_args • respR</title>
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -36,13 +40,12 @@
 
 
 
-<meta property="og:title" content="Print examples of unit arguments for use in <code><a href='convert_DO.html'>convert_DO()</a></code> and
-<code><a href='convert_rate.html'>convert_rate()</a></code> — unit_args" />
+<meta property="og:title" content="Print examples of unit arguments for use in convert_DO() and
+convert_rate() — unit_args" />
 <meta property="og:description" content="This is a simple function, requiring no argument. It shows available units
 that can be used in the functions convert_DO() and convert_rate(). Some
 units also require temperature (t), salinity (S), and atmospheric
 pressure (P) to be specified." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -60,7 +63,7 @@ pressure (P) to be specified." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -82,7 +85,7 @@ pressure (P) to be specified." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
@@ -133,7 +136,7 @@ pressure (P) to be specified." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/performance.html">auto_rate: Performance in detecting linear regions</a>
+      <a href="../articles/auto_rate_performance.html">auto_rate: Performance in detecting linear regions</a>
     </li>
     <li>
       <a href="../articles/auto_rate_comp.html">auto_rate: Comparisons with LoLinR</a>
@@ -155,8 +158,8 @@ pressure (P) to be specified." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/januarharianto/respr">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/januarharianto/respr/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -186,7 +189,7 @@ units also require temperature (<code>t</code>), salinity (<code>S</code>), and 
 pressure (<code>P</code>) to be specified.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>unit_args</span>()</pre>
+    <pre class="usage"><span class='fu'>unit_args</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -215,31 +218,57 @@ pressure (<code>P</code>) to be specified.</p>
 <p>"ug", "mg", "g", "kg"</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>unit_args</span>()</div><div class='output co'>#&gt; Note: A string-matching algorithm is used to identify units. 
-#&gt; E.g. all of these are the same: mg/L; mg/l, mg L-1, mgL-1, mg per litre, mg.l-1, mg.L-1
+    <pre class="examples"><div class='input'><span class='fu'>unit_args</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Note: A string-matching algorithm is used to identify units. 
+#&gt; Example 1: These are recognised as the same: 'mg/L', 'mg/l', 'mg L-1', 'mg per litre', 'mg.L-1'
+#&gt; Example 2: These are recognised as the same: 'hour', 'hr', 'h'
 #&gt; 
-#&gt; O2 Units - Do not require t, S and P
+#&gt; # Input Units # --------------------------------------
+#&gt; Oxygen concentration units should use SI units (`L` or `kg`) for the denominator.
+#&gt; 
+#&gt; Oxygen Concentration or Pressure Units - Do not require t, S and P
 #&gt; [1] "mg/L"   "ug/L"   "mmol/L" "umol/L"
+#&gt; Oxygen Concentration or Pressure Units - Require t, S and P
+#&gt;  [1] "mL/L"    "mg/kg"   "ug/kg"   "mmol/kg" "umol/kg" "mL/kg"   "%Air"   
+#&gt;  [8] "%O2"     "Torr"    "hPa"     "kPa"     "mmHg"    "inHg"   
 #&gt; 
-#&gt; O2 Units - Require t, S and P
-#&gt;  [1] "mL/L"    "mg/kg"   "ug/kg"   "mmol/kg" "umol/kg" "mL/kg"   "%"      
-#&gt;  [8] "Torr"    "hPa"     "kPa"     "mmHg"    "inHg"   
+#&gt; Volume units for use in flow rates in calc_rate.ft and convert_rate.ft
+#&gt; (e.g. as in 'ml/min', 'L/s', etc.)
+#&gt; [1] "uL" "mL" "L" 
 #&gt; 
-#&gt; Time units
-#&gt; [1] "s" "m" "h"
+#&gt; Time units (for 'time.unit' or as part of 'flowrate.unit')
+#&gt; [1] "sec"  "min"  "hour" "day" 
 #&gt; 
-#&gt; Output mass units
-#&gt; [1] "ug" "mg" "g"  "kg"</div><div class='input'>
+#&gt; Mass units
+#&gt; [1] "ug" "mg" "g"  "kg"
+#&gt; 
+#&gt; Area units
+#&gt; [1] "mm2" "cm2" "m2"  "km2"
+#&gt; 
+#&gt; # Output Units in 'convert_rate' &amp; 'convert_rate.ft' #
+#&gt; Must be in correct order, with no special characters other than the separator:
+#&gt; 
+#&gt; Absolute rates:        O2/Time       e.g. 'mg/sec',     'umol/min',     'mL/h'
+#&gt; Mass-specific rates:   O2/Time/Mass  e.g. 'mg/sec/ug',  'umol/min/g',   'mL/h/kg'
+#&gt; Area-specific rates:   O2/Time/Area  e.g. 'mg/sec/mm2', 'umol/min/cm2', 'mL/h/m2'
+#&gt; 
+#&gt; Output Oxygen amount units
+#&gt; [1] "ug"   "mg"   "umol" "mmol" "mol"  "mL"  
+#&gt; 
+#&gt; Output Time units
+#&gt; [1] "sec"  "min"  "hour" "day" 
+#&gt; 
+#&gt; Output Mass units for mass-specific rates
+#&gt; [1] "ug" "mg" "g"  "kg"
+#&gt; 
+#&gt; Output Area units for surface area-specific rates
+#&gt; [1] "mm2" "cm2" "m2"  "km2"</div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -250,7 +279,7 @@ pressure (<code>P</code>) to be specified.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

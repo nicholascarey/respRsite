@@ -33,16 +33,16 @@ head(flowthrough.rd)
 ```
 
 We can see this dataset contains time values, both outflow and inflow O~2~ concentrations, and an O~2~ delta, which is simply the difference between inflow and outflow. 
-The O~2~ delta column is not required; we include it here to show an exploratory step in the next section. While any flowthrough data can be analysed in the `calc_rate.ft` function, exploring flowthrough data in `inspect_data()` requires a 3 column data frame of time, outflow O~2~, and inflow O~2~.
+The O~2~ delta column is not required; we include it here to show an exploratory step in the next section. While any flowthrough data can be analysed in the `calc_rate.ft` function, exploring flowthrough data in `inspect.ft()` requires a 3 column data frame of time, outflow O~2~, and inflow O~2~.
 Therefore the user should include all three, even if inflow O~2~ is a column of a single fixed value. In this example it varies, but not significantly from a mean value of 8.88. 
 
 ## Inspecting data
-Continuous flowthrough data can be inspected for common errors using the `inspect_data()` function. Note, a newer version of this function is available (`inspect()`), but at present does not accept flowthrough data. For now, use `inspect_data()` and we will update this vignette when this update is pushed out. 
+Continuous flowthrough data can be inspected for common errors using the `inspect.ft()` function. Note, a newer version of this function is available (`inspect()`), but at present does not accept flowthrough data. For now, use `inspect.ft()` and we will update this vignette when this update is pushed out. 
 
-Because flowthrough data will be slightly different we need to use different input operators in `inspect_data()`. By default, `inspect_data()` assumes Time data in column 1 and O~2~ data in column 2. For flowthrough data we typically want to look at the outflow O₂ data, which is in column 2 here, so we do not have to change these defaults:
+Because flowthrough data will be slightly different we need to use different input operators in `inspect.ft()`. By default, `inspect.ft()` assumes Time data in column 1 and O~2~ data in column 2. For flowthrough data we typically want to look at the outflow O₂ data, which is in column 2 here, so we do not have to change these defaults:
 
-```{r}
-inspect_data(flowthrough.rd)
+```{r eval=FALSE}
+inspect.ft(flowthrough.rd)
 ```
 
 Unlike in  closed respirometry, in a flowthrough experiment oxygen should generally not decline over time, as long as equilibrium has been achieved, and so regions where rates are consistent are more easily identified. 
@@ -52,10 +52,10 @@ In closed respirometry data, the bottom plot shows how the rate of the specimen 
 Therefore, values close to zero indicate regions of highly consistent rates by the *specimen*. Here, we can see this illustrated well between rows 200 and 400.
 
 If, for experimental reasons, the inflow O~2~ concentration is variable, examining consistency in outflow O~2~ would not necessarily equate to consistent rates by the specimen. 
-Instead, we can examine O~2~ delta data, by using other `inspect_data()` operators to specify the column we are interested in. Here delta O~2~ is in column 4:
+Instead, we can examine O~2~ delta data, by using other `inspect.ft()` operators to specify the column we are interested in. Here delta O~2~ is in column 4:
 
-```{r message=FALSE, warning=FALSE, results = "hide"}
-inspect_data(flowthrough.rd, time = 1, oxygen = 4)
+```{r message=FALSE, warning=FALSE, results = "hide", eval=FALSE}
+inspect.ft(flowthrough.rd, time = 1, oxygen = 4)
 
 ```
 
@@ -63,11 +63,11 @@ Here, we can see that after taking into account variable inflow O~2~, the uptake
 Note however, this is an exploratory step: these O~2~ delta data should not be saved via `adjust_rate()`.
 Instead the original inflow and outflow O~2~ data should be saved for passing to the next stage, through specifying the columns:
 
-```{r results = "hide", fig.keep="none", results = "hide"} 
-chiton.ft <- inspect_data(flowthrough.rd, time = 1, outflow.o2 = 2, inflow.o2 = 3)
+```{r results = "hide", fig.keep="none", results = "hide", eval=FALSE} 
+chiton.ft <- inspect.ft(flowthrough.rd, time = 1, outflow.o2 = 2, inflow.o2 = 3)
 ```
 
-```{r message=FALSE, warning=FALSE, fig.keep="none"}
+```{r message=FALSE, warning=FALSE, fig.keep="none", eval=FALSE}
 chiton.ft$df
 ```
 
@@ -104,7 +104,7 @@ Rates can be detemined from flowthrough data using the `calc_rate.ft()` function
     calc_rate.ft(flowthrough.rd, time = 1, outflow.o2 = 2, inflow.o2 = 3, flowrate = 0.00234)
     ```
 
-5. An object of class `inspect_data` containing flowthrough data:
+5. An object of class `inspect.ft` containing flowthrough data:
 
     ```{r, eval = FALSE}
     calc_rate.ft(chiton.ft, flowrate = 0.00234)
@@ -115,9 +115,9 @@ The `flowrate` operator is required by the function, and it is assumed it will b
 Recordings at different flow rates should be analysed separately. 
 Units for flow rate will be specified when rates are converted later (see below), but they should be in units of volume (in L) per unit time (s,m,h). For example, in this dataset the flow rate is 0.00234 in L m^-1^.
 
-We will calculate rates from the entire dataset using the object we saved earlier from `inspect_data()`: 
+We will calculate rates from the entire dataset using the object we saved earlier from `inspect.ft()`: 
 
-```{r}
+```{r eval=FALSE}
 chiton.ft.rate <- calc_rate.ft(chiton.ft,  flowrate = 0.00234)
 print(chiton.ft.rate)
 ```
@@ -132,18 +132,18 @@ The `calc_rate.ft()` function currently does not support subsetting.
 The dedicated `subset_data()` function can be used to prepare data or we can use straightforward R subsetting syntax as follows. 
 We saw earlier how rates between rows 200 and 300 appeared to be most consistent, so we will calculate rates from this data region using the dataframe within the object we saved earlier. 
 
-```{r}
+```{r eval=FALSE}
 chiton.ft.rate.sub <- calc_rate.ft(chiton.ft$df[200:300,], outflow.o2 = 3, inflow.o2 = 2, flowrate = 0.00234)
 print(chiton.ft.rate.sub)
 ```
-Because the function interprets this as a regular data frame, not `inspect_data()` object, we needed to specify the columns. 
+Because the function interprets this as a regular data frame, not `inspect.ft()` object, we needed to specify the columns. 
 Again, the output objects includes all calculated rates within the subset and a mean rate.
 Note the plot row index on the X-axis shows a row index of the subset, not the original row numbers. 
 
 ## Adjusting rates
 
 Similar to the other respirometry methods, a background rate value (typically negative) can be used to adjust flowthrough rates. 
-``` {r}
+``` {r eval=FALSE}
 new_adjusted_rate <- adjust_rate(chiton.ft.rate.sub$mean, by = -0.0005)
 ```
 `respR` does not currently have a specialised function for determining background respiration in flowthrough data.
@@ -158,7 +158,7 @@ For example, if the flow rate was in L min^-1^, these should be `time.unit = "m"
 
 The function returns a rate for the specimen, and if a `mass` is entered (in kg) it returns a mass-specific rate. We specify our desired units of the final rates using `output.unit`:
 
-```{r}
+```{r eval=FALSE}
 # conversion of mean rate
 convert_rate(chiton.ft.rate.sub$mean, o2.unit = "mg/l", time.unit = "m", output.unit = "mg/h", volume = 1)
 

@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -38,7 +42,6 @@
 <meta property="og:title" content="Validation function for auto_rate() — validate_auto_rate" />
 <meta property="og:description" content="This is an internal function for auto_rate(). Used to validate input
 arguments." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -56,7 +59,7 @@ arguments." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -78,7 +81,7 @@ arguments." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
@@ -129,7 +132,7 @@ arguments." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/performance.html">auto_rate: Performance in detecting linear regions</a>
+      <a href="../articles/auto_rate_performance.html">auto_rate: Performance in detecting linear regions</a>
     </li>
     <li>
       <a href="../articles/auto_rate_comp.html">auto_rate: Comparisons with LoLinR</a>
@@ -151,8 +154,8 @@ arguments." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/januarharianto/respr">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/januarharianto/respr/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -179,7 +182,7 @@ arguments." />
 arguments.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>validate_auto_rate</span>(<span class='no'>df</span>, <span class='no'>by</span>, <span class='no'>method</span>)</pre>
+    <pre class="usage"><span class='fu'>validate_auto_rate</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>by</span>, <span class='va'>method</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -204,8 +207,10 @@ arguments.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># this will pass:</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>88</span>)
-<span class='no'>df</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='sim_data.html'>sim_data</a></span>(<span class='kw'>len</span> <span class='kw'>=</span> <span class='fl'>50</span>)$<span class='no'>df</span></div><div class='img'><img src='validate_auto_rate-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>validate_auto_rate</span>(<span class='no'>df</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"row"</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"max"</span>)</div><div class='output co'>#&gt; $by
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>88</span><span class='op'>)</span>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='sim_data.html'>sim_data</a></span><span class='op'>(</span>len <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span><span class='op'>$</span><span class='va'>df</span>
+</div><div class='img'><img src='validate_auto_rate-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>validate_auto_rate</span><span class='op'>(</span><span class='va'>df</span>, by <span class='op'>=</span> <span class='st'>"row"</span>, method <span class='op'>=</span> <span class='st'>"max"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $by
 #&gt; [1] "row"
 #&gt; 
 #&gt; $df
@@ -262,35 +267,31 @@ arguments.</p>
 #&gt; 50: 49 7.408827
 #&gt;      x        y
 #&gt; </div><div class='input'>
-# this will fail as df is not a data.frame object:
-# set.seed(88)
-# df <- c(1:40)
-# validate_auto_rate(df, by = "row", method = "max")
+<span class='co'># this will fail as df is not a data.frame object:</span>
+<span class='co'># set.seed(88)</span>
+<span class='co'># df &lt;- c(1:40)</span>
+<span class='co'># validate_auto_rate(df, by = "row", method = "max")</span>
 
-# this will fail as `by` argument isn't recognised:
-# set.seed(88)
-# df <- c(1:40)
-# validate_auto_rate(df, by = "rat", method = "max")
+<span class='co'># this will fail as `by` argument isn't recognised:</span>
+<span class='co'># set.seed(88)</span>
+<span class='co'># df &lt;- c(1:40)</span>
+<span class='co'># validate_auto_rate(df, by = "rat", method = "max")</span>
 
-# this will fail as df is not a data.frame object:
-# set.seed(88)
-# df <- c(1:40)
-# validate_auto_rate(df, by = "row", method = "max")
+<span class='co'># this will fail as df is not a data.frame object:</span>
+<span class='co'># set.seed(88)</span>
+<span class='co'># df &lt;- c(1:40)</span>
+<span class='co'># validate_auto_rate(df, by = "row", method = "max")</span>
 
-# this will fail as `method` argument isn't recognised:
-# set.seed(88)
-# df <- c(1:40)
-# validate_auto_rate(df, by = "row", method = "moo")
+<span class='co'># this will fail as `method` argument isn't recognised:</span>
+<span class='co'># set.seed(88)</span>
+<span class='co'># df &lt;- c(1:40)</span>
+<span class='co'># validate_auto_rate(df, by = "row", method = "moo")</span>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -301,7 +302,7 @@ arguments.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

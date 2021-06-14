@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -40,7 +44,6 @@
 derived from calc_rate, calc_rate.ft, calc_rate.bg, auto_rate, or
 adjust_rate into volume-adjusted (i.e. to the container), VO2 or
 mass-specific (i.e. to the specimen mass), MO2 rate." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -58,7 +61,7 @@ mass-specific (i.e. to the specimen mass), MO2 rate." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -80,7 +83,7 @@ mass-specific (i.e. to the specimen mass), MO2 rate." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
@@ -131,7 +134,7 @@ mass-specific (i.e. to the specimen mass), MO2 rate." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/performance.html">auto_rate: Performance in detecting linear regions</a>
+      <a href="../articles/auto_rate_performance.html">auto_rate: Performance in detecting linear regions</a>
     </li>
     <li>
       <a href="../articles/auto_rate_comp.html">auto_rate: Comparisons with LoLinR</a>
@@ -153,8 +156,8 @@ mass-specific (i.e. to the specimen mass), MO2 rate." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/januarharianto/respr">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/januarharianto/respr/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -183,17 +186,17 @@ derived from <code>calc_rate</code>, <code>calc_rate.ft</code>, <code>calc_rate.
 mass-specific (i.e. to the specimen mass), MO2 rate.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>convert_rate</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>o2.unit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>time.unit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output.unit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>volume</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>mass</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>t</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>P</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>convert_rate</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  o2.unit <span class='op'>=</span> <span class='cn'>NULL</span>,
+  time.unit <span class='op'>=</span> <span class='cn'>NULL</span>,
+  output.unit <span class='op'>=</span> <span class='cn'>NULL</span>,
+  volume <span class='op'>=</span> <span class='cn'>NULL</span>,
+  mass <span class='op'>=</span> <span class='cn'>NULL</span>,
+  S <span class='op'>=</span> <span class='cn'>NULL</span>,
+  t <span class='op'>=</span> <span class='cn'>NULL</span>,
+  P <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -255,7 +258,7 @@ conversions. See <code><a href='unit_args.html'>unit_args()</a></code> for detai
 primary <code>$rate</code> from <code>calc_rate</code> and <code>auto_rate</code> objects, the <code>$corrected</code>
 rate from <code>adjust_rate</code> objects, and the <code>$mean</code> rate from <code>calc_rate.ft</code> and
 <code>calc_rate.bg</code> objects. Values or vectors of other rates within these obects
-can be converted by calling them as <code>x</code> using <code>$</code>.</p>
+can be converted by calling them as <code>x</code> using <code><a href='https://rdrr.io/r/base/Extract.html'>$</a></code>.</p>
 <p>Note, for rates from flowthrough experiments, the <code>volume</code> and <code>time</code> inputs
 should be set with reference to the <em>flow rate</em> in L per unit time. E.g. for
 a flow rate in L/s <code>volume = 1, time = "s"</code>. With these rates <code>volume</code> does
@@ -274,39 +277,35 @@ experiments, salinity should be set to zero (i.e. S = 0).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Manually enter values</span>
-<span class='fu'>convert_rate</span>(<span class='fl'>7.5</span>, <span class='kw'>o2.unit</span> <span class='kw'>=</span> <span class='st'>'mg/l'</span>, <span class='kw'>time.unit</span> <span class='kw'>=</span> <span class='st'>'s'</span>,
-  <span class='kw'>output.unit</span> <span class='kw'>=</span> <span class='st'>'mg/min/kg'</span>, <span class='kw'>volume</span> <span class='kw'>=</span> <span class='fl'>1.2</span>, <span class='kw'>mass</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</div><div class='output co'>#&gt; 
-#&gt; # convert_rate # ------------------------
-#&gt; Rank/position 1 result shown. To see all results use summary().
+<span class='fu'>convert_rate</span><span class='op'>(</span><span class='fl'>7.5</span>, o2.unit <span class='op'>=</span> <span class='st'>'mg/l'</span>, time.unit <span class='op'>=</span> <span class='st'>'s'</span>,
+  output.unit <span class='op'>=</span> <span class='st'>'mg/min/kg'</span>, volume <span class='op'>=</span> <span class='fl'>1.2</span>, mass <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; # print.convert_rate # ------------------
+#&gt; Rank 1 of 1 rates:
+#&gt; 
 #&gt; Input:
 #&gt; [1] 7.5
-#&gt; [1] "mg/L" "sec" 
+#&gt; NULL
 #&gt; Converted:
 #&gt; [1] 1080
-#&gt; [1] "mg/min/kg"</div><div class='input'>
+#&gt; [1] "mgO2/min/kg"
+#&gt; 
+#&gt; To see full results use summary().
+#&gt; -----------------------------------------</div><div class='input'>
 <span class='co'># Use example data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"sardine.rd"</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='calc_rate.html'>calc_rate</a></span>(<span class='no'>sardine.rd</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1800</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"time"</span>)</div><div class='img'><img src='convert_rate-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>convert_rate</span>(<span class='no'>x</span>, <span class='kw'>o2.unit</span> <span class='kw'>=</span> <span class='st'>'%'</span>, <span class='kw'>time.unit</span> <span class='kw'>=</span> <span class='st'>'s'</span>,
-  <span class='kw'>output.unit</span> <span class='kw'>=</span> <span class='st'>'mg/h/g'</span>, <span class='kw'>volume</span> <span class='kw'>=</span> <span class='fl'>12.3</span>, <span class='kw'>mass</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>S</span> <span class='kw'>=</span><span class='fl'>35</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>P</span> <span class='kw'>=</span> <span class='fl'>1.013</span>)</div><div class='output co'>#&gt; 
-#&gt; # convert_rate # ------------------------
-#&gt; Rank/position 1 result shown. To see all results use summary().
-#&gt; Input:
-#&gt; [1] -0.0009793698
-#&gt; [1] "%"   "sec"
-#&gt; Converted:
-#&gt; [1] -0.07044579
-#&gt; [1] "mg/hour/g"</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"sardine.rd"</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='calc_rate.html'>calc_rate</a></span><span class='op'>(</span><span class='va'>sardine.rd</span>, from <span class='op'>=</span> <span class='fl'>200</span>, to <span class='op'>=</span> <span class='fl'>1800</span>, by <span class='op'>=</span> <span class='st'>"time"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
+#&gt; # plot.calc_rate # ----------------------
+#&gt; calc_rate: Plotting rate from position 1 of 1 ...</div><div class='img'><img src='convert_rate-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; -----------------------------------------</div><div class='input'><span class='fu'>convert_rate</span><span class='op'>(</span><span class='va'>x</span>, o2.unit <span class='op'>=</span> <span class='st'>'%'</span>, time.unit <span class='op'>=</span> <span class='st'>'s'</span>,
+  output.unit <span class='op'>=</span> <span class='st'>'mg/h/g'</span>, volume <span class='op'>=</span> <span class='fl'>12.3</span>, mass <span class='op'>=</span> <span class='fl'>0.05</span>,
+  S <span class='op'>=</span><span class='fl'>35</span>, t <span class='op'>=</span> <span class='fl'>15</span>, P <span class='op'>=</span> <span class='fl'>1.013</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>convert_rate: object of class `calc_rate` detected. Converting all rates in '$rate'.</span></div><div class='output co'>#&gt; <span class='error'>Error in verify_units(o2.unit, "o2"): verify_units: unit "%" has been deprecated. Please use "%Air" or "%O2" instead. See unit_args().</span></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -317,7 +316,7 @@ experiments, salinity should be set to zero (i.e. S = 0).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

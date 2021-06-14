@@ -87,7 +87,7 @@ navbar:
     - text: Discussion
       menu:
       - text: "auto_rate: Performance in detecting linear regions"
-        href: articles/performance.html
+        href: articles/auto_rate_performance.html
       - text: "auto_rate: Comparisons with LoLinR"
         href: articles/auto_rate_comp.html
       - text: "respR: Comparisons with other R packages"

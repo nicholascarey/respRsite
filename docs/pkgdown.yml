@@ -1,9 +1,10 @@
-pandoc: 2.9.1.1
-pkgdown: 1.4.1
+pandoc: 2.11.4
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   auto_rate: auto_rate.html
   auto_rate_comp: auto_rate_comp.html
+  auto_rate_performance: auto_rate_performance.html
   closed: closed.html
   flowthrough: flowthrough.html
   importing: importing.html
@@ -11,12 +12,12 @@ articles:
   intermittent2: intermittent2.html
   packages_comp: packages_comp.html
   pcrit: pcrit.html
-  performance: performance.html
   reproducibility: reproducibility.html
   respR: respR.html
   tidyverse: tidyverse.html
   twopoint: twopoint.html
   usage: usage.html
+last_built: 2021-06-14T10:19Z
 urls:
   reference: https://nicholascarey.github.io/respRsite//reference
   article: https://nicholascarey.github.io/respRsite//articles
