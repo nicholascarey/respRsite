@@ -18,35 +18,38 @@ opts_chunk$set(collapse = TRUE,
                cache = FALSE, 
                tidy = TRUE, 
                highlight = TRUE, 
-               fig.width = 4, 
+               fig.width = 6, 
                fig.height = 4,
                fig.align = "center")
 ```
+
+## Introduction
 
 Flowthrough respirometry differs from other methods in that change in oxygen is measured from a controlled continuous flow of water through a respirometer, rather than a known volume, typically after the system has achieved equilibrium. 
 In this method, two oxygen concentrations are needed; 'downstream' and 'upstream' of the experimental chamber, or the outflow and inflow concentrations. 
 These are used to calculate an oxygen delta (outflow minus inflow values), and this is used with the flowrate to calculate oxygen consumption or production rates.
 
+An outflow recording or value, or already determined delta oxygen values are required to calculate the rate. 
 The inflow concentration can be a simultaneous recording, but is often a known, generally unvarying value such as fully air-saturated water, or water from a header tank of controlled oxygen concentration, and so not continuously monitored. `respR` will accept any combination of available data to allow rates to be calculated.
 
 `respR` v2.0 contains an all new workflow to process flowthrough respirometry data, comprising four functions: 
 
-- `inspect.ft`            - check and visualise the data and calculate the oxygen delta (if you haven't already)
-- `calc_rate.ft`         - calculate a rate from a region (or more than one) of the data 
+- `inspect.ft`             - check and visualise the data and calculate the oxygen delta (if you haven't already)
+- `calc_rate.ft`         - calculate a rate from a region (or several) of the data 
 - `adjust_rate.ft`     - adjust the rate for background activity (optional)
 - `convert_rate.ft`   - convert the rate to specific units, including mass- or area-specific
 
 `respR` contains several sample flowthrough datasets which we will use here to examine various use cases:
-`flowthrough.rd`, `flowthrough_mult.rd`, `flowthrough_nlbg.rd`
+`flowthrough.rd`, `flowthrough_mult.rd`, `flowthrough_sim.rd`
 
 
-## Case 1
+## Case 1: outflow only {#case1}
 *"We only have an outflow oxygen recording, but we know the concentration of the inflowing water does not vary much, because it was from a well aerated, constant temperature and salinity header tank that we tested to be 100% air saturated frequently. We also know from pilot trials background is negligible, so we don't need to perform an adjustment."*
 
 Here, we will inspect the data, calculate a rate from a stable, consistent region, and convert it to units
 
-### Data
-The example data, `flowthrough.rd`, contains measurements of oxygen consumption in a species of chiton, (*Mopalia lignosa*).  Detailed information about the data, can be obtained with the command `?flowthrough.rd`. 
+### Example data
+The data `flowthrough.rd` contains measurements of oxygen consumption in a species of chiton, (*Mopalia lignosa*).  Detailed information about the data, can be obtained with the command `?flowthrough.rd`. 
 
 ```{r}
 head(flowthrough.rd, n = 4)
@@ -54,47 +57,550 @@ head(flowthrough.rd, n = 4)
 
 We can see this dataset contains time values (`secs`), both outflow and inflow oxygen concentrations (`mg/L`), and an oxygen delta, which is simply the difference between outflow and inflow. We will ignore these last two columns here.
 
-### Inflow oxygen 
-Knowing the temperature and salinity of the header tank allows us to calculate the saturated concentration (strictly speaking atmospheric pressure is also required, but we will let the default value be applied). Obviously, it should be the same oxygen units as the outflow recording.
+### Determine inflow oxygen 
+Knowing the temperature and salinity of the header tank allows us to calculate the saturated concentration (strictly speaking atmospheric pressure is also required, but we will use the default value). Obviously, we want the same oxygen units as the outflow recording.
 
 ```{r}
 convert_DO(100, from = "%Air", to = "mg/L",
            t = 12, S = 30)
 ```
 
-### Inspect the data
-Now we know the concentration of the header tank we can enter this as a `in.o2.value` in `inspect.ft`, which will allow it to calculate an oxygen delta.
+### Inspect data
+Now we know the concentration of the header tank we can enter this as the `in.o2.value` in `inspect.ft`, which will allow it to calculate an oxygen delta.
 
-```{r}
+```{r eval = F}
 # inspect
-data1 <- inspect.ft(flowthrough.rd, time = 1, out.o2 = 2, in.o2.value = 8.91891)
+insp1 <- inspect.ft(flowthrough.rd, time = 1, out.o2 = 2, in.o2.value = 8.91891)
 ```
 
-The data checks show us there are no structural issues with the data, such as missing values or gaps. The top plot shows outflow and (constant) inflow oxygen against both time (bottom axis) and row index (top axis). The bottom plot shows the calculated delta oxygen values, which is essentially the rate. In these plots, consistent oxygen uptake or production rates will be represented by level regions. Here there is some fluctuation towards the end of the data, but the first 400 or so rows look to have stable rates. 
+```{r eval = T, echo = F}
+# inspect
+insp1 <- (suppressMessages(inspect.ft(flowthrough.rd, time = 1, out.o2 = 2, in.o2.value = 8.91891, plot = F)))
+plot(insp1, message = FALSE)
+```
 
-### Calculate a rate
-Calculating a rate requires the `flowrate` of the water through the respirometer, in volume (ul, ml, L) per unit time (s,m,h,d). Only the value is required, the units will be entered later. For this dataset the values are in `?flowthrough.rd`
-```{r}
+The data checks show us there are no structural issues with the data, such as missing values or gaps. The top plot shows outflow and the entered, constant inflow oxygen against both time (bottom axis) and row index (top axis). The bottom plot shows the calculated delta oxygen values, which is a proxy for the rate. In these plots, consistent oxygen uptake or production rates will be represented by level regions. Here there is some fluctuation towards the end of the data, but the first 400 rows look to have stable rates. 
+
+### Calculate rate {#case1plot}
+Calculating a rate requires the `flowrate` of water through the respirometer, in a volume (`ul`, `ml`, or `L`) per unit time (`sec`, `min`, `hr`, or `day`). Here, only the value is required; the units will be entered in a later function. For this dataset experimental data are in `?flowthrough.rd`, and in this example the flowrate is `2.34 mL/min`.
+```{r eval = F}
 # calculate rate
-rate1 <- calc_rate.ft(data1, from = 1, to = 400, by = "row", flowrate = 0.00234)
+rate1 <- calc_rate.ft(insp1, from = 1, to = 400, by = "row", flowrate = 2.34)
+```
+
+```{r eval = T, echo = F}
+# calculate rate
+rate1 <- suppressMessages(calc_rate.ft(insp1, from = 1, to = 400, by = "row", flowrate = 2.34, plot = FALSE))
+print(rate1)
+plot(rate1, message = FALSE)
+```
+
+The `calc_rate.ft` calculates the rate by averaging all delta oxygen values within the chosen data region, and multiplying this by the flowrate. The bottom plot shows this region in close-up. Note, the dashed line is only there to illustrate the trend. 
+
+### Convert rate {#case1rate}
+
+New we take the unitless rate from `calc_rate.ft` and convert it to output units. This can be an absolute rate, that is of the whole animal or chamber, or a mass- or area-specific rate if either of these are entered. Here we will calculate both the absolute and mass-specific rate of this chiton.
+
+Here we need to tell the function the units of oxygen of the original data and of the flowrate, as well as the mass of the specimen in ` kg `. Lastly, we specify the output units.
+
+```{r eval = F, tidy = FALSE}
+# absolute rate
+rate1_abs <- convert_rate.ft(rate1,  
+                             o2.unit = "mg/L",  
+                             flowrate.unit = "ml/min",  
+                             output.unit = "mg/h")  
+# mass-specific rate  
+rate1_ms <- convert_rate.ft(rate1,  
+                            o2.unit = "mg/L",  
+                            flowrate.unit = "ml/min",  
+                            mass = 0.000070,  
+                            output.unit = "mg/h/g")  
+```
+
+```{r eval = T, echo = F}
+# absolute rate
+rate1_abs <- suppressMessages(convert_rate.ft(rate1, 
+                                              o2.unit = "mg/L",
+                                              flowrate.unit = "ml/min",
+                                              output.unit = "mg/h"))
+# mass-specific rate
+rate1_ms <- suppressMessages(convert_rate.ft(rate1, 
+                                             o2.unit = "mg/L",
+                                             flowrate.unit = "ml/min",
+                                             mass = 0.000070,
+                                             output.unit = "mg/h/g"))
+cat("########### Absolute rate ##########")
+print(rate1_abs)
+
+cat("\n######## Mass-specific rate ########")
+print(rate1_ms)
+
+```
+
+Rates can easily be extracted from the output using `$rate.output`.
+
+```{r}
+rate1_final <- rate1_ms$rate.output
+print(rate1_final)
 ```
 
 
-## Case 2
-*"We have both outflow and inflow oxygen recordings. We have previously quantified background oxygen uptake at these same conditions, and have a background adjustment value we want to apply."*
+## Case 2: outflow and inflow
+*"We have both outflow and inflow oxygen recordings. We also know from pilot trials background is negligible, so we don't need to perform an adjustment."*
 
-Here, we will inspect the data, calculate a rate from a stable region, and convert it to units
-
-
-
-Case 3: We have already calculated an oxygen delta between outflow and inflow
-
-Case 4: We have multiple chambers with separate outflow recordings, but they are all supplied from the same header tank with its own recording.
-
-Case 5: We want to correct for both background activity and any possible fluctuation in inflow oxygen concentrations using a concurrent empty control or "blank" chamber.
+This is a very similar analysis to [Case 1](#case1) above, but we will use the inflow oxygen recording as the `in.o2` input. The process is otherwise the same: `inspect.ft`, `calc_rate.ft`, and `convert_rate.ft`.
 
 
-## 
+### Inspect data
+```{r eval = F}
+# inspect
+insp2 <- inspect.ft(flowthrough.rd, time = 1, out.o2 = 2, in.o2 = 3)
+```
+
+```{r eval = T, echo = F}
+# inspect
+insp2 <- (suppressMessages(inspect.ft(flowthrough.rd, time = 1, out.o2 = 2, in.o2 = 3, plot = F)))
+plot(insp2, message = FALSE)
+```
+
+Compared to the `inspect.ft` plot in [Case 1](#case1plot), we can see that at least some of the variation in rate (the delta oxygen values) is explained by variation in inflowing oxygen. In this case, it is probably fine to use the entire dataset. 
+
+### Calculate rate
+
+Since we are happy the rate is consistent across the whole datatset, running `calc_rate.ft` using the default values will calculate rate as the average of every delta oxygen value multiplied by the flowrate.
+```{r eval = F}
+# calculate rate
+rate2 <- calc_rate.ft(insp2, flowrate = 2.34)
+```
+
+```{r eval = T, echo = F}
+# calculate rate
+rate2 <- suppressMessages(calc_rate.ft(insp2, flowrate = 2.34, plot = FALSE))
+print(rate2)
+plot(rate2, message = FALSE)
+```
+
+The slightly lower rate value we get here than in Case 1 (1.65 vs 1.74) suggests the header tank supply is not quite at the theoretical maximum air saturation that we calculated in [Case 1](#case1plot) , and illustrates that it is always a good idea to have an inflow or water source oxygen recording if it is practical to do so. 
+
+### Convert rate
+
+We will convert to only the mass-specific rate this time. 
+
+```{r eval = F, tidy = FALSE}
+# mass-specific rate  
+rate2_ms <- convert_rate.ft(rate2,  
+                            o2.unit = "mg/L",  
+                            flowrate.unit = "ml/min",  
+                            mass = 0.000070,  
+                            output.unit = "mg/h/g")  
+```
+
+```{r eval = T, echo = F}
+# mass-specific rate
+rate2_ms <- suppressMessages(convert_rate.ft(rate2, 
+                                             o2.unit = "mg/L",
+                                             flowrate.unit = "ml/min",
+                                             mass = 0.000070,
+                                             output.unit = "mg/h/g"))
+print(rate2_ms)
+
+```
+
+
+## Case 3: outflow, inflow plus control {#case3}
+*"We have both outflow and inflow oxygen recordings. We have also have a concurrent recording from a blank control chamber that we want to use to adjust the specimen rates."*
+
+The `flowthrough_mult.rd` dataset contains several columns of data from a flowthrough experiment using three specimen chambers and one control chamber: *paired* columns of outflow (cols 2,3,4,5) and inflow (cols 6,7,8,9) oxygen recordings, delta oxygen columns (cols 10,11,12,13) calculated from these paired columns, and a recording from a shared header tank (col 14). Other experimental parameters can be seen with `?flowthrough_mult.rd`. The units of oxygen and time are percent air saturation and minutes respectively. We will convert to actual units of oxygen concentration when we convert the rate. 
+
+### Inspect data
+
+We will use `inspect.ft` to examine the first specimen column pair of outflow and inflow oxygen. 
+
+```{r eval = F}
+# inspect
+insp3 <- inspect.ft(flowthrough_mult.rd, time = 1, out.o2 = 2, in.o2 = 6)
+```
+
+```{r eval = T, echo = F, results = "hide"}
+# inspect
+insp3 <- inspect.ft(flowthrough_mult.rd, time = 1, out.o2 = 2, in.o2 = 6, plot = F)
+plot(insp3, message = FALSE)
+```
+
+Here we see a warning about not evenly-spaced time values. This comes from this dataset using decimalised minutes at the time values and can be safely ignored (the full `print()` command provides more details). 
+
+This data is typical of flowthrough experiments, in that it takes some time before the experiment stabilises, that is the specimen's respiration rate reaches equilibrium with the supply of new oxygen. Here this occurs after around 20 minutes, so we don't want to use any data before this. Rates after this are very stable however. 
+
+### Calculate rate
+
+No inputs for `to` and `by` means the function will calculate the rate from the `from` input to the end of the dataset in the default units of `"time"`. 
+
+```{r eval = F}
+# calculate rate
+rate3 <- calc_rate.ft(insp3, from = 30, flowrate = 0.1)
+```
+
+```{r eval = T, echo = F}
+# calculate rate
+rate3 <- suppressMessages(calc_rate.ft(insp3, from = 30, flowrate = 0.1, plot = FALSE))
+print(rate3)
+plot(rate3, message = FALSE)
+```
+
+### Calculate a background rate
+
+The fourth column pair contains outflow and inflow oxygen from a blank control chamber we will use to determine the contribution of microbial respiration to the oxygen used in the specimen chambers. Note, it is important that background experiments are conducted with the same equipment and the *same flowrate* as specimen experiments, and data are in the same units. 
+
+```{r eval = F}
+# inspect
+bg <- inspect.ft(flowthrough_mult.rd, time = 1, out.o2 = 5, in.o2 = 9)
+```
+
+```{r eval = T, echo = F, results = "hide"}
+# inspect
+bg <- suppressWarnings(suppressMessages(inspect.ft(flowthrough_mult.rd, time = 1, out.o2 = 5, in.o2 = 9)))
+plot(bg, message = FALSE)
+```
+
+Here we see there is a slight but noticeable difference in outflow and inflow oxygen due to microbial action. Moreover, it appears to be constant, so we can use the entire dataset to calculate a background rate. 
+
+We use the same `calc_rate.ft` function to calculate and save background rates. 
+
+```{r eval = F}
+# calculate rate
+bgrate <- calc_rate.ft(bg, flowrate = 0.1)
+```
+
+```{r eval = T, echo = F}
+# calculate rate
+bgrate <- suppressMessages(bgrate <- calc_rate.ft(bg, flowrate = 0.1, plot = FALSE))
+print(bgrate)
+plot(bgrate, message = FALSE)
+```
+
+### Adjust rate
+
+Now we use the saved background rate object to adjust the specimen rate we determined earlier.
+
+```{r eval = F}
+# adjust rate
+rate3adj <- adjust_rate.ft(rate3, by = bgrate)
+```
+
+```{r eval = T, echo = F}
+# calculate rate
+rate3adj <- suppressMessages(adjust_rate.ft(rate3, by = bgrate))
+print(rate3adj)
+```
+
+We can see this performs a small but significant adjustment to the specimen rate.
+
+Note how `adjust_rate.ft` accepts `calc_rate.bg` objects for both inputs. This same background rate object can similarly be applied to the other specimen experiments in this dataset, or indeed other datasets if they are collected under the same conditions. However, it also accepts numeric values. This will give the exact same result. 
+
+```{r eval = F}
+# adjust rate
+rate3adj <- adjust_rate.ft(rate3, by = -0.03173658)
+```
+
+```{r eval = T, echo = F}
+# adjust rate
+rate3adj <- suppressMessages(adjust_rate.ft(rate3, by = -0.03173658))
+print(rate3adj)
+```
+
+This means you can quantify a value for a background rate and apply it to many experiments as you see fit, for example the mean rate of several background experiments. In fact, if you enter multiple background rates this is the default behaviour. 
+
+```{r eval = F}
+# adjust rate
+adjust_rate.ft(rate3, by = c(-0.030, -0.025, -0.040))
+```
+
+```{r eval = T, echo = F}
+# adjust rate
+tmp <- suppressMessages(adjust_rate.ft(rate3, by = c(-0.030, -0.025, -0.040)))
+print(tmp)
+```
+
+***Note:*** be careful when entering rates manually like this. In `respR` oxygen uptake rates are negative since they represent a negative slope of oxygen against time. Background rates are typically similarly *negative*. If you are examining oxygen production, rates are positive, and background rates may be either sign. To summarise: oxygen removal or use is always negative, oxygen input or production is always positive. 
+
+### Convert adjusted rate
+
+Now we convert the adjusted rate. We will convert to an absolute rate this time, and a different output oxygen unit. 
+
+Because the original oxygen data were in units of percent air saturation, we need to enter the temperature, salinity and atmospheric pressure to convert these to actual concentration units of oxygen. These can be found the data help file: `?flowthrough_mult.rd`. 
+
+```{r eval = F, tidy = FALSE}
+# mass-specific rate  
+rate3_as <- convert_rate.ft(rate3adj,  
+                            o2.unit = "%Air",  
+                            flowrate.unit = "L/min",  
+                            output.unit = "ml/h",
+                            t = 18, S = 0, P = 1.013)  
+```
+
+```{r eval = T, echo = F}
+# mass-specific rate
+rate3_as <- suppressMessages(convert_rate.ft(rate3adj,  
+                                             o2.unit = "%Air",  
+                                             flowrate.unit = "L/min",  
+                                             output.unit = "ml/h",
+                                             t = 18, S = 0, P = 1.013))
+print(rate3_as)
+
+```
+
+
+## Case 4: delta oxygen values
+*"We have already calculated a delta oxygen between outflow and inflow."*
+
+For cases where oxygen deltas between outflow and inflow have already been calculated, these data can also be inspected using the `delta.o2` input and used to calculate rates. `flowthrough_mult.rd` contains these in columns 10 to 13. We will use the second column of these. 
+
+### Inspect data
+
+```{r eval = F}
+# inspect
+insp4 <- inspect.ft(flowthrough_mult.rd, time = 1, delta.o2 = 11)
+```
+
+```{r eval = T, echo = F, results = "hide"}
+# inspect
+insp4 <- suppressWarnings(suppressMessages(inspect.ft(flowthrough_mult.rd, time = 1, delta.o2 = 11)))
+plot(insp4, message = FALSE)
+```
+
+When delta oxygen data are inspected, only one plot is produced of the entered delta oxygen values. Again we see the experiment has not reached equilibrium until after around 20 minutes, so we will not use any data before this. 
+
+### Calculate rate
+
+This time we will calculate rates using subsetting by `"row"` which can be see in the top red x-axis.  
+
+```{r eval = F}
+# calculate rate
+rate4 <- calc_rate.ft(insp4, from = 2000, to = 3000, by = "row", flowrate = 0.1)
+```
+
+```{r eval = T, echo = F}
+# calculate rate
+rate4 <- suppressMessages(calc_rate.ft(insp4, from = 2000, to = 3000, by = "row", flowrate = 0.1, plot = F))
+print(rate4)
+plot(rate4, message = FALSE)
+```
+
+### Adjust rate
+
+We already determined background rate in [Case 3](#case3), so we can use the same object here.
+
+```{r eval = F}
+# adjust rate
+rate4adj <- adjust_rate.ft(rate4, by = bgrate)
+```
+
+```{r eval = T, echo = F}
+# calculate rate
+rate4adj <- suppressMessages(adjust_rate.ft(rate4, by = bgrate))
+print(rate4adj)
+```
+
+### Convert adjusted rate
+
+Now we convert the adjusted rate. 
+
+```{r eval = F, tidy = FALSE}
+# mass-specific rate  
+rate4_as <- convert_rate.ft(rate4adj,  
+                            o2.unit = "%Air",  
+                            flowrate.unit = "L/min",  
+                            output.unit = "ml/h",
+                            t = 18, S = 0, P = 1.013)  
+```
+
+```{r eval = T, echo = F}
+# mass-specific rate
+rate4_as <- suppressMessages(convert_rate.ft(rate4adj,  
+                                             o2.unit = "%Air",  
+                                             flowrate.unit = "L/min",  
+                                             output.unit = "ml/h",
+                                             t = 18, S = 0, P = 1.013))
+print(rate4_as)
+
+```
+
+
+## Case 5: active rates
+*"We imposed a treatment at a specific time to increase the specimen's activity and want to determine an active metabolic rate from this region of the data."*
+
+### Inspect data
+Inspecting the data from the third chamber, we can see a prominent area where its oxygen consumption rate increased, before slowly recovering to routine levels. 
+
+```{r eval = F}
+# inspect 
+insp5 <- inspect.ft(flowthrough_mult.rd, time = 1, out.o2 = 4, in.o2 = 8)
+```
+
+```{r eval = T, echo = F, results = "hide"}
+# inspect
+insp5 <- suppressWarnings(suppressMessages(inspect.ft(flowthrough_mult.rd, time = 1, out.o2 = 4, in.o2 = 8, plot = FALSE)))
+plot(insp5, message = FALSE)
+```
+
+Note how delta oxygen are plotted on a reverse y-axis, so that higher uptake rates are plotted higher, even though they are lower numerically (more negative). If you are examining oxygen *production* rates, you can pass the `rate.rev = FALSE` argument in the main call or when plotting the output to see higher production rates plotted higher. 
+
+Since we are only interested in this region, we can use the `subset_data` function and pipe (`%>%`) the result to `inspect.ft` for a closer look. 
+
+```{r eval = F}
+# subset and inspect
+insp5 <- subset_data(flowthrough_mult.rd, from = 30, to = 50, by = "time") %>%
+  inspect.ft(time = 1, out.o2 = 4, in.o2 = 8)
+```
+
+```{r eval = T, echo = F, results = "hide"}
+# inspect
+insp5 <- suppressWarnings(suppressMessages(subset_data(flowthrough_mult.rd, from = 30, to = 50, by = "time") %>%
+  inspect.ft(time = 1, out.o2 = 4, in.o2 = 8, plot = FALSE)))
+plot(insp5, message = FALSE)
+```
+
+Now we can see the highest active rate occurs between around 38 and 42 minutes, so we will use this region to calculate the active rate.
+
+### Calculate rate
+
+```{r eval = F}
+# calculate rate
+rate5 <- calc_rate.ft(insp5, from = 38, to = 42, by = "time", flowrate = 0.1)
+```
+
+```{r eval = T, echo = F}
+# calculate rate
+rate5 <- suppressMessages(calc_rate.ft(insp5, from = 38, to = 42, by = "time", flowrate = 0.1, plot = FALSE))
+plot(rate5, message = FALSE)
+```
+
+### Adjust rate
+
+We can also adjust this rate by the background rate we saved earlier. 
+
+```{r eval = F}
+# adjust rate
+rate5adj <- adjust_rate.ft(rate5, by = bgrate)
+```
+
+```{r eval = T, echo = F}
+# calculate rate
+rate5adj <- suppressMessages(adjust_rate.ft(rate5, by = bgrate))
+print(rate5adj)
+```
+
+### Convert adjusted rate
+
+Lastly we convert the adjusted rate, this time to a mass-specific rate, and try another different oxygen amount metric in the output units.
+
+```{r eval = F, tidy = FALSE}
+# mass-specific rate  
+rate5_ms <- convert_rate.ft(rate5adj,  
+                            o2.unit = "%Air",  
+                            flowrate.unit = "L/min",  
+                            output.unit = "umol/h/g",
+                            mass = 0.020,
+                            t = 18, S = 0, P = 1.013)  
+```
+
+```{r eval = T, echo = F}
+# mass-specific rate
+rate5_as <- suppressMessages(convert_rate.ft(rate5adj,  
+                                             o2.unit = "%Air",  
+                                             flowrate.unit = "L/min",  
+                                             output.unit = "umol/h/g",
+                                             mass = 0.020,
+                                             t = 18, S = 0, P = 1.013))
+print(rate5_as)
+
+```
+
+
+## Case 6: increasing background
+*"We want to correct for both background activity and any possible fluctuation in inflow oxygen concentrations using a concurrent empty control or "blank" chamber."*
+
+In some experiments, as well as the oxygen content of the inflowing water possibly fluctuating, the background rate may change over the course of the experiment. While the former will be accounted for by having an inflow oxygen recording, they can both be accounted for simultaneously by using the outflow recording from a blank control chamber to adjust a specimen chamber. This can be done by using it as the `in.o2` input in `inspect.ft`. 
+
+The `flowthrough_sim.rd` dataset contains data from an experiment where the background is non-linear, and increases as the experiment progresses. There are four columns; time, outflow oxygen from the specimen and blank changes, and the inflow water from a header tank. 
+
+### Inspect data
+
+We will inspect the specimen chamber as we normally would, using the header tank as the inflow recording. 
+
+```{r eval = F}
+# inspect 
+insp6 <- inspect.ft(flowthrough_sim.rd, time = 1, out.o2 = 2, in.o2 = 4)
+```
+
+```{r eval = T, echo = F, results = "hide"}
+# inspect
+insp6 <- suppressMessages(inspect.ft(flowthrough_sim.rd, time = 1, out.o2 = 2, in.o2 = 4, plot = FALSE))
+plot(insp6, message = FALSE)
+```
+
+Here we see, after the initial period before the experiment has reached equilibrium, the specimen rate apparently continues to increase. This suggests that the background rate may not be constant. 
+
+If we examine the background in the same way
+
+```{r eval = F}
+# inspect 
+nlbg <- inspect.ft(flowthrough_sim.rd, time = 1, out.o2 = 3, in.o2 = 4)
+```
+
+```{r eval = T, echo = F, results = "hide"}
+# inspect
+nlbg <- suppressMessages(inspect.ft(flowthrough_sim.rd, time = 1, out.o2 = 3, in.o2 = 4, plot = FALSE))
+plot(nlbg, message = FALSE)
+```
+
+
+## Case 7: single values only
+
+*"We do not have continuous recordings. We took spot readings of inflow and outflow recordings, after they had stabilised (i.e. the experiment had reached equilibrium), and we want to use these to calculate the rate."*
+
+Flowthrough respirometry has advantages over other kinds, in that because there is a constant supply of water (and therefore oxygen) experiments can be run for much longer, allowing specimens to acclimate better to the experimental conditions without concerns about effects of hypoxia or waste build up. They can also be more practical, in that in continuous recordings of oxygen (while ideal practice) are not always necessary as long as experiments are monitored to ensure they have reached equilibrium. In these cases, a single oxygen probe could be used to sample the outflow and inflow oxygen of any number of separate chambers, and so in cases of limited equipment availability help with increasing the amount of data collected. 
+
+All the functions (where possible) in `respR` accept numeric inputs, as well as other `R` objects such as data frames and data tables. As long as care is taken to keep units and inputs consistent, these can be used to calculate rates. In this example, after monitoring to ensure equilibrium has been reached, spot readings can be used to calculate the routine respiration rate of specimens. 
+
+```{r}
+
+
+```
+
+
+## Case 8: rolling rate
+
+*"We want to calculate every rate of a fixed width across the entire dataset and then filter the results manually."*
+
+`calc_rate.ft` can calculate a rolling rate of fixed width (in rows only) across the dataset. In this case there will be 
+
+Note, the `$summary` table contains linear
+regression coefficients alongside other metadata. These *should not be
+confused* with those in other functions such as `calc_rate` where slopes
+represent rates and coefficients such as a high r-squared are important.
+Here, they represent the stability of the data region, in that the closer the
+slope is to zero, and *lower* the r-squared, the less the delta oxygen values
+in that region vary. They are included to enable possible future
+functionality where stable regions may be automatically identified, and
+should generally be ignored. However, users can use regular R syntax to explore and subset the results 
+using these 
+
+Here, we might want to extract the result with the slope closest to zero, because it represents the region
+with lowest variability in delta oxygen and hence rate. 
+
+```{r}
+which(min(x$summary$slope_b1))
+```
+
+
+## Piping
+Here we will do similar analyses as Case 3 and 4, but use the same column (header tank) recording as the input, and using piping (`%>%`, here but feel free to try the new native `|>` pipes introduced in R 4.1)
+
+
+## Tidbits
+- Note, time is never used in calculations except for plotting and choosing regions. It is required however. 
+- Fns can take values as well as objects
 
 
 
@@ -131,38 +637,38 @@ Rates can be detemined from flowthrough data using the `calc_rate.ft()` function
 
 1. Single values of inflow and outflow concentrations:
 
-    ```{r, eval = FALSE}
-    calc_rate.ft(inflow.o2 = 8.88, outflow.o2 = 8.17, flowrate = 0.00234)
-    ```
+```{r, eval = FALSE}
+calc_rate.ft(inflow.o2 = 8.88, outflow.o2 = 8.17, flowrate = 0.00234)
+```
 
 2. Combinations of single or vector values. Vector inputs must be of equal length:
 
-    ```{r, eval = FALSE}
-    calc_rate.ft(inflow.o2 = 8.88, outflow.o2 = c(8.17, 8.16, 8.15), 
-      flowrate = 0.00234)
-    
-    calc_rate.ft(inflow.o2 = c(8.88, 8.87, 8.89), 
-      outflow.o2 = c(8,17, 8.16, 8.15), flowrate = 0.00234)  
-    
-    calc_rate.ft(inflow.o2 = 8.88, outflow.o2 = flowthrough.rd$o2.out, 
-      flowrate = 0.00234)
-    
-    calc_rate.ft(inflow.o2 = flowthrough.rd$o2.in, outflow.o2 = 
-        flowthrough.rd$o2.out, flowrate = 0.00234)
-    ```
+```{r, eval = FALSE}
+calc_rate.ft(inflow.o2 = 8.88, outflow.o2 = c(8.17, 8.16, 8.15), 
+             flowrate = 0.00234)
+
+calc_rate.ft(inflow.o2 = c(8.88, 8.87, 8.89), 
+             outflow.o2 = c(8,17, 8.16, 8.15), flowrate = 0.00234)  
+
+calc_rate.ft(inflow.o2 = 8.88, outflow.o2 = flowthrough.rd$o2.out, 
+             flowrate = 0.00234)
+
+calc_rate.ft(inflow.o2 = flowthrough.rd$o2.in, outflow.o2 = 
+               flowthrough.rd$o2.out, flowrate = 0.00234)
+```
 
 4. A data frame containing columns of paired outflow and inflow O~2~ values, with column identifiers:
 
-    ```{r, eval = FALSE}
-    calc_rate.ft(flowthrough.rd, time = 1, outflow.o2 = 2, inflow.o2 = 3, flowrate = 0.00234)
-    ```
+```{r, eval = FALSE}
+calc_rate.ft(flowthrough.rd, time = 1, outflow.o2 = 2, inflow.o2 = 3, flowrate = 0.00234)
+```
 
 5. An object of class `inspect.ft` containing flowthrough data:
 
-    ```{r, eval = FALSE}
-    calc_rate.ft(chiton.ft, flowrate = 0.00234)
-    ```  
-    
+```{r, eval = FALSE}
+calc_rate.ft(chiton.ft, flowrate = 0.00234)
+```  
+
 
 The `flowrate` operator is required by the function, and it is assumed it will be an unvarying parameter within each separate experiment. 
 Recordings at different flow rates should be analysed separately. 
